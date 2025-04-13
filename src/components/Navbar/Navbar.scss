@@ -1,0 +1,37 @@
+:root {
+  --PrimaryColorNavyBlue: hsl(224, 64%, 33%);
+  --AccentColorOrange: hsl(27, 96%, 61%);
+  --MainBackgroundColor: hsl(220, 14%, 96%);
+  --TextColor: hsl(221, 39%, 11%);
+}
+
+.navbar-section {
+  .nav-container {
+    // background: transparent;
+    z-index: 1000;
+
+    .navbar-link-cont {
+      .nav-item {
+        padding: 0 1.5rem;
+      
+        .nav-link {
+          color: var(--TextColor)
+        }
+
+        &::after {
+          content: "";
+          display: block;
+          height: 4px;
+          // background-color: var(--AccentColorOrange);
+          background: linear-gradient(90deg,rgba(30, 58, 138, 1) 0%, rgba(243, 244, 246, 1) 100%);
+          width: 0%;
+          transition: width 0.3s ease-in-out; /* Smooth animation */
+        }
+
+        &:hover::after {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
