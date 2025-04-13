@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Quicksand:wght@300..700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --PrimaryColorNavyBlue: hsl(224, 64%, 33%);
+  --AccentColorOrange: hsl(27, 96%, 61%);
+  --MainBackgroundColor: hsl(220, 14%, 96%);
+  --TextColor: hsl(221, 39%, 11%);
+}
+
+.logo {
+  color: var(--PrimaryColorNavyBlue);
+  font-family: "Playfair Display";
+  font-style: italic;
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+.tagline-header {
+  font-family: "Lora", sans-serif;
+  font-size: 3rem;
+  font-weight: 500;
+  
+}

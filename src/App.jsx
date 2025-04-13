@@ -1,19 +1,21 @@
 import { Routes, Route, Router } from "react-router";
-import './styles/App.css'
+import "./styles/App.css";
 
-import HomePage from "./pages/LandingPage/HomePagej.jsx";
+import Navbar from "./components/Navbar/Navbar.jsx";
+
+import HomePage from "./pages/LandingPage/HomePage.jsx";
+import MapPage from "./pages/MapPage/MapPage.jsx";
 
 function App() {
-
   return (
-    <>
-      <Router>
-        <Routes>
-          <Route path="/" element={<HomePage/>} />
-        </Routes>
-      </Router>
-    </>
-  )
+    <div className="app">
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/maps" element={<MapPage />} />
+      </Routes>
+    </div>
+  );
 }
 
-export default App
+export default App;
