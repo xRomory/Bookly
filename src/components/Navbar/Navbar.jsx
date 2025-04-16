@@ -1,14 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Navbar.scss";
 import { Link } from "react-router";
 
 const Navbar = () => {
+  const [transparent, setTransparent] = useState("nav-container");
+
+  const addBg = () => {
+    if(window.scrollY >= 15) {
+      setTransparent("nav-container active-header")
+    } else {
+      setTransparent("nav-container")
+    };
+  };
+
+  window.addEventListener("scroll", addBg);
+
   return (
     <section className="navbar-section">
-      <div className="nav-container fixed flex justify-between bg-transparent p-[1.5rem_5rem] z-50 w-full">
+      <div className={`${transparent} fixed flex justify-between p-[1.5rem_5rem] z-50 w-full`}>
         <div className="logo-container ml-[5rem]">
           <Link to="/" className="logo justify-center items-center ">
-            <h1 className="">Bookly</h1>
+            <h1>Bookly</h1>
           </Link>
         </div>
 
@@ -25,17 +37,17 @@ const Navbar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/community" className="nav-link">
+              <Link to="/offers" className="nav-link">
                 Offers
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/ranks-badges" className="nav-link">
+              <Link to="/sign-up" className="nav-link">
                 Sign up
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/partners" className="nav-link">
+              <Link to="/login" className="nav-link">
                 Log in
               </Link>
             </li>

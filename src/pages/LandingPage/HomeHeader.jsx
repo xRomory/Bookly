@@ -7,7 +7,7 @@ import { FaArrowRight } from "react-icons/fa";
 
 const HomeHeader = () => {
   return (
-    <section className="home-header items-center justify-center flex relative h-[38vw] m-auto p-32">
+    <section className="home-header items-center justify-center flex relative h-[38vw] mb-64 p-32">
       <div className="header-container absolute left-[15%] top-[35%]">
         <div className="header-text flex">
           <h1 className="tagline-header w-[55%] ">

@@ -1,0 +1,115 @@
+:root {
+  --PrimaryColorNavyBlue: hsl(224, 64%, 33%);
+  --HoverPrimaryColor: hsl(224, 53%, 40%);
+  --AccentColorOrange: hsl(27, 96%, 61%);
+  --MainBackgroundColor: hsl(220, 14%, 96%);
+  --TextColor: hsl(221, 39%, 11%);
+  --PlaceholderText: hsl(219, 10%, 34%);
+  //   linear-gradient(rgba(33, 33, 33, 0.6), rgba(33, 33, 33, 0.6)),
+}
+
+.sign-up-container {
+  background: var(--MainBackgroundColor);
+
+  .wrapper {
+    background: linear-gradient(rgba(91, 91, 91, 0.1), rgba(20, 20, 20, 0.6)),
+      url("../../assets/images/hotel_bg7.jpg") no-repeat;
+    background-size: cover;
+    background-position: 25% 50%;
+
+    .logo-div {
+      .tagline-text {
+        font-family: "Playfair Display";
+        margin-top: 0.5rem;
+      }
+    }
+  }
+
+  .create-account-container {
+    form {
+      h1 {
+        font-family: "Lora", serif;
+      }
+
+      .create-acc-div {
+        .input-box {
+          position: relative;
+          width: 100%;
+
+          margin: 5px 0;
+
+          h2 {
+            font-family: "Quicksand", sans-serif;
+            text-align: left;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+          }
+
+          input {
+            width: 100%;
+            height: 50%;
+            outline: none;
+            background: var(--MainBackgroundColor);
+            border: 3px solid var(--PrimaryColorNavyBlue);
+            border-radius: 12px;
+            color: var(--TextColor);
+            padding: 20px 45px 20px 20px;
+
+            &::placeholder {
+              color: var(--PlaceholderText);
+              font-weight: 100;
+            }
+          }
+        }
+      }
+
+      .input-box {
+        position: relative;
+        width: 100%;
+        margin: 5px 0;
+
+        h2 {
+          font-family: "Quicksand", sans-serif;
+          text-align: left;
+          font-size: 1.1rem;
+          margin-bottom: 0.5rem;
+        }
+
+        input {
+          width: 100%;
+          height: 50%;
+          outline: none;
+          background: var(--MainBackgroundColor);
+          border: 3px solid var(--PrimaryColorNavyBlue);
+          border-radius: 12px;
+          color: var(--TextColor);
+          padding: 20px 45px 20px 20px;
+
+          &::placeholder {
+            color: var(--PlaceholderText);
+            font-weight: 100;
+          }
+        }
+      }
+
+      button {
+        background: var(--PrimaryColorNavyBlue);
+        font-family: "Quicksand", sans-serif;
+
+        &:hover {
+          background: var(--HoverPrimaryColor);
+        }
+      }
+
+      .register-link {
+        font-family: "Quicksand", sans-serif;
+
+        a, Link {
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}

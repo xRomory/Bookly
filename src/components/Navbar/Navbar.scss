@@ -7,29 +7,67 @@
 
 .navbar-section {
   .nav-container {
-    // background: transparent;
+    background: transparent;
     z-index: 1000;
 
     .navbar-link-cont {
       .nav-item {
         padding: 0 1.5rem;
-      
+
         .nav-link {
-          color: var(--TextColor)
+          font-family: "Quicksand", sans-serif;
+          font-weight: 600;
+          color: var(--TextColor);
         }
 
         &::after {
           content: "";
           display: block;
           height: 4px;
-          // background-color: var(--AccentColorOrange);
-          background: linear-gradient(90deg,rgba(30, 58, 138, 1) 0%, rgba(243, 244, 246, 1) 100%);
+          background: linear-gradient(
+            90deg,
+            rgba(30, 58, 138, 1) 0%,
+            rgba(243, 244, 246, 1) 100%
+          );
           width: 0%;
           transition: width 0.3s ease-in-out; /* Smooth animation */
         }
 
         &:hover::after {
           width: 100%;
+        }
+      }
+    }
+  }
+
+  .active-header {
+    background: var(--PrimaryColorNavyBlue);
+
+    .logo-container {
+      h1 {
+        color: white;
+      }
+    }
+
+    .navbar-link-cont {
+      .nav-lists {
+        .nav-item {
+          .nav-link {
+            color: white;
+          }
+
+          &::after {
+            content: "";
+            display: block;
+            height: 2px;
+            background: white;
+            width: 0%;
+            transition: width 0.3s ease-in-out; /* Smooth animation */
+          }
+
+          &:hover::after {
+            width: 100%;
+          }
         }
       }
     }
