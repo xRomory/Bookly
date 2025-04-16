@@ -4,6 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  transition: .3s ease;
 }
 
 :root {
@@ -33,5 +34,9 @@ li {
   font-family: "Lora", sans-serif;
   font-size: 3rem;
   font-weight: 500;
-  
+}
+
+img {
+  width: 100;
+  height: auto;
 }

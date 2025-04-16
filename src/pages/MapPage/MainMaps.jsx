@@ -11,7 +11,7 @@ const MainMaps = () => {
   return (
     <MapContainer
       center={[14.5995, 120.9842]}
-      zoom={13}
+      zoom={19}
       style={{ height: "100vh", width: "100vw" }}
     >
       <TileLayer

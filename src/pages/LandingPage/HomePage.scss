@@ -1,8 +1,10 @@
 :root {
   --PrimaryColorNavyBlue: hsl(224, 64%, 33%);
+  --HoverPrimaryColor: hsl(224, 53%, 40%);
   --AccentColorOrange: hsl(27, 96%, 61%);
   --MainBackgroundColor: hsl(220, 14%, 96%);
   --TextColor: hsl(221, 39%, 11%);
+  --PlaceholderText: hsl(219, 10%, 34%);
 }
 
 .home-header {
@@ -11,9 +13,8 @@
       rgba(96, 96, 96, 0) 0%,
       rgba(52, 52, 52, 0.6) 100%
     ),
-    url("../../assets/images/mainBg.jpg") no-repeat center;
+    url("../../assets/images/mainBg.jpg") no-repeat top;
   background-size: cover;
-  background-position: top;
 
   .book-card {
     h3 {
@@ -33,7 +34,8 @@
       }
 
       .date-div {
-        .sched-in-label, .sched-out-label {
+        .sched-in-label,
+        .sched-out-label {
           width: 45%;
 
           .react-datepicker-wrapper {
@@ -65,6 +67,85 @@
 
         .icon {
           color: var(--AccentColorOrange);
+        }
+      }
+    }
+  }
+}
+
+.content-container {
+  .accommodation-type-container {
+    .header-div {
+      .header-text {
+        font-family: "Lora", serif;
+      }
+
+      .subtext {
+        font-family: "Quicksand", sans-serif;
+      }
+    }
+
+    .main-content {
+      .single-property-type {
+        .property-image {
+          img {
+            background-position: center;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+          }
+
+          .overlay-info {
+            background: linear-gradient(
+              rgba(0, 0, 0, 0.846),
+              rgba(0, 0, 0, 0.759)
+            );
+            justify-content: center;
+            font-size: 1.5rem;
+
+            h3 {
+              font-family: "Quicksand", sans-serif;
+              color: var(--MainBackgroundColor);
+              font-weight: 700;
+            }
+
+            .icon {
+              font-size: 3rem;
+              border-radius: 50%;
+              color: var(--AccentColorOrange);
+              background: var(--PrimaryColorNavyBlue);
+              border: 1px solid var(--PrimaryColorNavyBlue);
+              transition: 0.3s ease;
+
+              &:hover {
+                background: transparent;
+                color: var(--PrimaryColorNavyBlue);
+              }
+            }
+          }
+        }
+
+        .property-footer {
+          .footer-text {
+            h3 {
+              font-family: "Quicksand", sans-serif;
+            }
+
+            span {
+              .logo {
+                font-size: 15px;
+              }
+            }
+          }
+        }
+
+        &:hover {
+          .overlay-info {
+            overflow: visible;
+            padding: 1rem 1.5rem;
+            height: 100%;
+          }
         }
       }
     }
