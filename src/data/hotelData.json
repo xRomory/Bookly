@@ -1,0 +1,744 @@
+{
+  "property_brands": [
+    {
+      "key": 1,
+      "name": "Hotel Sogu",
+      "category": "Apartment",
+      "address": "123 Manila Street, Metro Manila, Philippines",
+      "phone": "+63 2 8766 6286",
+      "email": "contact@hotelsogu.ph",
+      "location": {
+        "latitude": 14.6091,
+        "longitude": 121.0223
+      },
+      "room_types": [
+        {
+          "name": "Standard Room",
+          "description": "Cozy room with a queen bed and free WiFi.",
+          "capacity": 2,
+          "price_per_night": 2092.12
+        },
+        {
+          "name": "Deluxe Room",
+          "description": "Spacious room with a king bed and city view.",
+          "capacity": 2,
+          "price_per_night": 3639.55
+        },
+        {
+          "name": "Twin Room",
+          "description": "Room with two single beds for companions.",
+          "capacity": 2,
+          "price_per_night": 5204.05
+        },
+        {
+          "name": "Family Suite",
+          "description": "Two-bedroom suite perfect for families.",
+          "capacity": 4,
+          "price_per_night": 6512.09
+        },
+        {
+          "name": "Executive Suite",
+          "description": "Suite with living area and workspace.",
+          "capacity": 2,
+          "price_per_night": 3106.24
+        },
+        {
+          "name": "Presidential Suite",
+          "description": "Premium suite with luxury features.",
+          "capacity": 2,
+          "price_per_night": 1530.37
+        },
+        {
+          "name": "Studio Room",
+          "description": "Compact room ideal for solo travelers.",
+          "capacity": 1,
+          "price_per_night": 7845.35
+        },
+        {
+          "name": "Matrimonial Room",
+          "description": "Romantic setup for couples.",
+          "capacity": 2,
+          "price_per_night": 6534.78
+        },
+        {
+          "name": "Barkada Room",
+          "description": "Bunk beds for groups of friends.",
+          "capacity": 5,
+          "price_per_night": 2826.44
+        },
+        {
+          "name": "Accessible Room",
+          "description": "Room with accessibility features.",
+          "capacity": 2,
+          "price_per_night": 5635.2
+        }
+      ]
+    },
+    {
+      "key": 2,
+      "name": "AstroTel",
+      "category": "Motel",
+      "address": "123 Quezon City Street, Metro Manila, Philippines",
+      "phone": "+63 2 8376 7010",
+      "email": "contact@astrotel.ph",
+      "location": {
+        "latitude": 14.676,
+        "longitude": 121.0437
+      },
+      "room_types": [
+        {
+          "name": "Standard Room",
+          "description": "Cozy room with a queen bed and free WiFi.",
+          "capacity": 2,
+          "price_per_night": 2018.57
+        },
+        {
+          "name": "Deluxe Room",
+          "description": "Spacious room with a king bed and city view.",
+          "capacity": 2,
+          "price_per_night": 5494.58
+        },
+        {
+          "name": "Twin Room",
+          "description": "Room with two single beds for companions.",
+          "capacity": 2,
+          "price_per_night": 2517.07
+        },
+        {
+          "name": "Family Suite",
+          "description": "Two-bedroom suite perfect for families.",
+          "capacity": 4,
+          "price_per_night": 7843.44
+        },
+        {
+          "name": "Executive Suite",
+          "description": "Suite with living area and workspace.",
+          "capacity": 2,
+          "price_per_night": 7770.15
+        },
+        {
+          "name": "Presidential Suite",
+          "description": "Premium suite with luxury features.",
+          "capacity": 2,
+          "price_per_night": 6691.28
+        },
+        {
+          "name": "Studio Room",
+          "description": "Compact room ideal for solo travelers.",
+          "capacity": 1,
+          "price_per_night": 7973.96
+        },
+        {
+          "name": "Matrimonial Room",
+          "description": "Romantic setup for couples.",
+          "capacity": 2,
+          "price_per_night": 6519.83
+        },
+        {
+          "name": "Barkada Room",
+          "description": "Bunk beds for groups of friends.",
+          "capacity": 5,
+          "price_per_night": 2474.86
+        },
+        {
+          "name": "Accessible Room",
+          "description": "Room with accessibility features.",
+          "capacity": 2,
+          "price_per_night": 2430.99
+        }
+      ]
+    },
+    {
+      "key": 3,
+      "name": "Luxinn",
+      "category": "Resort",
+      "address": "123 Makati Street, Metro Manila, Philippines",
+      "phone": "+63 2 8915 5406",
+      "email": "contact@luxinn.ph",
+      "location": {
+        "latitude": 14.5547,
+        "longitude": 121.0244
+      },
+      "room_types": [
+        {
+          "name": "Standard Room",
+          "description": "Cozy room with a queen bed and free WiFi.",
+          "capacity": 2,
+          "price_per_night": 6818.0
+        },
+        {
+          "name": "Deluxe Room",
+          "description": "Spacious room with a king bed and city view.",
+          "capacity": 2,
+          "price_per_night": 3759.9
+        },
+        {
+          "name": "Twin Room",
+          "description": "Room with two single beds for companions.",
+          "capacity": 2,
+          "price_per_night": 6255.57
+        },
+        {
+          "name": "Family Suite",
+          "description": "Two-bedroom suite perfect for families.",
+          "capacity": 4,
+          "price_per_night": 1817.07
+        },
+        {
+          "name": "Executive Suite",
+          "description": "Suite with living area and workspace.",
+          "capacity": 2,
+          "price_per_night": 4253.11
+        },
+        {
+          "name": "Presidential Suite",
+          "description": "Premium suite with luxury features.",
+          "capacity": 2,
+          "price_per_night": 5935.95
+        },
+        {
+          "name": "Studio Room",
+          "description": "Compact room ideal for solo travelers.",
+          "capacity": 1,
+          "price_per_night": 5458.3
+        },
+        {
+          "name": "Matrimonial Room",
+          "description": "Romantic setup for couples.",
+          "capacity": 2,
+          "price_per_night": 5509.31
+        },
+        {
+          "name": "Barkada Room",
+          "description": "Bunk beds for groups of friends.",
+          "capacity": 5,
+          "price_per_night": 1346.03
+        },
+        {
+          "name": "Accessible Room",
+          "description": "Room with accessibility features.",
+          "capacity": 2,
+          "price_per_night": 3081.47
+        }
+      ]
+    },
+    {
+      "key": 4,
+      "name": "Vila Carmela",
+      "category": "Apartment",
+      "address": "123 Para\u00f1aque Street, Metro Manila, Philippines",
+      "phone": "+63 2 8584 6465",
+      "email": "contact@vilacarmela.ph",
+      "location": {
+        "latitude": 14.4634,
+        "longitude": 121.0164
+      },
+      "room_types": [
+        {
+          "name": "Standard Room",
+          "description": "Cozy room with a queen bed and free WiFi.",
+          "capacity": 2,
+          "price_per_night": 4355.48
+        },
+        {
+          "name": "Deluxe Room",
+          "description": "Spacious room with a king bed and city view.",
+          "capacity": 2,
+          "price_per_night": 1795.76
+        },
+        {
+          "name": "Twin Room",
+          "description": "Room with two single beds for companions.",
+          "capacity": 2,
+          "price_per_night": 1745.39
+        },
+        {
+          "name": "Family Suite",
+          "description": "Two-bedroom suite perfect for families.",
+          "capacity": 4,
+          "price_per_night": 4424.9
+        },
+        {
+          "name": "Executive Suite",
+          "description": "Suite with living area and workspace.",
+          "capacity": 2,
+          "price_per_night": 7945.75
+        },
+        {
+          "name": "Presidential Suite",
+          "description": "Premium suite with luxury features.",
+          "capacity": 2,
+          "price_per_night": 4270.74
+        },
+        {
+          "name": "Studio Room",
+          "description": "Compact room ideal for solo travelers.",
+          "capacity": 1,
+          "price_per_night": 4199.49
+        },
+        {
+          "name": "Matrimonial Room",
+          "description": "Romantic setup for couples.",
+          "capacity": 2,
+          "price_per_night": 7957.52
+        },
+        {
+          "name": "Barkada Room",
+          "description": "Bunk beds for groups of friends.",
+          "capacity": 5,
+          "price_per_night": 4238.51
+        },
+        {
+          "name": "Accessible Room",
+          "description": "Room with accessibility features.",
+          "capacity": 2,
+          "price_per_night": 2799.88
+        }
+      ]
+    },
+    {
+      "key": 5,
+      "name": "UrbanPod",
+      "category": "Apartment",
+      "address": "123 San Juan Street, Metro Manila, Philippines",
+      "phone": "+63 2 8724 9935",
+      "email": "contact@urbanpod.ph",
+      "location": {
+        "latitude": 14.6514,
+        "longitude": 121.0498
+      },
+      "room_types": [
+        {
+          "name": "Standard Room",
+          "description": "Cozy room with a queen bed and free WiFi.",
+          "capacity": 2,
+          "price_per_night": 1993.73
+        },
+        {
+          "name": "Deluxe Room",
+          "description": "Spacious room with a king bed and city view.",
+          "capacity": 2,
+          "price_per_night": 7106.46
+        },
+        {
+          "name": "Twin Room",
+          "description": "Room with two single beds for companions.",
+          "capacity": 2,
+          "price_per_night": 7399.0
+        },
+        {
+          "name": "Family Suite",
+          "description": "Two-bedroom suite perfect for families.",
+          "capacity": 4,
+          "price_per_night": 3102.53
+        },
+        {
+          "name": "Executive Suite",
+          "description": "Suite with living area and workspace.",
+          "capacity": 2,
+          "price_per_night": 1769.75
+        },
+        {
+          "name": "Presidential Suite",
+          "description": "Premium suite with luxury features.",
+          "capacity": 2,
+          "price_per_night": 3137.11
+        },
+        {
+          "name": "Studio Room",
+          "description": "Compact room ideal for solo travelers.",
+          "capacity": 1,
+          "price_per_night": 6839.42
+        },
+        {
+          "name": "Matrimonial Room",
+          "description": "Romantic setup for couples.",
+          "capacity": 2,
+          "price_per_night": 3570.72
+        },
+        {
+          "name": "Barkada Room",
+          "description": "Bunk beds for groups of friends.",
+          "capacity": 5,
+          "price_per_night": 1802.29
+        },
+        {
+          "name": "Accessible Room",
+          "description": "Room with accessibility features.",
+          "capacity": 2,
+          "price_per_night": 4289.45
+        }
+      ]
+    },
+    {
+      "key": 6,
+      "name": "Pacific Suites",
+      "category": "Villa",
+      "address": "123 Pasig Street, Metro Manila, Philippines",
+      "phone": "+63 2 8311 7074",
+      "email": "contact@pacificsuites.ph",
+      "location": {
+        "latitude": 14.5919,
+        "longitude": 121.0604
+      },
+      "room_types": [
+        {
+          "name": "Standard Room",
+          "description": "Cozy room with a queen bed and free WiFi.",
+          "capacity": 2,
+          "price_per_night": 3902.55
+        },
+        {
+          "name": "Deluxe Room",
+          "description": "Spacious room with a king bed and city view.",
+          "capacity": 2,
+          "price_per_night": 5498.52
+        },
+        {
+          "name": "Twin Room",
+          "description": "Room with two single beds for companions.",
+          "capacity": 2,
+          "price_per_night": 5355.91
+        },
+        {
+          "name": "Family Suite",
+          "description": "Two-bedroom suite perfect for families.",
+          "capacity": 4,
+          "price_per_night": 3168.37
+        },
+        {
+          "name": "Executive Suite",
+          "description": "Suite with living area and workspace.",
+          "capacity": 2,
+          "price_per_night": 2080.86
+        },
+        {
+          "name": "Presidential Suite",
+          "description": "Premium suite with luxury features.",
+          "capacity": 2,
+          "price_per_night": 4459.62
+        },
+        {
+          "name": "Studio Room",
+          "description": "Compact room ideal for solo travelers.",
+          "capacity": 1,
+          "price_per_night": 2807.77
+        },
+        {
+          "name": "Matrimonial Room",
+          "description": "Romantic setup for couples.",
+          "capacity": 2,
+          "price_per_night": 4727.58
+        },
+        {
+          "name": "Barkada Room",
+          "description": "Bunk beds for groups of friends.",
+          "capacity": 5,
+          "price_per_night": 1632.57
+        },
+        {
+          "name": "Accessible Room",
+          "description": "Room with accessibility features.",
+          "capacity": 2,
+          "price_per_night": 1956.0
+        }
+      ]
+    },
+    {
+      "key": 7,
+      "name": "SkyVista",
+      "category": "Apartment",
+      "address": "123 Malate Street, Metro Manila, Philippines",
+      "phone": "+63 2 8380 9868",
+      "email": "contact@skyvista.ph",
+      "location": {
+        "latitude": 14.5764,
+        "longitude": 120.9842
+      },
+      "room_types": [
+        {
+          "name": "Standard Room",
+          "description": "Cozy room with a queen bed and free WiFi.",
+          "capacity": 2,
+          "price_per_night": 5917.06
+        },
+        {
+          "name": "Deluxe Room",
+          "description": "Spacious room with a king bed and city view.",
+          "capacity": 2,
+          "price_per_night": 7325.75
+        },
+        {
+          "name": "Twin Room",
+          "description": "Room with two single beds for companions.",
+          "capacity": 2,
+          "price_per_night": 2070.23
+        },
+        {
+          "name": "Family Suite",
+          "description": "Two-bedroom suite perfect for families.",
+          "capacity": 4,
+          "price_per_night": 1805.19
+        },
+        {
+          "name": "Executive Suite",
+          "description": "Suite with living area and workspace.",
+          "capacity": 2,
+          "price_per_night": 4229.25
+        },
+        {
+          "name": "Presidential Suite",
+          "description": "Premium suite with luxury features.",
+          "capacity": 2,
+          "price_per_night": 3135.38
+        },
+        {
+          "name": "Studio Room",
+          "description": "Compact room ideal for solo travelers.",
+          "capacity": 1,
+          "price_per_night": 1364.42
+        },
+        {
+          "name": "Matrimonial Room",
+          "description": "Romantic setup for couples.",
+          "capacity": 2,
+          "price_per_night": 3923.63
+        },
+        {
+          "name": "Barkada Room",
+          "description": "Bunk beds for groups of friends.",
+          "capacity": 5,
+          "price_per_night": 5109.69
+        },
+        {
+          "name": "Accessible Room",
+          "description": "Room with accessibility features.",
+          "capacity": 2,
+          "price_per_night": 6906.35
+        }
+      ]
+    },
+    {
+      "key": 8,
+      "name": "Mango Bay Inn",
+      "category": "Villa",
+      "address": "123 Taguig Street, Metro Manila, Philippines",
+      "phone": "+63 2 8113 3497",
+      "email": "contact@mangobayinn.ph",
+      "location": {
+        "latitude": 14.5896,
+        "longitude": 121.0697
+      },
+      "room_types": [
+        {
+          "name": "Standard Room",
+          "description": "Cozy room with a queen bed and free WiFi.",
+          "capacity": 2,
+          "price_per_night": 4425.63
+        },
+        {
+          "name": "Deluxe Room",
+          "description": "Spacious room with a king bed and city view.",
+          "capacity": 2,
+          "price_per_night": 2648.14
+        },
+        {
+          "name": "Twin Room",
+          "description": "Room with two single beds for companions.",
+          "capacity": 2,
+          "price_per_night": 4738.57
+        },
+        {
+          "name": "Family Suite",
+          "description": "Two-bedroom suite perfect for families.",
+          "capacity": 4,
+          "price_per_night": 2127.41
+        },
+        {
+          "name": "Executive Suite",
+          "description": "Suite with living area and workspace.",
+          "capacity": 2,
+          "price_per_night": 3784.88
+        },
+        {
+          "name": "Presidential Suite",
+          "description": "Premium suite with luxury features.",
+          "capacity": 2,
+          "price_per_night": 6500.56
+        },
+        {
+          "name": "Studio Room",
+          "description": "Compact room ideal for solo travelers.",
+          "capacity": 1,
+          "price_per_night": 4899.38
+        },
+        {
+          "name": "Matrimonial Room",
+          "description": "Romantic setup for couples.",
+          "capacity": 2,
+          "price_per_night": 6784.9
+        },
+        {
+          "name": "Barkada Room",
+          "description": "Bunk beds for groups of friends.",
+          "capacity": 5,
+          "price_per_night": 2084.28
+        },
+        {
+          "name": "Accessible Room",
+          "description": "Room with accessibility features.",
+          "capacity": 2,
+          "price_per_night": 3605.46
+        }
+      ]
+    },
+    {
+      "key": 9,
+      "name": "Sunset Lounge",
+      "category": "Motel",
+      "address": "123 Las Pi\u00f1as Street, Metro Manila, Philippines",
+      "phone": "+63 2 8307 3616",
+      "email": "contact@sunsetlounge.ph",
+      "location": {
+        "latitude": 14.4426,
+        "longitude": 120.992
+      },
+      "room_types": [
+        {
+          "name": "Standard Room",
+          "description": "Cozy room with a queen bed and free WiFi.",
+          "capacity": 2,
+          "price_per_night": 7897.2
+        },
+        {
+          "name": "Deluxe Room",
+          "description": "Spacious room with a king bed and city view.",
+          "capacity": 2,
+          "price_per_night": 7526.59
+        },
+        {
+          "name": "Twin Room",
+          "description": "Room with two single beds for companions.",
+          "capacity": 2,
+          "price_per_night": 6756.03
+        },
+        {
+          "name": "Family Suite",
+          "description": "Two-bedroom suite perfect for families.",
+          "capacity": 4,
+          "price_per_night": 4852.99
+        },
+        {
+          "name": "Executive Suite",
+          "description": "Suite with living area and workspace.",
+          "capacity": 2,
+          "price_per_night": 4091.77
+        },
+        {
+          "name": "Presidential Suite",
+          "description": "Premium suite with luxury features.",
+          "capacity": 2,
+          "price_per_night": 1439.82
+        },
+        {
+          "name": "Studio Room",
+          "description": "Compact room ideal for solo travelers.",
+          "capacity": 1,
+          "price_per_night": 6404.25
+        },
+        {
+          "name": "Matrimonial Room",
+          "description": "Romantic setup for couples.",
+          "capacity": 2,
+          "price_per_night": 4638.06
+        },
+        {
+          "name": "Barkada Room",
+          "description": "Bunk beds for groups of friends.",
+          "capacity": 5,
+          "price_per_night": 1826.61
+        },
+        {
+          "name": "Accessible Room",
+          "description": "Room with accessibility features.",
+          "capacity": 2,
+          "price_per_night": 5237.25
+        }
+      ]
+    },
+    {
+      "key": 10,
+      "name": "MetroHabitat",
+      "category": "Villa",
+      "address": "123 Caloocan Street, Metro Manila, Philippines",
+      "phone": "+63 2 8287 5485",
+      "email": "contact@metrohabitat.ph",
+      "location": {
+        "latitude": 14.7066,
+        "longitude": 121.0822
+      },
+      "room_types": [
+        {
+          "name": "Standard Room",
+          "description": "Cozy room with a queen bed and free WiFi.",
+          "capacity": 2,
+          "price_per_night": 2348.91
+        },
+        {
+          "name": "Deluxe Room",
+          "description": "Spacious room with a king bed and city view.",
+          "capacity": 2,
+          "price_per_night": 3871.25
+        },
+        {
+          "name": "Twin Room",
+          "description": "Room with two single beds for companions.",
+          "capacity": 2,
+          "price_per_night": 7082.15
+        },
+        {
+          "name": "Family Suite",
+          "description": "Two-bedroom suite perfect for families.",
+          "capacity": 4,
+          "price_per_night": 3310.82
+        },
+        {
+          "name": "Executive Suite",
+          "description": "Suite with living area and workspace.",
+          "capacity": 2,
+          "price_per_night": 2248.73
+        },
+        {
+          "name": "Presidential Suite",
+          "description": "Premium suite with luxury features.",
+          "capacity": 2,
+          "price_per_night": 6981.73
+        },
+        {
+          "name": "Studio Room",
+          "description": "Compact room ideal for solo travelers.",
+          "capacity": 1,
+          "price_per_night": 6654.44
+        },
+        {
+          "name": "Matrimonial Room",
+          "description": "Romantic setup for couples.",
+          "capacity": 2,
+          "price_per_night": 6368.69
+        },
+        {
+          "name": "Barkada Room",
+          "description": "Bunk beds for groups of friends.",
+          "capacity": 5,
+          "price_per_night": 5414.09
+        },
+        {
+          "name": "Accessible Room",
+          "description": "Room with accessibility features.",
+          "capacity": 2,
+          "price_per_night": 5744.13
+        }
+      ]
+    }
+  ]
+}

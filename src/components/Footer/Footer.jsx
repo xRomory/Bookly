@@ -1,12 +1,12 @@
 import React from "react";
 import "./Footer.scss";
-import logo from "../../assets/images/Bookly.png"
+import logo from "../../assets/images/Bookly.png";
 
 import { Link } from "react-router";
 
 const Footer = () => {
   return (
-    <div className="footer p-8 rounded-[20px_20px_0_0]">
+    <div className="footer p-8">
       <div className="footer-container grid grid-cols-5 gap-6 items-center">
         <div className="logo-div flex">
           <div className="footer-logo pb-2">
@@ -24,7 +24,7 @@ const Footer = () => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <a href="#">Hotels</a>
+            <Link to="/property-brands">Hotels</Link>
           </li>
           <li>
             <Link to="/maps">Maps</Link>
@@ -63,6 +63,26 @@ const Footer = () => {
 
         <div className="logo-div flex justify-center w-[50%]">
           <img src={logo} alt="Bookly Logo" />
+        </div>
+      </div>
+
+      <div className="lower-section-container flex mt-12 text-white items-center w-full">
+        <h2 className="all-rights whitespace-nowrap mr-4">
+          © All rights reserved
+        </h2>
+        <div className="flex-1 h-px bg-white opacity-90"></div>
+        <div className="ml-4 flex gap-4">
+          <li>
+            <a href="#" className="hover:text-orange-400">
+              Privacy Policy
+            </a>
+          </li>
+
+          <li>
+            <a href="#" className="hover:text-orange-400">
+              Terms of Service
+            </a>
+          </li>
         </div>
       </div>
     </div>

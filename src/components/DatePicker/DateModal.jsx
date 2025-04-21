@@ -3,25 +3,13 @@ import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 
-const DateModal = ({ onDateSelect }) => {
-  const today = new Date();
-  const tomorrow = new Date(today);
-  tomorrow.setDate(today.getDate() + 1);
-  const [dateRange, setDateRange] = useState([today, tomorrow]);
-  const [startDate, endDate] = dateRange;
-
-  const handleDateChange = (update) => {
-    setDateRange(update);
-    onDateSelect(update);
-  };
+const DateModal = ({ selectedDate, onChange }) => {
 
   return (
     <DatePicker
-      selectsRange={true}
-      startDate={startDate}
-      endDate={endDate}
-      onChange={handleDateChange}
-      minDate={today}
+      selected={selectedDate}
+      onChange={onChange}
+      minDate={new Date()}
       dateFormat="MMM. dd, yyyy"
     />
   );
