@@ -1,0 +1,55 @@
+:root {
+  --PrimaryColorNavyBlue: hsl(224, 64%, 33%);
+  --HoverPrimaryColor: hsl(224, 53%, 40%);
+  --AccentColorOrange: hsl(27, 96%, 61%);
+  --MainBackgroundColor: hsl(220, 14%, 96%);
+  --TextColor: hsl(221, 39%, 11%);
+  --PlaceholderText: hsl(219, 10%, 34%);
+  --AccentDarkNavy: #162c5f;
+}
+
+.search-container {
+  z-index: 900;
+
+  label {
+    .search-input {
+      background: var(--MainBackgroundColor);
+      font-family: "Quicksand", sans-serif;
+    }
+  }
+}
+
+.side-panel-menu-container {
+  z-index: 9999;
+  left: -500%;
+  transition: all 0.3s ease-in-out;
+
+  .menu-side {
+    background: var(--MainBackgroundColor);
+
+    .logo {
+      font-size: 3rem;
+    }
+
+    .navbar-link-cont {
+      .nav-lists {
+        .nav-item {
+          margin-top: 1rem;  
+
+          .nav-link {
+            font-family: "Quicksand", sans-serif;
+            font-size: 1.2rem;
+
+            &:hover {
+              color: var(--AccentColorOrange);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.active-menu {
+  left: 0;
+}

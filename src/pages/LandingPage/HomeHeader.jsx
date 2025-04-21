@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./HomePage.scss";
 
 import DateModal from "../../components/DatePicker/DateModal";
@@ -6,6 +6,23 @@ import DateModal from "../../components/DatePicker/DateModal";
 import { FaArrowRight } from "react-icons/fa";
 
 const HomeHeader = () => {
+  const today = new Date();
+  const [checkInDate, setCheckInDate] = useState(today);
+  const [checkOutDate, setCheckOutDate] = useState(() => {
+    const tomorrow = new Date();
+    tomorrow.setDate(today.getDate() + 1);
+    return tomorrow;
+  });
+
+  const handleCheckInChange = (date) => {
+    setCheckInDate(date);
+    if (date > checkOutDate) {
+      const newCheckOut = new Date(date);
+      newCheckOut.setDate(date.getDate() + 1);
+      setCheckOutDate(newCheckOut);
+    }
+  };
+
   return (
     <section className="home-header items-center justify-center flex relative h-[38vw] mb-64 p-32">
       <div className="header-container absolute left-[15%] top-[35%]">
@@ -42,7 +59,7 @@ const HomeHeader = () => {
               className="sched-in-label font-semibold text-2xl"
             >
               Check-in
-              <DateModal />
+              <DateModal selectedDate={checkInDate} onChange={handleCheckInChange}/>
             </label>
 
             <label
@@ -50,7 +67,7 @@ const HomeHeader = () => {
               className="sched-out-label font-semibold text-2xl"
             >
               Check-out
-              <DateModal />
+              <DateModal selectedDate={checkOutDate} onChange={setCheckOutDate}/>
             </label>
           </div>
 

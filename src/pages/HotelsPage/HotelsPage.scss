@@ -1,0 +1,104 @@
+:root {
+  --PrimaryColorNavyBlue: hsl(224, 64%, 33%);
+  --HoverPrimaryColor: hsl(224, 53%, 40%);
+  --SecondaryColorTeal: #14b8a6;
+  --AccentColorOrange: hsl(27, 96%, 61%);
+  --MainBackgroundColor: hsl(220, 14%, 96%);
+  --TextColor: hsl(221, 39%, 11%);
+  --PlaceholderText: hsl(219, 10%, 34%);
+  --AccentDarkNavy: #162c5f;
+}
+
+.section-container {
+  background: linear-gradient(
+      180deg,
+      rgba(243, 244, 246, 0) 0%,
+      rgba(30, 58, 138, 0.7) 80%,
+      rgba(30, 58, 138, 1) 100%
+    ),
+    url("../../assets/images/bg2.jpg") no-repeat;
+  background-size: cover;
+  background-position: 0% 10%;
+
+  .header-container {
+    color: white;
+    font-family: "Lora", serif;
+    animation: fadeIn 3s;
+
+    .header-text {
+      font-family: "Lora", serif;
+    }
+  }
+}
+
+.property-container {
+  background: linear-gradient(
+    180deg,
+    rgba(30, 58, 138, 1) 0%,
+    rgba(24, 41, 89, 1) 50%,
+    rgba(17, 24, 39, 1) 100%
+  );
+
+  .content-container {
+    .upper-content {
+      .text-div {
+        .property-text {
+          font-family: "Lora", serif;
+          font-size: 3rem;
+          color: white;
+          font-weight: 700;
+
+          &::after {
+            content: "";
+            position: absolute;
+            background: white;
+            top: 50%;
+            left: calc(100% + 50px);
+            width: 60vw;
+            height: 2px;
+          }
+        }
+      }
+    }
+
+    .main-content {
+      .single-property-brand {
+        .brand-image {
+          .brand-info {
+            background: linear-gradient(
+              rgba(0, 0, 0, 0.846),
+              rgba(0, 0, 0, 0.759)
+            );
+
+            h3 {
+              font-family: "Quicksand", sans-serif;
+              font-size: 1.2rem;
+            }
+
+            .icon {
+              font-size: 3rem;
+              border-radius: 50%;
+              color: var(--AccentColorOrange);
+              background: var(--PrimaryColorNavyBlue);
+              border: 1px solid var(--PrimaryColorNavyBlue);
+              transition: 0.3s ease;
+
+              &:hover {
+                background: transparent;
+                color: var(--PrimaryColorNavyBlue);
+              }
+            }
+          }
+
+          &:hover {
+            .brand-info {
+              overflow: visible;
+              padding: 1rem 1.5rem;
+              height: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
