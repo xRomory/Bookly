@@ -1,0 +1,72 @@
+:root {
+  --PrimaryColorNavyBlue: hsl(224, 64%, 33%);
+  --HoverPrimaryColor: hsl(224, 53%, 40%);
+  --SecondaryColorTeal: #14b8a6;
+  --HoverSecondaryColorTeal: #36decb;
+  --AccentColorOrange: hsl(27, 96%, 61%);
+  --MainBackgroundColor: hsl(220, 14%, 96%);
+  --SecondaryWhiteColor: #e7e7e7;
+  --TextColor: hsl(221, 39%, 11%);
+  --PlaceholderText: hsl(219, 10%, 34%);
+  --AccentDarkNavy: #162c5f;
+}
+
+.room-details-container {
+  background: var(--MainBackgroundColor);
+
+  .room-deets-page-container {
+    .availability-form {
+      background: var(--SecondaryWhiteColor);
+
+      .react-datepicker-wrapper {
+        display: block;
+        width: 100%;
+
+        .react-datepicker__input-container {
+          input {
+            font-family: "Quicksand", sans-serif;
+            font-size: 1rem;
+            padding: .3rem 2rem;
+            width: 100%;
+            border: 2px solid var(--PrimaryColorNavyBlue);
+            border-radius: 8px;
+            transition: all 0.3s ease-in-out;
+            margin-top: 6px;
+            gap: 1rem;
+            outline: none;
+          }
+        }
+      }
+
+      .btn {
+        width: 300px;
+        height: 60px;
+        border-radius: 8px;
+      }
+    }
+
+    .maps-div {
+      .room-location {
+        .btn {
+          width: 200px;
+          height: 50px;
+        }
+      }
+    }
+
+    .room-info-container {
+      .room-more-details, .owner-contact-booking {
+        background: var(--SecondaryWhiteColor);
+        box-shadow: 0 0px 6px rgb(0,0,0,0.25);
+        border-radius: 8px;
+      }
+
+      .owner-contact-booking {
+        .btn {
+          width: 200px;
+          height: 50px;
+        }
+      }
+    }
+  }
+}

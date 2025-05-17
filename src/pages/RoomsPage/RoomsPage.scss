@@ -1,8 +1,45 @@
 :root {
   --PrimaryColorNavyBlue: hsl(224, 64%, 33%);
   --HoverPrimaryColor: hsl(224, 53%, 40%);
+  --SecondaryColorTeal: #14b8a6;
   --AccentColorOrange: hsl(27, 96%, 61%);
   --MainBackgroundColor: hsl(220, 14%, 96%);
   --TextColor: hsl(221, 39%, 11%);
   --PlaceholderText: hsl(219, 10%, 34%);
+  --AccentDarkNavy: #162c5f;
+}
+
+.rooms-section-container {
+  .rooms-type-container {
+    .rooms-container {
+      scrollbar-width: none;
+
+      .room-types-div {
+        background: var(--MainBackgroundColor);
+        border-radius: 15px;
+        border: 3px solid var(--SecondaryColorTeal);
+        box-shadow: 0 3px 10px rgb(0,0,0,1);
+
+        .room-details-div {
+          .room-header-text {
+            font-family: "Lora", serif;
+          }
+
+          .address-text {
+            font-family: "Lora", serif;
+          }
+
+          .view-details-btn, .description, .room-price {
+            font-family: "Quicksand", sans-serif;
+          }
+        }
+      }
+
+      .no-results-found {
+        p {
+          font-family: "Quicksand", sans-serif;
+        }
+      }
+    }
+  }
 }

@@ -2,7 +2,7 @@ import React from "react";
 import "./HotelsPage.scss";
 import Navbar from "../../components/Navbar/Navbar.jsx";
 import Footer from "../../components/Footer/Footer.jsx";
-import Property from "../../data/property.js";
+import Property from "../../data/Property.js";
 
 import { BsArrowRightShort } from "react-icons/bs";
 

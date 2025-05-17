@@ -1,0 +1,99 @@
+:root {
+  --PrimaryColorNavyBlue: hsl(224, 64%, 33%);
+  --HoverPrimaryColor: hsl(224, 53%, 40%);
+  --SecondaryColorTeal: #14b8a6;
+  --HoverSecondaryColorTeal: #36decb;
+  --AccentColorOrange: hsl(27, 96%, 61%);
+  --MainBackgroundColor: hsl(220, 14%, 96%);
+  --SecondaryWhiteColor: #e7e7e7;
+  --TextColor: hsl(221, 39%, 11%);
+  --PlaceholderText: hsl(219, 10%, 34%);
+  --AccentDarkNavy: #162c5f;
+}
+
+.renter-side-menu {
+  .menu-container {
+    background: var(--AccentDarkNavy);
+
+    .logo-div {
+      .bookly-logo {
+        .logo {
+          color: white;
+          font-size: 3rem;
+        }
+
+        .subtext {
+          font-family: "Playfair Display", serif;
+          font-size: 1.2rem;
+        }
+      }
+    }
+
+    .menu-div {
+      ul {
+        li {
+          a,
+          Link {
+            display: flex;
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            align-items: center;
+            gap: 1rem;
+            color: white;
+            font-family: "Quicksand", sans-serif;
+            font-weight: 600;
+
+            &:hover {
+              color: var(--HoverSecondaryColorTeal);
+            }
+
+            .icon {
+              font-size: 3rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.page-main-container {
+  .renter-dashboard-content {
+    .header-text {
+      font-family: "Quicksand", sans-serif;
+    }
+
+    .renters-widget-container {
+      .total-bookings-div,
+      .total-revenue-div {
+        background: var(--SecondaryWhiteColor);
+        border: 2px solid var(--SecondaryColorTeal);
+        padding: 1rem;
+        font-family: "Quicksand";
+
+        .icon {
+          color: var(--SecondaryColorTeal);
+        }
+
+        .bookings-div {
+          h2 {
+            color: var(--PrimaryColorNavyBlue);
+          }
+        }
+      }
+    }
+
+    .booking-list-container {
+      .label-table-div {
+        border: 2px solid var(--SecondaryColorTeal);
+        border-radius: 8px 8px 0 0;
+
+        h3 {
+          font-size: 1.3rem;
+          font-family: "Quicksand", sans-serif;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}

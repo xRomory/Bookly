@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
-import Property from "../../data/property.js";
+import Property from "../../data/Property.js";
 import RoomModal from "../../components/Modals/RoomModal.jsx";
 
 const MainMaps = () => {
@@ -17,8 +17,8 @@ const MainMaps = () => {
   return (
     <>
       <MapContainer
-        center={[14.5995, 120.9842]}
-        zoom={8}
+        center={[14.29, 121.15]}
+        zoom={10}
         style={{ height: "100vh", width: "100vw" }}
       >
         <TileLayer
