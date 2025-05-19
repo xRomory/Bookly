@@ -9,7 +9,7 @@ import { BsArrowRightShort } from "react-icons/bs";
 const HotelsPage = () => {
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <section className="section-container flex justify-center items-center h-[55vw]">
         <div className="header-container w-[65%] flex items-center flex-col">
           <h1 className="header-text text-[6.5rem] font-bold text-center mb-4">
@@ -50,7 +50,7 @@ const HotelsPage = () => {
           </div>
         </div>
       </section>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

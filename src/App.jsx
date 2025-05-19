@@ -1,7 +1,9 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import "./styles/App.css";
 
-// import Navbar from "./components/Navbar/Navbar.jsx";
+import Navbar from "./components/Navbar/Navbar.jsx";
+import LoginNavbar from "./components/Navbar/LoginNavbar.jsx";
+import Footer from "./components/Footer/Footer.jsx";
 import HomePage from "./pages/LandingPage/HomePage.jsx";
 import MapPage from "./pages/MapPage/MapPage.jsx";
 import HotelsPage from "./pages/HotelsPage/HotelsPage.jsx";
@@ -14,9 +16,23 @@ import RenterDashboardPage from "./pages/RenterDashboard/RenterDashboardPage.jsx
 import RoomDetailsPage from "./pages/RoomDetails/RoomDetailsPage.jsx";
 
 function App() {
+  const isLoggedIn = "Please edit this for backend";
+
+  const location = useLocation();
+
+  const hideNavBarAndFooter = [
+    "/login",
+    "/sign-up",
+    "/user-profile/",
+    "/owner-dashboard/",
+    "/maps",
+  ].includes(location.pathname);
+
+  const NavbarToRender = isLoggedIn ? LoginNavbar : Navbar
+
   return (
     <div className="app">
-      {/* <Navbar /> */}
+      {!hideNavBarAndFooter && <NavbarToRender />}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/property-brands" element={<HotelsPage />} />
@@ -24,11 +40,12 @@ function App() {
         <Route path="/rooms/room-details/" element={<RoomDetailsPage />} />
         <Route path="/bookings/" element={<BookingPage />} />
         <Route path="/maps" element={<MapPage />} />
-        <Route path="/user-profile/" element={<UserDashboard/>} />
-        <Route path="/renter-dashboard/" element={<RenterDashboardPage/>} />
+        <Route path="/user-profile/" element={<UserDashboard />} />
+        <Route path="/owner-dashboard/" element={<RenterDashboardPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/sign-up" element={<SignupPage />} />
       </Routes>
+      {!hideNavBarAndFooter && <Footer />}
     </div>
   );
 }

@@ -6,7 +6,6 @@ import Footer from "../../components/Footer/Footer.jsx"
 const RoomDetailsPage = () => {
   return (
     <>
-      <Navbar />
       <RoomDetails />
       <Footer />
     </>

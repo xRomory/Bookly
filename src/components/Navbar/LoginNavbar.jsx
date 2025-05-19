@@ -1,24 +1,27 @@
 import React, { useState } from "react";
 import "./Navbar.scss";
+
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const LoginNavbar = () => {
   const [transparent, setTransparent] = useState("nav-container");
 
   const addBg = () => {
-    if(window.scrollY >= 15) {
-      setTransparent("nav-container active-header")
+    if (window.scrollY >= 15) {
+      setTransparent("nav-container active-header");
     } else {
-      setTransparent("nav-container")
-    };
+      setTransparent("nav-container");
+    }
   };
 
   window.addEventListener("scroll", addBg);
 
   return (
-    <section className="navbar-section ">
-      <div className={`${transparent} fixed flex justify-between p-[1.5rem_5rem] z-50 w-full shadow-[0px_0px_0px_1px_rgba(0,0,0,0.06),0px_1px_1px_-0.5px_rgba(0,0,0,0.06),0px_3px_3px_-1.5px_rgba(0,0,0,0.06),_0px_6px_6px_-3px_rgba(0,0,0,0.06),0px_12px_12px_-6px_rgba(0,0,0,0.06),0px_24px_24px_-12px_rgba(0,0,0,0.01)]`}>
-        <div className="logo-container ml-[5rem]">
+    <section className="navbar-section">
+      <div
+        className={`${transparent} fixed flex justify-between px-20 py-6 z-50 w-full shadow-[0px_0px_0px_1px_rgba(0,0,0,0.06),0px_1px_1px_-0.5px_rgba(0,0,0,0.06),0px_3px_3px_-1.5px_rgba(0,0,0,0.06),_0px_6px_6px_-3px_rgba(0,0,0,0.06),0px_12px_12px_-6px_rgba(0,0,0,0.06),0px_24px_24px_-12px_rgba(0,0,0,0.01)]`}
+      >
+        <div className="logo-container ml-20">
           <Link to="/" className="logo justify-center items-center ">
             <h1>Bookly</h1>
           </Link>
@@ -42,13 +45,19 @@ const Navbar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/sign-up" className="nav-link">
-                Sign up
+              <Link
+                to="/user-profile/"
+                className="text-main-color font-quicksand font-semibold"
+              >
+                <button className="dashboard">User Dashboard</button>
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/login" className="nav-link">
-                Log in
+              <Link
+                to="/owner-dashboard/"
+                className="text-main-color font-quicksand font-semibold"
+              >
+                <button className="dashboard">Owner's Dashboard</button>
               </Link>
             </li>
           </ul>
@@ -58,4 +67,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default LoginNavbar;
