@@ -34,12 +34,12 @@ const HomeHeader = () => {
         </div>
       </div>
 
-      <div className="book-card w-[80%] bg-white h-[19vw] absolute bottom-[-8rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded-lg">
-        <h3 className="font-bold text-3xl p-[2rem]">
+      <div className="book-card w-[80%] bg-white h-[17vw] absolute bottom-[-8rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded-lg p-4">
+        <h3 className="font-bold text-3xl p-[2rem_3rem]">
           Want to book a reservation?
         </h3>
         <div className="card-div grid p-[0rem_2rem] grid-cols-[1fr_2fr]">
-          <div className="location-div w-[100%]">
+          <div className="location-div w-[100%] ml-4">
             <label
               htmlFor="schedule"
               className="location-label flex flex-col font-semibold text-2xl"
@@ -71,7 +71,7 @@ const HomeHeader = () => {
             </label>
           </div>
 
-          <button className="btn flex items-center justify-center gap-4 absolute w-[15%] h-[20%] rounded-lg font-semibold right-24 bottom-0 translate-y-8">
+          <button className="book-btn flex items-center justify-center gap-4 absolute w-[15%] h-[20%] rounded-lg font-semibold right-24 bottom-0 translate-y-8">
             Book Now!
             <FaArrowRight className="icon text-2xl"/>
           </button>

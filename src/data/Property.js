@@ -1,4 +1,4 @@
-import { brandLogo, hotelImg } from "../assets/images/assets.js";
+import { brandLogo, hotelImg, roomImg } from "../assets/images/assets.js";
 
 const Property = {
   property_brands: [
@@ -20,6 +20,7 @@ const Property = {
       room_types: [
         {
           name: "Standard Room",
+          room_image: roomImg.room1,
           description: "Cozy room with a queen bed and free WiFi.",
           capacity: 2,
           price_per_night: 1800,
@@ -27,6 +28,7 @@ const Property = {
         },
         {
           name: "Deluxe Room",
+          room_image: roomImg.room2,
           description: "Spacious room with a king bed and city view.",
           capacity: 2,
           price_per_night: 2400,
@@ -34,6 +36,7 @@ const Property = {
         },
         {
           name: "Twin Room",
+          room_image: roomImg.room3,
           description: "Room with two single beds for companions.",
           capacity: 2,
           price_per_night: 2200,
@@ -41,6 +44,7 @@ const Property = {
         },
         {
           name: "Family Suite",
+          room_image: roomImg.room4,
           description: "Two-bedroom suite perfect for families.",
           capacity: 4,
           price_per_night: 3200,
@@ -48,6 +52,7 @@ const Property = {
         },
         {
           name: "Executive Suite",
+          room_image: roomImg.room5,
           description: "Suite with living area and workspace.",
           capacity: 2,
           price_per_night: 3500,
@@ -55,6 +60,7 @@ const Property = {
         },
         {
           name: "Presidential Suite",
+          room_image: roomImg.room6,
           description: "Premium suite with luxury features.",
           capacity: 2,
           price_per_night: 4500,
@@ -62,6 +68,7 @@ const Property = {
         },
         {
           name: "Studio Room",
+          room_image: roomImg.room7,
           description: "Compact room ideal for solo travelers.",
           capacity: 1,
           price_per_night: 1600,
@@ -69,6 +76,7 @@ const Property = {
         },
         {
           name: "Matrimonial Room",
+          room_image: roomImg.room8,
           description: "Romantic setup for couples.",
           capacity: 2,
           price_per_night: 2000,
@@ -76,6 +84,7 @@ const Property = {
         },
         {
           name: "Barkada Room",
+          room_image: roomImg.room9,
           description: "Bunk beds for groups of friends.",
           capacity: 5,
           price_per_night: 2800,
@@ -83,6 +92,7 @@ const Property = {
         },
         {
           name: "Accessible Room",
+          room_image: roomImg.room10,
           description: "Room with accessibility features.",
           capacity: 2,
           price_per_night: 2100,
@@ -108,6 +118,7 @@ const Property = {
       room_types: [
         {
           name: "Studio Unit",
+          room_image: roomImg.room1,
           description: "Modern studio with a kitchenette.",
           capacity: 2,
           price_per_night: 2200,
@@ -115,6 +126,7 @@ const Property = {
         },
         {
           name: "One-Bedroom Unit",
+          room_image: roomImg.room2,
           description: "Spacious apartment with a separate living area.",
           capacity: 2,
           price_per_night: 3000,
@@ -122,6 +134,7 @@ const Property = {
         },
         {
           name: "Two-Bedroom Unit",
+          room_image: roomImg.room3,
           description: "Perfect for small families or groups.",
           capacity: 4,
           price_per_night: 4200,
@@ -129,6 +142,7 @@ const Property = {
         },
         {
           name: "Penthouse",
+          room_image: roomImg.room4,
           description: "Luxury apartment with a panoramic city view.",
           capacity: 4,
           price_per_night: 6500,
@@ -136,6 +150,7 @@ const Property = {
         },
         {
           name: "Deluxe Studio",
+          room_image: roomImg.room5,
           description: "Premium studio with a balcony.",
           capacity: 2,
           price_per_night: 2800,
@@ -143,6 +158,7 @@ const Property = {
         },
         {
           name: "Maid's Quarter",
+          room_image: roomImg.room6,
           description: "Small room for domestic helpers.",
           capacity: 1,
           price_per_night: 1200,
@@ -150,6 +166,7 @@ const Property = {
         },
         {
           name: "Loft Unit",
+          room_image: roomImg.room7,
           description: "High-ceiling unit with a modern loft feel.",
           capacity: 2,
           price_per_night: 3500,
@@ -157,6 +174,7 @@ const Property = {
         },
         {
           name: "Executive Suite",
+          room_image: roomImg.room8,
           description: "Large apartment with a work desk.",
           capacity: 2,
           price_per_night: 4500,
@@ -164,6 +182,7 @@ const Property = {
         },
         {
           name: "One-Bedroom Plus",
+          room_image: roomImg.room9,
           description: "One-bedroom with additional storage space.",
           capacity: 2,
           price_per_night: 3200,
@@ -171,6 +190,7 @@ const Property = {
         },
         {
           name: "Two-Bedroom Deluxe",
+          room_image: roomImg.room10,
           description: "Two-bedroom with upgraded furnishings.",
           capacity: 4,
           price_per_night: 5000,
@@ -196,6 +216,7 @@ const Property = {
       room_types: [
         {
           name: "Budget Room",
+          room_image: roomImg.room1,
           description: "Simple room with a single bed.",
           capacity: 1,
           price_per_night: 1000,
@@ -203,6 +224,7 @@ const Property = {
         },
         {
           name: "Economy Room",
+          room_image: roomImg.room2,
           description: "Affordable room with basic amenities.",
           capacity: 2,
           price_per_night: 1500,
@@ -210,6 +232,7 @@ const Property = {
         },
         {
           name: "Standard Room",
+          room_image: roomImg.room3,
           description: "Room with a double bed and standard facilities.",
           capacity: 2,
           price_per_night: 1800,
@@ -217,6 +240,7 @@ const Property = {
         },
         {
           name: "VIP Room",
+          room_image: roomImg.room4,
           description: "Luxury room with premium amenities.",
           capacity: 2,
           price_per_night: 2500,
@@ -224,6 +248,7 @@ const Property = {
         },
         {
           name: "Family Room",
+          room_image: roomImg.room5,
           description: "Room suitable for a small family.",
           capacity: 4,
           price_per_night: 3500,
@@ -231,6 +256,7 @@ const Property = {
         },
         {
           name: "Business Room",
+          room_image: roomImg.room6,
           description: "Room with a desk and fast Wi-Fi.",
           capacity: 1,
           price_per_night: 2200,
@@ -238,6 +264,7 @@ const Property = {
         },
         {
           name: "Single Room",
+          room_image: roomImg.room7,
           description: "Small room for solo travelers.",
           capacity: 1,
           price_per_night: 800,
@@ -245,6 +272,7 @@ const Property = {
         },
         {
           name: "Double Room",
+          room_image: roomImg.room8,
           description: "Double room with a queen bed.",
           capacity: 2,
           price_per_night: 2000,
@@ -252,6 +280,7 @@ const Property = {
         },
         {
           name: "Dormitory Room",
+          room_image: roomImg.room9,
           description: "Shared room with bunk beds.",
           capacity: 4,
           price_per_night: 1200,
@@ -259,6 +288,7 @@ const Property = {
         },
         {
           name: "Couple's Room",
+          room_image: roomImg.room10,
           description: "Cozy room ideal for couples.",
           capacity: 2,
           price_per_night: 1600,
@@ -284,6 +314,7 @@ const Property = {
       room_types: [
         {
           name: "Executive Room",
+          room_image: roomImg.room1,
           description: "Spacious room with work desk and WiFi.",
           capacity: 2,
           price_per_night: 2200,
@@ -291,6 +322,7 @@ const Property = {
         },
         {
           name: "Luxury Room",
+          room_image: roomImg.room2,
           description: "Luxury room with a king-size bed.",
           capacity: 2,
           price_per_night: 2800,
@@ -298,6 +330,7 @@ const Property = {
         },
         {
           name: "Business Suite",
+          room_image: roomImg.room3,
           description: "Suite ideal for business travelers.",
           capacity: 2,
           price_per_night: 3500,
@@ -305,6 +338,7 @@ const Property = {
         },
         {
           name: "Queen Room",
+          room_image: roomImg.room4,
           description: "Room with a queen-size bed.",
           capacity: 2,
           price_per_night: 1800,
@@ -312,6 +346,7 @@ const Property = {
         },
         {
           name: "Bunk Room",
+          room_image: roomImg.room5,
           description: "Room with bunk beds for groups.",
           capacity: 4,
           price_per_night: 2000,
@@ -319,6 +354,7 @@ const Property = {
         },
         {
           name: "Accessible Room",
+          room_image: roomImg.room6,
           description: "Room with special access for differently-abled guests.",
           capacity: 2,
           price_per_night: 2400,
@@ -326,6 +362,7 @@ const Property = {
         },
         {
           name: "Private Room",
+          room_image: roomImg.room7,
           description: "Room with a queen bed and private bathroom.",
           capacity: 2,
           price_per_night: 2200,
@@ -333,6 +370,7 @@ const Property = {
         },
         {
           name: "Small Room",
+          room_image: roomImg.room8,
           description: "Compact room for solo travelers.",
           capacity: 1,
           price_per_night: 1200,
@@ -340,6 +378,7 @@ const Property = {
         },
         {
           name: "Standard Suite",
+          room_image: roomImg.room9,
           description: "A room suite with seating area.",
           capacity: 2,
           price_per_night: 3000,
@@ -347,6 +386,7 @@ const Property = {
         },
         {
           name: "Single Room",
+          room_image: roomImg.room10,
           description: "Room for solo travelers with minimal space.",
           capacity: 1,
           price_per_night: 900,
@@ -372,6 +412,7 @@ const Property = {
       room_types: [
         {
           name: "Oceanfront Villa",
+          room_image: roomImg.room1,
           description: "Private villa with an ocean view.",
           capacity: 4,
           price_per_night: 8000,
@@ -379,6 +420,7 @@ const Property = {
         },
         {
           name: "Garden Villa",
+          room_image: roomImg.room2,
           description: "Villa with a beautiful garden view.",
           capacity: 4,
           price_per_night: 6500,
@@ -386,6 +428,7 @@ const Property = {
         },
         {
           name: "Luxury Villa",
+          room_image: roomImg.room3,
           description: "Spacious villa with a pool.",
           capacity: 6,
           price_per_night: 12000,
@@ -393,6 +436,7 @@ const Property = {
         },
         {
           name: "Poolside Villa",
+          room_image: roomImg.room4,
           description: "Private villa next to the pool.",
           capacity: 4,
           price_per_night: 9500,
@@ -400,6 +444,7 @@ const Property = {
         },
         {
           name: "Deluxe Villa",
+          room_image: roomImg.room5,
           description: "Luxury villa with top-tier amenities.",
           capacity: 6,
           price_per_night: 14000,
@@ -407,6 +452,7 @@ const Property = {
         },
         {
           name: "Family Villa",
+          room_image: roomImg.room6,
           description: "Villa for family gatherings with extra rooms.",
           capacity: 8,
           price_per_night: 16000,
@@ -414,6 +460,7 @@ const Property = {
         },
         {
           name: "Beachfront Villa",
+          room_image: roomImg.room7,
           description: "Private beach villa with direct access.",
           capacity: 4,
           price_per_night: 10000,
@@ -421,6 +468,7 @@ const Property = {
         },
         {
           name: "Honeymoon Villa",
+          room_image: roomImg.room8,
           description: "Romantic villa perfect for couples.",
           capacity: 2,
           price_per_night: 7000,
@@ -428,6 +476,7 @@ const Property = {
         },
         {
           name: "Executive Villa",
+          room_image: roomImg.room9,
           description: "Villa with office facilities and high-speed internet.",
           capacity: 4,
           price_per_night: 11000,
@@ -435,6 +484,7 @@ const Property = {
         },
         {
           name: "Junior Suite",
+          room_image: roomImg.room10,
           description: "Cozy suite ideal for a weekend getaway.",
           capacity: 2,
           price_per_night: 5000,
@@ -460,6 +510,7 @@ const Property = {
       room_types: [
         {
           name: "Superior Room",
+          room_image: roomImg.room1,
           description: "Room with a queen bed and city view.",
           capacity: 2,
           price_per_night: 2500,
@@ -467,6 +518,7 @@ const Property = {
         },
         {
           name: "Executive Room",
+          room_image: roomImg.room2,
           description: "Room with additional work and relaxation space.",
           capacity: 2,
           price_per_night: 3200,
@@ -474,6 +526,7 @@ const Property = {
         },
         {
           name: "Grand Suite",
+          room_image: roomImg.room3,
           description: "Luxury suite with a living room.",
           capacity: 2,
           price_per_night: 4500,
@@ -481,6 +534,7 @@ const Property = {
         },
         {
           name: "Twin Room",
+          room_image: roomImg.room4,
           description: "Room with two single beds.",
           capacity: 2,
           price_per_night: 2000,
@@ -488,6 +542,7 @@ const Property = {
         },
         {
           name: "Family Room",
+          room_image: roomImg.room5,
           description: "Room with extra beds for families.",
           capacity: 4,
           price_per_night: 4200,
@@ -495,6 +550,7 @@ const Property = {
         },
         {
           name: "Honeymoon Suite",
+          room_image: roomImg.room6,
           description: "Romantic suite with luxury features.",
           capacity: 2,
           price_per_night: 3800,
@@ -502,6 +558,7 @@ const Property = {
         },
         {
           name: "Accessible Room",
+          room_image: roomImg.room7,
           description: "Room with accessible features.",
           capacity: 2,
           price_per_night: 2200,
@@ -509,6 +566,7 @@ const Property = {
         },
         {
           name: "Standard Room",
+          room_image: roomImg.room8,
           description: "Simple room with queen bed and Wi-Fi.",
           capacity: 2,
           price_per_night: 1800,
@@ -516,6 +574,7 @@ const Property = {
         },
         {
           name: "Penthouse Suite",
+          room_image: roomImg.room9,
           description: "Luxury suite with panoramic city view.",
           capacity: 2,
           price_per_night: 8500,
@@ -523,6 +582,7 @@ const Property = {
         },
         {
           name: "Junior Suite",
+          room_image: roomImg.room10,
           description: "Suite for a small group or couple.",
           capacity: 2,
           price_per_night: 3200,
@@ -548,6 +608,7 @@ const Property = {
       room_types: [
         {
           name: "Beachfront Room",
+          room_image: roomImg.room1,
           description: "Room with ocean view and private terrace.",
           capacity: 2,
           price_per_night: 5500,
@@ -555,6 +616,7 @@ const Property = {
         },
         {
           name: "Oceanview Suite",
+          room_image: roomImg.room2,
           description: "Luxurious suite with panoramic sea view.",
           capacity: 2,
           price_per_night: 7500,
@@ -562,6 +624,7 @@ const Property = {
         },
         {
           name: "Garden View Room",
+          room_image: roomImg.room3,
           description: "Room overlooking the lush resort gardens.",
           capacity: 2,
           price_per_night: 4500,
@@ -569,6 +632,7 @@ const Property = {
         },
         {
           name: "Poolside Villa",
+          room_image: roomImg.room4,
           description: "Villa located next to the pool.",
           capacity: 4,
           price_per_night: 8000,
@@ -576,6 +640,7 @@ const Property = {
         },
         {
           name: "Honeymoon Suite",
+          room_image: roomImg.room5,
           description: "Private suite ideal for couples.",
           capacity: 2,
           price_per_night: 6200,
@@ -583,6 +648,7 @@ const Property = {
         },
         {
           name: "Luxury Villa",
+          room_image: roomImg.room6,
           description: "High-end villa with private pool.",
           capacity: 6,
           price_per_night: 12000,
@@ -590,6 +656,7 @@ const Property = {
         },
         {
           name: "Deluxe Room",
+          room_image: roomImg.room7,
           description: "Room with upgraded furnishings.",
           capacity: 2,
           price_per_night: 5000,
@@ -597,6 +664,7 @@ const Property = {
         },
         {
           name: "Presidential Suite",
+          room_image: roomImg.room8,
           description: "Premium suite with extravagant amenities.",
           capacity: 2,
           price_per_night: 10000,
@@ -604,6 +672,7 @@ const Property = {
         },
         {
           name: "Family Villa",
+          room_image: roomImg.room9,
           description: "Villa with rooms for larger families.",
           capacity: 6,
           price_per_night: 11000,
@@ -611,6 +680,7 @@ const Property = {
         },
         {
           name: "Junior Suite",
+          room_image: roomImg.room10,
           description: "Compact suite for small groups.",
           capacity: 2,
           price_per_night: 4000,
@@ -636,6 +706,7 @@ const Property = {
       room_types: [
         {
           name: "Superior Tagaytay View",
+          room_image: roomImg.room1,
           description: "Room with a stunning view of Taal Volcano.",
           capacity: 2,
           price_per_night: 5000,
@@ -643,6 +714,7 @@ const Property = {
         },
         {
           name: "Deluxe Balcony Room",
+          room_image: roomImg.room2,
           description: "Room with a private balcony overlooking the mountains.",
           capacity: 2,
           price_per_night: 6000,
@@ -650,6 +722,7 @@ const Property = {
         },
         {
           name: "Family Room",
+          room_image: roomImg.room3,
           description: "Spacious room for families with extra beds.",
           capacity: 4,
           price_per_night: 6500,
@@ -657,6 +730,7 @@ const Property = {
         },
         {
           name: "Presidential Suite",
+          room_image: roomImg.room4,
           description: "Luxury suite with a separate living area and a full view of the lake.",
           capacity: 2,
           price_per_night: 8500,
@@ -664,6 +738,7 @@ const Property = {
         },
         {
           name: "Mountain View Villa",
+          room_image: roomImg.room5,
           description: "Private villa with breathtaking mountain views.",
           capacity: 4,
           price_per_night: 10000,
@@ -671,6 +746,7 @@ const Property = {
         },
         {
           name: "Garden View Suite",
+          room_image: roomImg.room6,
           description: "Room with access to the hotel’s lush garden.",
           capacity: 2,
           price_per_night: 4500,
@@ -678,6 +754,7 @@ const Property = {
         },
         {
           name: "Executive Suite",
+          room_image: roomImg.room7,
           description: "Room designed for business travelers with added workspaces.",
           capacity: 2,
           price_per_night: 5000,
@@ -685,6 +762,7 @@ const Property = {
         },
         {
           name: "Standard Room",
+          room_image: roomImg.room8,
           description: "Comfortable room with partial lake views.",
           capacity: 2,
           price_per_night: 3000,
@@ -692,6 +770,7 @@ const Property = {
         },
         {
           name: "Taal View Villa",
+          room_image: roomImg.room9,
           description: "Private villa with a panoramic view of Taal Volcano.",
           capacity: 4,
           price_per_night: 9500,
@@ -699,6 +778,7 @@ const Property = {
         },
         {
           name: "Accessible Room",
+          room_image: roomImg.room10,
           description: "Room with accessibility features.",
           capacity: 2,
           price_per_night: 2800,
@@ -724,6 +804,7 @@ const Property = {
       room_types: [
         {
           name: "Mountainview Room",
+          room_image: roomImg.room1,
           description: "Room with a breathtaking view of the mountains.",
           capacity: 2,
           price_per_night: 3500,
@@ -731,6 +812,7 @@ const Property = {
         },
         {
           name: "Cabin",
+          room_image: roomImg.room2,
           description: "Wooden cabin with rustic charm.",
           capacity: 4,
           price_per_night: 5000,
@@ -738,6 +820,7 @@ const Property = {
         },
         {
           name: "Deluxe Suite",
+          room_image: roomImg.room3,
           description: "Luxury suite with fireplace and lounge area.",
           capacity: 2,
           price_per_night: 7000,
@@ -745,6 +828,7 @@ const Property = {
         },
         {
           name: "Executive Lodge",
+          room_image: roomImg.room4,
           description: "Private lodge with office facilities.",
           capacity: 2,
           price_per_night: 6000,
@@ -752,6 +836,7 @@ const Property = {
         },
         {
           name: "Family Cabin",
+          room_image: roomImg.room5,
           description: "Cabin for families with children.",
           capacity: 6,
           price_per_night: 8000,
@@ -759,6 +844,7 @@ const Property = {
         },
         {
           name: "Standard Room",
+          room_image: roomImg.room6,
           description: "Cozy room for couples or solo travelers.",
           capacity: 2,
           price_per_night: 2700,
@@ -766,6 +852,7 @@ const Property = {
         },
         {
           name: "Honeymoon Suite",
+          room_image: roomImg.room7,
           description: "Romantic suite for newlyweds.",
           capacity: 2,
           price_per_night: 5500,
@@ -773,6 +860,7 @@ const Property = {
         },
         {
           name: "Mountain View Villa",
+          room_image: roomImg.room8,
           description: "Private villa with panoramic mountain views.",
           capacity: 4,
           price_per_night: 8000,
@@ -780,6 +868,7 @@ const Property = {
         },
         {
           name: "Single Room",
+          room_image: roomImg.room9,
           description: "Basic room for solo travelers.",
           capacity: 1,
           price_per_night: 1600,
@@ -787,6 +876,7 @@ const Property = {
         },
         {
           name: "Treehouse",
+          room_image: roomImg.room10,
           description: "Unique treehouse stay with nature vibes.",
           capacity: 2,
           price_per_night: 3000,
@@ -812,6 +902,7 @@ const Property = {
       room_types: [
         {
           name: "Standard Inn Room",
+          room_image: roomImg.room1,
           description: "Basic room with queen bed and amenities.",
           capacity: 2,
           price_per_night: 2200,
@@ -819,6 +910,7 @@ const Property = {
         },
         {
           name: "Deluxe Room",
+          room_image: roomImg.room2,
           description: "Room with upgraded furnishings and view.",
           capacity: 2,
           price_per_night: 2800,
@@ -826,6 +918,7 @@ const Property = {
         },
         {
           name: "Premium Room",
+          room_image: roomImg.room3,
           description: "Room with luxury features and city view.",
           capacity: 2,
           price_per_night: 3500,
@@ -833,6 +926,7 @@ const Property = {
         },
         {
           name: "Suite",
+          room_image: roomImg.room4,
           description: "Room with separate living space and work area.",
           capacity: 2,
           price_per_night: 4000,
@@ -840,6 +934,7 @@ const Property = {
         },
         {
           name: "Executive Suite",
+          room_image: roomImg.room5,
           description: "Top-tier suite with all amenities.",
           capacity: 2,
           price_per_night: 5000,
@@ -847,6 +942,7 @@ const Property = {
         },
         {
           name: "Penthouse Suite",
+          room_image: roomImg.room6,
           description: "Top-floor suite with panoramic views and premium facilities.",
           capacity: 2,
           price_per_night: 7000,
@@ -854,6 +950,7 @@ const Property = {
         },
         {
           name: "Family Suite",
+          room_image: roomImg.room7,
           description: "Room designed for family stays with extra space.",
           capacity: 4,
           price_per_night: 6000,
@@ -861,6 +958,7 @@ const Property = {
         },
         {
           name: "Business Suite",
+          room_image: roomImg.room8,
           description: "Business-friendly room with desk and Wi-Fi.",
           capacity: 2,
           price_per_night: 4000,
@@ -868,6 +966,7 @@ const Property = {
         },
         {
           name: "Accessible Room",
+          room_image: roomImg.room9,
           description: "Room designed for accessibility needs.",
           capacity: 2,
           price_per_night: 2500,
@@ -875,6 +974,7 @@ const Property = {
         },
         {
           name: "Junior Suite",
+          room_image: roomImg.room10,
           description: "A compact suite for solo travelers or couples.",
           capacity: 2,
           price_per_night: 3200,

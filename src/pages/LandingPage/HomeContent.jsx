@@ -2,7 +2,7 @@ import React from "react";
 import "./HomePage.scss";
 
 import { BsArrowRightShort } from "react-icons/bs";
-import Property from "../../data/property";
+import Property from "../../data/Property.js";
 
 const HomeContent = () => {
   const categories = [

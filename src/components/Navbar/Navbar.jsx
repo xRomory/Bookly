@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Navbar.scss";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [transparent, setTransparent] = useState("nav-container");
@@ -37,8 +37,8 @@ const Navbar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/offers" className="nav-link">
-                Offers
+              <Link to="/rooms/" className="nav-link">
+                Rooms
               </Link>
             </li>
             <li className="nav-item">

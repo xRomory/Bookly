@@ -29,6 +29,17 @@ import hotel10 from "./hotel10.jpg";
 
 import background from "./mainBg.jpg";
 
+import room1 from "./hot1room1.jpg"
+import room2 from "./hot1room2.jpg"
+import room3 from "./hot1room3.jpg"
+import room4 from "./hot1room4.jpg"
+import room5 from "./hot1room5.jpg"
+import room6 from "./hot1room6.jpg"
+import room7 from "./hot1room7.jpg"
+import room8 from "./hot1room8.jpg"
+import room9 from "./hot1room9.jpg"
+import room10 from "./hot1room10.jpg"
+
 export const picture = {
   hotelOne,
   hotelTwo,
@@ -63,4 +74,17 @@ export const brandLogo = {
   brandEight,
   brandNine,
   brandTen,
+}
+
+export const roomImg = {
+  room1,
+  room2,
+  room3,
+  room4,
+  room5,
+  room6,
+  room7,
+  room8,
+  room9,
+  room10,
 }

@@ -1,8 +1,11 @@
 :root {
   --PrimaryColorNavyBlue: hsl(224, 64%, 33%);
   --HoverPrimaryColor: hsl(224, 53%, 40%);
+  --SecondaryColorTeal: #14b8a6;
+  --HoverSecondaryColorTeal: #36decb;
   --AccentColorOrange: hsl(27, 96%, 61%);
   --MainBackgroundColor: hsl(220, 14%, 96%);
+  --SecondaryWhiteColor: #e7e7e7;
   --TextColor: hsl(221, 39%, 11%);
   --PlaceholderText: hsl(219, 10%, 34%);
   --AccentDarkNavy: #162c5f;
@@ -21,23 +24,40 @@
           font-family: "Quicksand", sans-serif;
           font-weight: 600;
           color: var(--TextColor);
+
+          &:hover {
+            color: var(--PrimaryColorNavyBlue);
+            transition: 0.3s ease-in-out;
+          }
+
+          &::after {
+            content: "";
+            display: block;
+            height: 4px;
+            background: linear-gradient(
+              90deg,
+              rgba(30, 58, 138, 1) 0%,
+              rgba(243, 244, 246, 1) 100%
+            );
+            width: 0%;
+            transition: width 0.3s ease-in-out; /* Smooth animation */
+          }
+
+          &:hover::after {
+            width: 100%;
+          }
         }
 
-        &::after {
-          content: "";
-          display: block;
-          height: 4px;
-          background: linear-gradient(
-            90deg,
-            rgba(30, 58, 138, 1) 0%,
-            rgba(243, 244, 246, 1) 100%
-          );
-          width: 0%;
-          transition: width 0.3s ease-in-out; /* Smooth animation */
-        }
+        .dashboard {
+          width: 190px;
+          height: 40px;
+          background: transparent;
+          border: 2px solid var(--TextColor);
 
-        &:hover::after {
-          width: 100%;
+          &:hover {
+            border-radius: 25px;
+            transition: 0.3s ease-in-out;
+          }
         }
       }
     }
@@ -57,19 +77,32 @@
         .nav-item {
           .nav-link {
             color: white;
+
+            &::after {
+              content: "";
+              display: block;
+              height: 2px;
+              background: white;
+              width: 0%;
+              transition: width 0.3s ease-in-out; /* Smooth animation */
+            }
+
+            &:hover::after {
+              width: 100%;
+            }
           }
 
-          &::after {
-            content: "";
-            display: block;
-            height: 2px;
-            background: white;
-            width: 0%;
-            transition: width 0.3s ease-in-out; /* Smooth animation */
-          }
+          .dashboard {
+            width: 190px;
+            height: 40px;
+            background: transparent;
+            color: white;
+            border: 2px solid var(--MainBackgroundColor);
 
-          &:hover::after {
-            width: 100%;
+            &:hover {
+              border-radius: 25px;
+              transition: 0.3s ease-in-out;
+            }
           }
         }
       }

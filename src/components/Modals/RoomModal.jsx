@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./RoomModal.scss";
 
 const RoomModal = ({ isOpen, onClose, location }) => {
