@@ -16,3 +16,17 @@ Database Systems final project COM232 <br>
 - React Icons: <br> npm i react-icons <br> https://react-icons.github.io/react-icons/
 - Date Picker: <br> npm i react-datepicker <br> https://www.npmjs.com/package/react-datepicker
 - React Router: <br> npm i react-router-dom <br> https://www.npmjs.com/package/react-router-dom
+
+# Backend Setup (Django):
+***Make sure your Python uses the updated version***
+- First Clone this branch. If there's no virtual environment, see *Create Virtual Environment section (this is important)*
+- Create Virtual Environment: <br> python -m venv bookly-env
+- Once created, use this command to turn on virtual environment: <br> django-env\Scripts\activate <br><br>
+**Install the following dependencies:**
+- Django: <br> pip install django
+- Rest Framework: <br> pip install djangorestframework
+- Cors Headers: <br> pip install django-cors-headers
+<br><br>
+***Read Django Documentation:***<br>
+https://docs.djangoproject.com/en/5.2/intro/tutorial01/<br>
+https://docs.djangoproject.com/en/5.2/
