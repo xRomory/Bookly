@@ -26,6 +26,7 @@ Database Systems final project COM232 <br>
 - Django: <br> pip install django
 - Rest Framework: <br> pip install djangorestframework
 - Cors Headers: <br> pip install django-cors-headers
+- Pillow (to handle images): <br> pip install pillow
 <br><br>
 ***Read Django Documentation:***<br>
 https://docs.djangoproject.com/en/5.2/intro/tutorial01/<br>
