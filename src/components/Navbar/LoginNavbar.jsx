@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import "./Navbar.scss";
+import UserDropdown from "../UserDropdown/UserDropdown";
 
 import { Link } from "react-router-dom";
 
+
 const LoginNavbar = () => {
   const [transparent, setTransparent] = useState("nav-container");
+  const [showUserMenu, setUserMenu] = useState();
 
   const addBg = () => {
     if (window.scrollY >= 15) {
@@ -44,7 +47,12 @@ const LoginNavbar = () => {
                 Rooms
               </Link>
             </li>
+
             <li className="nav-item">
+              <UserDropdown />
+            </li>
+
+            {/* <li className="nav-item">
               <Link
                 to="/user-profile/"
                 className="text-main-color font-quicksand font-semibold"
@@ -59,7 +67,7 @@ const LoginNavbar = () => {
               >
                 <button className="dashboard">Owner's Dashboard</button>
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>

@@ -28,7 +28,7 @@ function App() {
     "/maps",
   ].includes(location.pathname);
 
-  const NavbarToRender = isLoggedIn ? LoginNavbar : Navbar
+  const NavbarToRender = isLoggedIn ? Navbar : LoginNavbar
 
   return (
     <div className="app">

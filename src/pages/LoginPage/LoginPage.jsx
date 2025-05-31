@@ -1,18 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./LoginPage.scss";
-
-import { Link } from "react-router";
+import api from "../../api/axios";
+import { useAuth } from "../../context/AuthContext";
+import { getCookie } from "../../api/cookies";
+import { Link, useNavigate } from "react-router-dom";
 
 export const LoginPage = () => {
-  const [credentials, setCredentials] = useState({
-    email: "",
-    password: "",
-  });
+  const [credentials, setCredentials] = useState({ email: "", password: "" });
+  const { login, isAuthenticated } = useAuth();
+  // const navigate = useNavigate();
+  const [error, setError] = useState(null);
 
   const handleInputChange = (e) => {
     setCredentials((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     console.log("Updated Credentials:", credentials)
   };
+
+  const handleLoginSubmit = async (e) => {
+    e.preventDefault();
+    setError(null);
+
+    try{
+      await login(credentials.email, credentials.password);
+
+    } catch(error) {
+      console.error("Error:", error);
+    }
+  }
 
   return (
     <div className="login-container">
@@ -23,8 +37,11 @@ export const LoginPage = () => {
           </Link>
         </div>
 
-        <form className="w-[27vw]">
+        <form onSubmit={handleLoginSubmit} className="w-[27vw]">
           <h1 className="text-5xl text-center font-bold">Login</h1>
+
+          {error && <div className="text-red-600 font-quicksand text-center font-bold">{error}</div>}
+
           <div className="input-box">
             <h2 className="font-medium">Email</h2>
             <input

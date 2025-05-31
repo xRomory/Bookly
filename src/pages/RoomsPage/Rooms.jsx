@@ -69,7 +69,7 @@ const Rooms = () => {
               ))
             ) : (
               <div className="no-results-found flex justify-center items-center h-full">
-                <p className="text-2xl text-white font-bold">
+                <p className="text-2xl text-white font-bold font-quicksand">
                   No rooms match your search criteria.
                 </p>
               </div>

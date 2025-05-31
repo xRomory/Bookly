@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import MainMaps from './MainMaps.jsx';
 import SearchLocationNav from '../../components/SearchLocationNav/SearchLocationNav.jsx';
 
