@@ -20,7 +20,7 @@ api.interceptors.request.use (
         }
 
         if(authToken) {
-            config.headers['Authorization'] = `Token ${authToken}`;
+            config.headers.Authorization = `Token ${authToken}`;
         }
 
         return config;
@@ -37,7 +37,7 @@ api.interceptors.response.use(
 
         if(error.response?.status === 403 && error.response.data?.detail?.includes("CSRF")) {
             try {
-                await axios.get("http://localhost:8000/api/csrf/", {
+                await axios.get("http://localhost:8000/api/users/csrf/token/", {
                     withCredentials: true
                 });
 
@@ -51,28 +51,6 @@ api.interceptors.response.use(
                 return Promise.reject(csrfToken);
             }
         }
-
-        if(error.response?.status === 401 && !originalRequest._retry) {
-            try {
-                const refreshToken = getCookie("refreshToken");
-                const response = await axios.post(
-                    "http://localhost:8000/api/token/refresh/",
-                    { refresh: refreshToken }
-                );
-
-                const newAccessToken = response.data.access;
-                localStorage.setItem("authToken", newAccessToken);
-
-                originalRequest.headers.Authorization = `Token ${newAccessToken}`;
-                return api(originalRequest)
-            } catch(refreshError) {
-                localStorage.removeItem("authToken");
-                deleteCookie("refreshToken");
-                window.location.href = '/login';
-                return Promise.reject(refreshError);
-            }
-        }
-
         return Promise.reject(error);
     }
 );

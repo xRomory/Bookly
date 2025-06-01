@@ -29,7 +29,7 @@ const Rooms = () => {
           <SearchFilter onFilterChange={handleFilterChange} />
         </div>
 
-        <div className="rooms-type-container w-full max-h-[64.8rem] flex pt-[8.5rem]">
+        <div className="rooms-type-container w-full max-h-[59rem] flex pt-[8.5rem]">
           <div className="rooms-container w-[90%] h-full bg-blue-950 rounded-2xl shadow-[0_3px_10px_rgb(0,0,0,0.4)] overflow-auto">
             {filteredRooms.length > 0 ? (
               filteredRooms.map((item, index) => (

@@ -8,7 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 export const LoginPage = () => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const { login, isAuthenticated } = useAuth();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [error, setError] = useState(null);
 
   const handleInputChange = (e) => {
@@ -20,11 +20,14 @@ export const LoginPage = () => {
     e.preventDefault();
     setError(null);
 
-    try{
-      await login(credentials.email, credentials.password);
+    const result = await login(credentials.email, credentials.password);
 
-    } catch(error) {
-      console.error("Error:", error);
+    if (!result.success) {
+      setError(result.error || "Login failed");
+    }
+
+    if(result.success) {
+      navigate("/");
     }
   }
 

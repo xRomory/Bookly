@@ -1,17 +1,32 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 import "./UserDropdown.scss";
 
 import { IoPersonCircleOutline } from "react-icons/io5";
 import { IoClose } from "react-icons/io5";
 
 const UserDropdown = () => {
+  const { logout } = useAuth();
   const [showDropdown, setShowDropdown] = useState(false);
+  const [name, setName] = useState("");
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
-    console.log("Clicked");
   };
+
+  useEffect(() => {
+    const userData = localStorage.getItem("user");
+    if(userData) {
+      try {
+        const parsedUser = JSON.parse(userData);
+        const username = `${parsedUser.first_name}`;
+        setName(username);
+      } catch(error) {
+        console.error("Error parsing user data:", error);
+      }
+    }
+  }, []);
 
   useEffect(() => {
     if (showDropdown) {
@@ -38,8 +53,13 @@ const UserDropdown = () => {
 
           <div className={`side-container ${showDropdown ? 'active-side' : ''}`}>
             
-            <div className="menu-container flex flex-col p-8">
+            <div className="menu-container flex flex-col p-8 mt-16">
+              {name && (
+                <span className="font-quicksand text-2xl font-bold">Welcome, {name}</span>
+              )}
+
               <IoClose onClick={() => setShowDropdown(false)} className="absolute top-8 z-[1000] right-8 text-2xl hover:text-blue-900 cursor-pointer" />
+
               <ul className="mt-8">
                 <li className="menu">
                   <Link to="/user-profile/" className="font-quicksand text-xl font-semibold">
@@ -57,12 +77,12 @@ const UserDropdown = () => {
                 </li>
 
                 <li className="menu absolute text-red-500">
-                  <Link
-                    to="/"
+                  <button
+                    onClick={() => logout()}
                     className="font-quicksand text-xl font-semibold"
                   >
                     Logout
-                  </Link>
+                  </button>
                 </li>
               </ul>
             </div>

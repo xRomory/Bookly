@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 import "./SearchLocationNav.scss";
-
 import { Link } from "react-router";
 import { MdMenu } from "react-icons/md";
 import { GrSearch } from "react-icons/gr";

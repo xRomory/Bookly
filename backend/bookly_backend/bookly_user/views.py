@@ -54,15 +54,29 @@ class Login(APIView):
         email = request.data.get("email")
         password = request.data.get("password")
 
+        if not email or not password:
+            return Response(
+                {'error': 'Email and password required'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
         user = authenticate(email=email, password=password)
+        print(user)
 
         if user is not None:
             login(request, user)
             token, _ = Token.objects.get_or_create(user=user)
 
             return Response({
-                'user': BooklyUserSerializer(user).data,
-                "token": token.key,
+                'token': token.key,
+                'user': {
+                    'user_id': user.user_id,
+                    'first_name': user.first_name,
+                    'last_name': user.last_name,
+                    'email': user.email,
+                    'contact_number': user.contact_number,
+                    'if_property_owner': user.if_property_owner,
+                },
             })
 
         if user is None:
@@ -74,3 +88,8 @@ class Login(APIView):
             {'error': 'Invalid credentials'},
             status=status.HTTP_401_UNAUTHORIZED
         )
+    
+class Logout(APIView):
+    def post(self, request):
+        logout(request)
+        return Response({'message': 'Logged out Successfully'}, status=status.HTTP_200_OK)

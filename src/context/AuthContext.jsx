@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
 import api from "../api/axios";
+import { getCookie } from '../api/cookies';
 // import { deleteCookie } from "../api/cookies";
 
 const AuthContext = createContext();
@@ -13,14 +14,18 @@ export const AuthProvider = ({ children }) => {
     const fetchUser = async () => {
       try {
         const token = localStorage.getItem("authToken");
-        if(token) {
+        const storedUser = localStorage.getItem("user");
+        if(token && storedUser) {
+          setUser(JSON.parse(storedUser));
+          setIsAuthenticated(true);
+        } else if(token) {
           const response = await api.get("/users/me/");
-          setUser(response);
+          setUser(response.data);
+          setUser("user", JSON.stringify(response.data));
           setIsAuthenticated(true);
         }
       } catch(error) {
         console.error("Error:", error);
-
       } finally {
         setIsLoading(false);
       }
@@ -32,17 +37,15 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       await api.get('/users/csrf/')
-      const response = api.post("/users/auth/login/", { email, password });
+      const response = await api.post("users/auth/login/", { email, password });;
 
       if(response.data.token) {
         localStorage.setItem('authToken', response.data.token);
+        localStorage.setItem('user', JSON.stringify(response.data.user));
+        setUser(response.data.user);
+        setIsAuthenticated(true);
       }
-
-      if(response.data.token) {
-        setUser(response.data.token)
-        setIsAuthenticated(true)
-      }
-
+      
       return {success: true}
 
     } catch(error) {
@@ -54,11 +57,20 @@ export const AuthProvider = ({ children }) => {
     }
   }
 
+  const logout = () => {
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("user");
+    setUser(null);
+    setIsAuthenticated(false);
+    api.post("/users/auth/logout/")
+  }
+
   const value = {
     user,
     isAuthenticated,
     isLoading,
     login,
+    logout,
   }
 
   return (
