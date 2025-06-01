@@ -3,7 +3,7 @@ import "./RoomDetails.scss";
 
 import { Link } from "react-router-dom";
 import { roomImg } from "../../assets/images/assets.js";
-import { IoSparklesOutline } from "react-icons/io5";
+import { IoSparklesSharp } from "react-icons/io5";
 import DateModal from "../../components/DatePicker/DateModal.jsx";
 import RoomMaps from "./RoomMaps.jsx";
 
@@ -41,29 +41,29 @@ const RoomDetails = () => {
         <div className="room-image-div flex flex-col lg:flex-row mt-6 gap-6">
           <div className="lg:w-1/2 w-full">
             <img
-              src={roomImg.room3}
+              src={roomImg.villas3}
               alt="Room Image"
               className="w-full h-full object-cover rounded-xl"
             />
           </div>
           <div className="grid grid-cols-2 lg:w-1/2 gap-4 w-full">
             <img
-              src={roomImg.room2}
+              src={roomImg.amenities1}
               alt="Room Image"
               className="w-full object-cover rounded-xl"
             />
             <img
-              src={roomImg.room6}
+              src={roomImg.pool1}
               alt="Room Image"
               className="w-full object-cover rounded-xl"
             />
             <img
-              src={roomImg.room4}
+              src={roomImg.amenities12}
               alt="Room Image"
               className="w-full object-cover rounded-xl"
             />
             <img
-              src={roomImg.room5}
+              src={roomImg.villas1}
               alt="Room Image"
               className="w-full object-cover rounded-xl"
             />
@@ -144,7 +144,7 @@ const RoomDetails = () => {
               Some Country, Country
             </h3>
             <Link to="/maps">
-              <button className="btn font-quicksand text-xl font-medium bg-blue-900 w-[400px] text-white rounded-lg">
+              <button className="btn font-quicksand text-xl font-medium bg-blue-900 w-[400px] text-white rounded-lg hover:bg-blue-800">
                 See Location
               </button>
             </Link>
@@ -152,7 +152,27 @@ const RoomDetails = () => {
         </div>
 
         <div className="room-info-container mt-20 flex gap-6">
-          <div className="room-more-details w-3/5 h-[30vw] flex"></div>
+          <div className="room-more-details w-3/5 h-[30vw] flex p-8 m-auto flex-col">
+            <h1 className="font-bold font-quicksand text-[2.5rem] mb-6">Amenities</h1>
+            <ul className="p-0 list-none">
+              <li className="font-quicksand font-semibold flex items-center gap-3 text-[1.5rem] mb-6">
+                <IoSparklesSharp className="text-blue-900"/> Rainfall Shower
+              </li>
+              
+              <li className="font-quicksand font-semibold flex items-center gap-3 text-[1.5rem] mb-6">
+                <IoSparklesSharp className="text-blue-900"/> Rainfall Shower
+              </li>
+
+              <li className="font-quicksand font-semibold flex items-center gap-3 text-[1.5rem] mb-6">
+                <IoSparklesSharp className="text-blue-900"/> Rainfall Shower
+              </li>
+
+              <li className="font-quicksand font-semibold flex items-center gap-3 text-[1.5rem] mb-6">
+                <IoSparklesSharp className="text-blue-900"/> Rainfall Shower
+              </li>
+            </ul>
+          
+          </div>
 
           <div className="owner-contact-booking w-2/5 relative">
             <div className="m-8 owner-info-div flex flex-col md:flex-row">

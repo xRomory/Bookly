@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import "./SignupPage.scss";
-
-import { Link } from "react-router";
+import api from "../../api/axios.js";
+import { Link } from "react-router-dom";
 
 const SignupPage = () => {
   const [formData, setFormData] = useState({
@@ -13,20 +13,68 @@ const SignupPage = () => {
     confirmPassword: "",
   });
 
+  const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // This will be change when I'll do the logic API fetching
-  const handleSubmitt = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     if (formData.password != formData.confirmPassword) {
       alert("Password do not match");
+      setIsLoading(false);
       return;
     };
 
-    console.log("Sign up successfully", formData)
+    try {
+      await api.get("/users/csrf/token/");
+
+      const response = await api.post("/users/register/", {
+        first_name: formData.firstName,
+        last_name: formData.lastName,
+        email: formData.email,
+        contact_number: formData.contactNumber,
+        password: formData.password,
+      });
+
+      if(response.data.token) {
+        localStorage.setItem("authToken", response.data.token);
+      }
+
+      setMessage("Registration Successfully!");
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        contactNumber: "",
+        password: "",
+        confirmPassword: "",
+      });
+
+      if(response.status === 201) {
+        console.log("Sign up successfully", formData);
+      }
+
+      window.location.href = "/"
+
+    } catch(error) {
+      if(error.response) {
+        console.error("Error data:", error.response.data);
+        setMessage(`Error: ${JSON.stringify(error.response.data)}`);
+      } else if(error.request) {
+        console.error("No response received:", error.request);
+        setMessage("Network error - please try again");
+      } else {
+        console.error("Error registering: ", error);
+        setMessage("An unexpected error occurred");
+      }
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -43,10 +91,12 @@ const SignupPage = () => {
       </div>
 
       <div className="create-account-container flex items-center justify-center">
-        <form className="w-[80%] max-w-[700px]">
+        <form onSubmit={handleSubmit} className="w-[80%] max-w-[700px]">
           <h1 className="text-4xl font-bold text-center mb-8">
             Create an Account
           </h1>
+
+          {message && <p className="font-quicksand font-medium">{message}</p>}
 
           <div className="create-acc-div grid grid-cols-2 gap-4">
             <div className="input-box">

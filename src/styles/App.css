@@ -36,6 +36,14 @@
   color: var(--TextColor) !important;
 }
 
+.text-main-white {
+  color: var(--MainBackgroundColor);
+}
+
+.bg-secondary-white {
+  background: var(--SecondaryWhiteColor);
+}
+
 .logo {
   color: var(--PrimaryColorNavyBlue);
   font-family: "Playfair Display";

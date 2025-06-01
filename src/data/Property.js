@@ -25,6 +25,8 @@ const Property = {
           capacity: 2,
           price_per_night: 1800,
           property_type: "Hotel",
+          extra_images: [roomImg.bath1, roomImg.bath2, roomImg.things1, roomImg.things2],
+          amenitites: ["Free Wi-Fi", "Smart TV", "Air Conditioning", "Ensuite bathroom with hot shower",]
         },
         {
           name: "Deluxe Room",
@@ -33,6 +35,8 @@ const Property = {
           capacity: 2,
           price_per_night: 2400,
           property_type: "Hotel",
+          extra_images: [roomImg.bath3, roomImg.bath4, roomImg.things3, roomImg.things4],
+          amenitites: ["City View Window", "King-sized Bed", "Coffee and Tea maker", "Rainfall Shower",]
         },
         {
           name: "Twin Room",
@@ -41,6 +45,8 @@ const Property = {
           capacity: 2,
           price_per_night: 2200,
           property_type: "Hotel",
+          extra_images: [roomImg.bath5, roomImg.bath6, roomImg.desk1, roomImg.desk2],
+          amenitites: ["Two Single Beds", "Work Desk", "Complimentary Bottled Water", "Air Conditioning",]
         },
         {
           name: "Family Suite",
@@ -49,6 +55,8 @@ const Property = {
           capacity: 4,
           price_per_night: 3200,
           property_type: "Hotel",
+          extra_images: [roomImg.dining1, roomImg.dining2, roomImg.amenities1, roomImg.amenities2,],
+          amenitites: ["Two separate bedrooms", "Dining area", "Mini refrigerator", "Smart TV",]
         },
         {
           name: "Executive Suite",
@@ -57,6 +65,8 @@ const Property = {
           capacity: 2,
           price_per_night: 3500,
           property_type: "Hotel",
+          extra_images: [roomImg.bath7, roomImg.bath8, roomImg.amenities3, roomImg.amenities4,],
+          amenitites: ["Separate Living Area", "Ergonomic work desk", "Nespresso Machine", "Bathrobe and slippers",]
         },
         {
           name: "Presidential Suite",
@@ -65,38 +75,8 @@ const Property = {
           capacity: 2,
           price_per_night: 4500,
           property_type: "Hotel",
-        },
-        {
-          name: "Studio Room",
-          room_image: roomImg.room7,
-          description: "Compact room ideal for solo travelers.",
-          capacity: 1,
-          price_per_night: 1600,
-          property_type: "Hotel",
-        },
-        {
-          name: "Matrimonial Room",
-          room_image: roomImg.room8,
-          description: "Romantic setup for couples.",
-          capacity: 2,
-          price_per_night: 2000,
-          property_type: "Hotel",
-        },
-        {
-          name: "Barkada Room",
-          room_image: roomImg.room9,
-          description: "Bunk beds for groups of friends.",
-          capacity: 5,
-          price_per_night: 2800,
-          property_type: "Hotel",
-        },
-        {
-          name: "Accessible Room",
-          room_image: roomImg.room10,
-          description: "Room with accessibility features.",
-          capacity: 2,
-          price_per_night: 2100,
-          property_type: "Hotel",
+          extra_images: [roomImg.bath9, roomImg.bath10, roomImg.jacuzzi1, roomImg.butler1,],
+          amenitites: ["Private balcony", "Jacuzzi tub", "Walk-in close", "Butler service (on request)",]
         },
       ],
     },
@@ -123,6 +103,8 @@ const Property = {
           capacity: 2,
           price_per_night: 2200,
           property_type: "Apartment",
+          extra_images: [roomImg.bath7, roomImg.bath8, roomImg.amenities3, roomImg.amenities4,],
+          amenitites: ["Kitchenette with microwave", "Dining nook", "Smart lock entry", "Wi-Fi",]
         },
         {
           name: "One-Bedroom Unit",
@@ -131,6 +113,8 @@ const Property = {
           capacity: 2,
           price_per_night: 3000,
           property_type: "Apartment",
+          extra_images: [roomImg.bath3, roomImg.bath4, roomImg.things3, roomImg.things4],
+          amenitites: ["Living area with sofa", "Full-size fridge", "Air conditioning in both rooms", "Large Smart TV",]
         },
         {
           name: "Two-Bedroom Unit",
@@ -139,62 +123,28 @@ const Property = {
           capacity: 4,
           price_per_night: 4200,
           property_type: "Apartment",
+          extra_images: [roomImg.dining1, roomImg.dining2, roomImg.amenities1, roomImg.amenities2,],
+          amenitites: ["Two separate bedrooms", "Full kitchen", "Washing machine", "Dining area",]
         },
         {
           name: "Penthouse",
-          room_image: roomImg.room4,
+          room_image: roomImg.room11,
           description: "Luxury apartment with a panoramic city view.",
           capacity: 4,
           price_per_night: 6500,
-          property_type: "Apartment",
+          property_type: "Suite",
+          extra_images: [roomImg.amenities5, roomImg.amenities6, roomImg.amenities7, roomImg.bath10,],
+          amenitites: ["Floor-to-ceiling windows", "Private balcony", "High-speed internet", "Entertainment system",]
         },
         {
           name: "Deluxe Studio",
-          room_image: roomImg.room5,
+          room_image: roomImg.room7,
           description: "Premium studio with a balcony.",
           capacity: 2,
           price_per_night: 2800,
           property_type: "Apartment",
-        },
-        {
-          name: "Maid's Quarter",
-          room_image: roomImg.room6,
-          description: "Small room for domestic helpers.",
-          capacity: 1,
-          price_per_night: 1200,
-          property_type: "Apartment",
-        },
-        {
-          name: "Loft Unit",
-          room_image: roomImg.room7,
-          description: "High-ceiling unit with a modern loft feel.",
-          capacity: 2,
-          price_per_night: 3500,
-          property_type: "Apartment",
-        },
-        {
-          name: "Executive Suite",
-          room_image: roomImg.room8,
-          description: "Large apartment with a work desk.",
-          capacity: 2,
-          price_per_night: 4500,
-          property_type: "Apartment",
-        },
-        {
-          name: "One-Bedroom Plus",
-          room_image: roomImg.room9,
-          description: "One-bedroom with additional storage space.",
-          capacity: 2,
-          price_per_night: 3200,
-          property_type: "Apartment",
-        },
-        {
-          name: "Two-Bedroom Deluxe",
-          room_image: roomImg.room10,
-          description: "Two-bedroom with upgraded furnishings.",
-          capacity: 4,
-          price_per_night: 5000,
-          property_type: "Apartment",
+          extra_images: [roomImg.things5, roomImg.things6, roomImg.things3, roomImg.amenities8,],
+          amenitites: ["Balcony with city view", "Queen bed", "Kitchenette with cookware", "Air conditioning",]
         },
       ],
     },
@@ -221,6 +171,8 @@ const Property = {
           capacity: 1,
           price_per_night: 1000,
           property_type: "Motel",
+          extra_images: [roomImg.bath1, roomImg.bath2, roomImg.things1, roomImg.things2],
+          amenitites: ["Single bed", "Wall fan or basic A/C", "Desk", "Rainfall shower",]
         },
         {
           name: "Economy Room",
@@ -229,6 +181,8 @@ const Property = {
           capacity: 2,
           price_per_night: 1500,
           property_type: "Motel",
+          extra_images: [roomImg.bath5, roomImg.bath6, roomImg.desk1, roomImg.desk2],
+          amenitites: ["Double bed", "Flat-screen TV", "Basic toiletries", "Wi-Fi",]
         },
         {
           name: "Standard Room",
@@ -237,6 +191,8 @@ const Property = {
           capacity: 2,
           price_per_night: 1800,
           property_type: "Motel",
+          extra_images: [roomImg.dining1, roomImg.dining2, roomImg.amenities1, roomImg.amenities2,],
+          amenitites: ["Ensuite bathroom", "Closet or hanging space", "Flat-screen TV", "Air conditioning",]
         },
         {
           name: "VIP Room",
@@ -245,6 +201,8 @@ const Property = {
           capacity: 2,
           price_per_night: 2500,
           property_type: "Motel",
+          extra_images: [roomImg.things5, roomImg.things6, roomImg.things3, roomImg.amenities8,],
+          amenitites: ["Premium linens", "Mini-bar", "Complimentary toiletries", "Flat-screen TV with Netflix access",]
         },
         {
           name: "Family Room",
@@ -253,46 +211,8 @@ const Property = {
           capacity: 4,
           price_per_night: 3500,
           property_type: "Motel",
-        },
-        {
-          name: "Business Room",
-          room_image: roomImg.room6,
-          description: "Room with a desk and fast Wi-Fi.",
-          capacity: 1,
-          price_per_night: 2200,
-          property_type: "Motel",
-        },
-        {
-          name: "Single Room",
-          room_image: roomImg.room7,
-          description: "Small room for solo travelers.",
-          capacity: 1,
-          price_per_night: 800,
-          property_type: "Motel",
-        },
-        {
-          name: "Double Room",
-          room_image: roomImg.room8,
-          description: "Double room with a queen bed.",
-          capacity: 2,
-          price_per_night: 2000,
-          property_type: "Motel",
-        },
-        {
-          name: "Dormitory Room",
-          room_image: roomImg.room9,
-          description: "Shared room with bunk beds.",
-          capacity: 4,
-          price_per_night: 1200,
-          property_type: "Motel",
-        },
-        {
-          name: "Couple's Room",
-          room_image: roomImg.room10,
-          description: "Cozy room ideal for couples.",
-          capacity: 2,
-          price_per_night: 1600,
-          property_type: "Motel",
+          extra_images: [roomImg.bath7, roomImg.bath8, roomImg.amenities3, roomImg.amenities4,],
+          amenitites: ["Two double beds", "Dining table", "Microwave", "Mini fridge",]
         },
       ],
     },
@@ -319,6 +239,8 @@ const Property = {
           capacity: 2,
           price_per_night: 2200,
           property_type: "Motel",
+          extra_images: [roomImg.bath5, roomImg.bath6, roomImg.desk1, roomImg.desk2],
+          amenitites: ["Free Wi-Fi", "Work Desk", "Air Conditioning", "LED TV",]
         },
         {
           name: "Luxury Room",
@@ -327,6 +249,8 @@ const Property = {
           capacity: 2,
           price_per_night: 2800,
           property_type: "Motel",
+          extra_images: [roomImg.bath7, roomImg.bath8, roomImg.amenities3, roomImg.amenities4,],
+          amenitites: ["King-size Bed", "Air Conditioning", "Private Bathroom", "Complimentary Toiletries",]
         },
         {
           name: "Business Suite",
@@ -335,6 +259,8 @@ const Property = {
           capacity: 2,
           price_per_night: 3500,
           property_type: "Suite",
+          extra_images: [roomImg.dining1, roomImg.dining2, roomImg.amenities1, roomImg.amenities2,],
+          amenitites: ["Separate Living Area", "High-Speed Wi-Fi", "Work Desk", "Mini Refrigerator",]
         },
         {
           name: "Queen Room",
@@ -343,6 +269,8 @@ const Property = {
           capacity: 2,
           price_per_night: 1800,
           property_type: "Motel",
+          extra_images: [roomImg.things5, roomImg.things6, roomImg.things3, roomImg.amenities8,],
+          amenitites: ["Queen Bed", "LED TV", "Air Conditioning", "Private Bathroom",]
         },
         {
           name: "Bunk Room",
@@ -351,46 +279,8 @@ const Property = {
           capacity: 4,
           price_per_night: 2000,
           property_type: "Motel",
-        },
-        {
-          name: "Accessible Room",
-          room_image: roomImg.room6,
-          description: "Room with special access for differently-abled guests.",
-          capacity: 2,
-          price_per_night: 2400,
-          property_type: "Motel",
-        },
-        {
-          name: "Private Room",
-          room_image: roomImg.room7,
-          description: "Room with a queen bed and private bathroom.",
-          capacity: 2,
-          price_per_night: 2200,
-          property_type: "Motel",
-        },
-        {
-          name: "Small Room",
-          room_image: roomImg.room8,
-          description: "Compact room for solo travelers.",
-          capacity: 1,
-          price_per_night: 1200,
-          property_type: "Motel",
-        },
-        {
-          name: "Standard Suite",
-          room_image: roomImg.room9,
-          description: "A room suite with seating area.",
-          capacity: 2,
-          price_per_night: 3000,
-          property_type: "Suite",
-        },
-        {
-          name: "Single Room",
-          room_image: roomImg.room10,
-          description: "Room for solo travelers with minimal space.",
-          capacity: 1,
-          price_per_night: 900,
-          property_type: "Motel",
+          extra_images: [roomImg.bath9, roomImg.bath10, roomImg.jacuzzi1, roomImg.butler1,],
+          amenitites: ["Bunk Beds", "Shared Bathroom", "Air Conditioning", "Lockers",]
         },
       ],
     },
@@ -412,83 +302,63 @@ const Property = {
       room_types: [
         {
           name: "Oceanfront Villa",
-          room_image: roomImg.room1,
+          room_image: roomImg.villas1,
           description: "Private villa with an ocean view.",
           capacity: 4,
           price_per_night: 8000,
           property_type: "Villa",
+          extra_images: [roomImg.amenities8, roomImg.pool1, roomImg.jacuzzi1, roomImg.butler1,],
+          amenitites: ["Ocean View Terrace", "Private Entrance", "Outdoor Seating Area", "Air Conditioning",]
         },
         {
           name: "Garden Villa",
-          room_image: roomImg.room2,
+          room_image: roomImg.villas2,
           description: "Villa with a beautiful garden view.",
           capacity: 4,
           price_per_night: 6500,
           property_type: "Villa",
+          extra_images: [roomImg.amenities9, roomImg.garden1, roomImg.garden2, roomImg.garden4,],
+          amenitites: ["Garden View", "Patio", "Mini Kitchen", "Private Bathroom",]
         },
         {
           name: "Luxury Villa",
-          room_image: roomImg.room3,
+          room_image: roomImg.villas3,
           description: "Spacious villa with a pool.",
           capacity: 6,
           price_per_night: 12000,
           property_type: "VIlla",
+          extra_images: [roomImg.amenities10, roomImg.bath10, roomImg.jacuzzi1, roomImg.pool1,],
+          amenitites: ["Private Pool", "Large Living Space", "Smart TV", "Bathtub",]
         },
         {
           name: "Poolside Villa",
-          room_image: roomImg.room4,
+          room_image: roomImg.villas4,
           description: "Private villa next to the pool.",
           capacity: 4,
           price_per_night: 9500,
           property_type: "Villa",
+          extra_images: [roomImg.amenities11, roomImg.pool2, roomImg.pool3, roomImg.pool4,],
+          amenitites: ["Direct Pool Access", "Outdoor Furniture", "Kitchenette", "Air Conditioning",]
         },
         {
           name: "Deluxe Villa",
-          room_image: roomImg.room5,
+          room_image: roomImg.villas5,
           description: "Luxury villa with top-tier amenities.",
           capacity: 6,
           price_per_night: 14000,
           property_type: "Villa",
-        },
-        {
-          name: "Family Villa",
-          room_image: roomImg.room6,
-          description: "Villa for family gatherings with extra rooms.",
-          capacity: 8,
-          price_per_night: 16000,
-          property_type: "Villa",
-        },
-        {
-          name: "Beachfront Villa",
-          room_image: roomImg.room7,
-          description: "Private beach villa with direct access.",
-          capacity: 4,
-          price_per_night: 10000,
-          property_type: "Villas",
-        },
-        {
-          name: "Honeymoon Villa",
-          room_image: roomImg.room8,
-          description: "Romantic villa perfect for couples.",
-          capacity: 2,
-          price_per_night: 7000,
-          property_type: "Villa",
-        },
-        {
-          name: "Executive Villa",
-          room_image: roomImg.room9,
-          description: "Villa with office facilities and high-speed internet.",
-          capacity: 4,
-          price_per_night: 11000,
-          property_type: "Villa",
+          extra_images: [roomImg.bath7, roomImg.bath8, roomImg.amenities3, roomImg.amenities4,],
+          amenitites: ["King-size Bed", "High-end Interior", "Private Pool", "BBQ Facilities",]
         },
         {
           name: "Junior Suite",
-          room_image: roomImg.room10,
+          room_image: roomImg.villas6,
           description: "Cozy suite ideal for a weekend getaway.",
           capacity: 2,
           price_per_night: 5000,
           property_type: "Suite",
+          extra_images: [roomImg.amenities5, roomImg.amenities6, roomImg.amenities7, roomImg.bath10,],
+          amenitites: ["Cozy Seating Area", "Air Conditioning", "Queen Bed", "Flat-Screen TV",]
         },
       ],      
     },
@@ -515,6 +385,7 @@ const Property = {
           capacity: 2,
           price_per_night: 2500,
           property_type: "Hotel",
+          amenitites: ["City View Window", "Mini Fridge", "Queen Bed", "Air Conditioning",]
         },
         {
           name: "Executive Room",
@@ -523,6 +394,7 @@ const Property = {
           capacity: 2,
           price_per_night: 3200,
           property_type: "Hotel",
+          amenitites: ["Workstation", "Executive Chair", "Coffee Maker", "Free Wi-Fi",]
         },
         {
           name: "Grand Suite",
@@ -530,7 +402,8 @@ const Property = {
           description: "Luxury suite with a living room.",
           capacity: 2,
           price_per_night: 4500,
-          property_type: "Hotel",
+          property_type: "Suite",
+          amenitites: ["Living Area", "King-size Bed", "Bathtub", "Smart TV",]
         },
         {
           name: "Twin Room",
@@ -539,46 +412,7 @@ const Property = {
           capacity: 2,
           price_per_night: 2000,
           property_type: "Hotel",
-        },
-        {
-          name: "Family Room",
-          room_image: roomImg.room5,
-          description: "Room with extra beds for families.",
-          capacity: 4,
-          price_per_night: 4200,
-          property_type: "Hotel",
-        },
-        {
-          name: "Honeymoon Suite",
-          room_image: roomImg.room6,
-          description: "Romantic suite with luxury features.",
-          capacity: 2,
-          price_per_night: 3800,
-          property_type: "Hotel",
-        },
-        {
-          name: "Accessible Room",
-          room_image: roomImg.room7,
-          description: "Room with accessible features.",
-          capacity: 2,
-          price_per_night: 2200,
-          property_type: "Hotel",
-        },
-        {
-          name: "Standard Room",
-          room_image: roomImg.room8,
-          description: "Simple room with queen bed and Wi-Fi.",
-          capacity: 2,
-          price_per_night: 1800,
-          property_type: "Hotel",
-        },
-        {
-          name: "Penthouse Suite",
-          room_image: roomImg.room9,
-          description: "Luxury suite with panoramic city view.",
-          capacity: 2,
-          price_per_night: 8500,
-          property_type: "Suite",
+          amenitites: ["Two Single Beds", "Closet", "LED TV", "Air Conditioning",]
         },
         {
           name: "Junior Suite",
@@ -587,6 +421,7 @@ const Property = {
           capacity: 2,
           price_per_night: 3200,
           property_type: "Suite",
+          amenitites: ["Lounge Area", "Queen Bed", "Workspace", "Air Conditioning",]
         },
       ],      
     },
@@ -613,6 +448,7 @@ const Property = {
           capacity: 2,
           price_per_night: 5500,
           property_type: "Resort",
+          amenitites: ["Oceanfront Balcony", "Sun Loungers", "Mini Bar", "Air Conditioning",]
         },
         {
           name: "Oceanview Suite",
@@ -621,6 +457,7 @@ const Property = {
           capacity: 2,
           price_per_night: 7500,
           property_type: "Resort",
+          amenitites: ["Floor-to-Ceiling Windows", "Spa Bath", "Smart TV", "Room Service",]
         },
         {
           name: "Garden View Room",
@@ -629,6 +466,7 @@ const Property = {
           capacity: 2,
           price_per_night: 4500,
           property_type: "Resort",
+          amenitites: ["Garden-facing Balcony", "Outdoor Table & Chairs", "Flat-Screen TV", "Wi-Fi",]
         },
         {
           name: "Poolside Villa",
@@ -637,14 +475,7 @@ const Property = {
           capacity: 4,
           price_per_night: 8000,
           property_type: "Resort",
-        },
-        {
-          name: "Honeymoon Suite",
-          room_image: roomImg.room5,
-          description: "Private suite ideal for couples.",
-          capacity: 2,
-          price_per_night: 6200,
-          property_type: "Resort",
+          amenitites: ["Private Patio", "Pool Access", "Lounge Furniture", "Kitchenette",]
         },
         {
           name: "Luxury Villa",
@@ -653,38 +484,7 @@ const Property = {
           capacity: 6,
           price_per_night: 12000,
           property_type: "Resort",
-        },
-        {
-          name: "Deluxe Room",
-          room_image: roomImg.room7,
-          description: "Room with upgraded furnishings.",
-          capacity: 2,
-          price_per_night: 5000,
-          property_type: "Resort",
-        },
-        {
-          name: "Presidential Suite",
-          room_image: roomImg.room8,
-          description: "Premium suite with extravagant amenities.",
-          capacity: 2,
-          price_per_night: 10000,
-          property_type: "Resort",
-        },
-        {
-          name: "Family Villa",
-          room_image: roomImg.room9,
-          description: "Villa with rooms for larger families.",
-          capacity: 6,
-          price_per_night: 11000,
-          property_type: "Resort",
-        },
-        {
-          name: "Junior Suite",
-          room_image: roomImg.room10,
-          description: "Compact suite for small groups.",
-          capacity: 2,
-          price_per_night: 4000,
-          property_type: "Resort",
+          amenitites: ["Private Infinity Pool", "Butler Service", "Full Kitchen", "Luxury Bathroom",]
         },
       ],      
     },
@@ -711,6 +511,7 @@ const Property = {
           capacity: 2,
           price_per_night: 5000,
           property_type: "Hotel",
+          amenitites: ["Floor-to-ceiling windows", "Coffee Maker", "Free Wi-Fi", "Air Conditioning",]
         },
         {
           name: "Deluxe Balcony Room",
@@ -719,14 +520,7 @@ const Property = {
           capacity: 2,
           price_per_night: 6000,
           property_type: "Hotel",
-        },
-        {
-          name: "Family Room",
-          room_image: roomImg.room3,
-          description: "Spacious room for families with extra beds.",
-          capacity: 4,
-          price_per_night: 6500,
-          property_type: "Hotel",
+          amenitites: ["Private Balcony", "Mountain View", "Flat-Screen TV", "Mini Bar",]
         },
         {
           name: "Presidential Suite",
@@ -734,7 +528,8 @@ const Property = {
           description: "Luxury suite with a separate living area and a full view of the lake.",
           capacity: 2,
           price_per_night: 8500,
-          property_type: "Hotel",
+          property_type: "Suite",
+          amenitites: ["Separate Living Area", "Full Lake View", "Luxury Bathroom", "Room Service",]
         },
         {
           name: "Mountain View Villa",
@@ -742,7 +537,8 @@ const Property = {
           description: "Private villa with breathtaking mountain views.",
           capacity: 4,
           price_per_night: 10000,
-          property_type: "Hotel",
+          property_type: "Villa",
+          amenitites: ["Private Villa", "Mountain View Terrace", "Kitchenette", "Smart TV",]
         },
         {
           name: "Garden View Suite",
@@ -750,7 +546,8 @@ const Property = {
           description: "Room with access to the hotel’s lush garden.",
           capacity: 2,
           price_per_night: 4500,
-          property_type: "Hotel",
+          property_type: "Suite",
+          amenitites: ["Garden Access", "Patio Seating", "Free Wi-Fi", "King-Size Bed",]
         },
         {
           name: "Executive Suite",
@@ -758,15 +555,8 @@ const Property = {
           description: "Room designed for business travelers with added workspaces.",
           capacity: 2,
           price_per_night: 5000,
-          property_type: "Hotel",
-        },
-        {
-          name: "Standard Room",
-          room_image: roomImg.room8,
-          description: "Comfortable room with partial lake views.",
-          capacity: 2,
-          price_per_night: 3000,
-          property_type: "Hotel",
+          property_type: "Suite",
+          amenitites: ["Work Desk", "Coffee Machine", "Fast Wi-Fi", "Ergonomic Chair",]
         },
         {
           name: "Taal View Villa",
@@ -774,15 +564,8 @@ const Property = {
           description: "Private villa with a panoramic view of Taal Volcano.",
           capacity: 4,
           price_per_night: 9500,
-          property_type: "Hotel",
-        },
-        {
-          name: "Accessible Room",
-          room_image: roomImg.room10,
-          description: "Room with accessibility features.",
-          capacity: 2,
-          price_per_night: 2800,
-          property_type: "Hotel",
+          property_type: "Villa",
+          amenitites: ["Panoramic Taal View", "Private Deck", "Luxury Linens", "Mini Kitchen",]
         },
       ],      
     },
@@ -809,6 +592,7 @@ const Property = {
           capacity: 2,
           price_per_night: 3500,
           property_type: "Lodge",
+          amenitites: ["Scenic Windows", "Heating", "Soft Lighting", "Queen Bed",]
         },
         {
           name: "Cabin",
@@ -817,6 +601,7 @@ const Property = {
           capacity: 4,
           price_per_night: 5000,
           property_type: "Lodge",
+          amenitites: ["Wooden Interior", "Porch Area", "Fireplace", "Kitchenette",]
         },
         {
           name: "Deluxe Suite",
@@ -825,6 +610,7 @@ const Property = {
           capacity: 2,
           price_per_night: 7000,
           property_type: "Lodge",
+          amenitites: ["Lounge Area", "Fireplace", "King Bed", "Mountain View",]
         },
         {
           name: "Executive Lodge",
@@ -833,6 +619,7 @@ const Property = {
           capacity: 2,
           price_per_night: 6000,
           property_type: "Lodge",
+          amenitites: ["Desk Setup", "Coffee Station", "Meeting Table", "Mini Library",]
         },
         {
           name: "Family Cabin",
@@ -841,14 +628,7 @@ const Property = {
           capacity: 6,
           price_per_night: 8000,
           property_type: "Lodge",
-        },
-        {
-          name: "Standard Room",
-          room_image: roomImg.room6,
-          description: "Cozy room for couples or solo travelers.",
-          capacity: 2,
-          price_per_night: 2700,
-          property_type: "Lodge",
+          amenitites: ["Bunk Beds", "Living Area", "Kids’ Board Games", "Kitchen",]
         },
         {
           name: "Honeymoon Suite",
@@ -856,7 +636,8 @@ const Property = {
           description: "Romantic suite for newlyweds.",
           capacity: 2,
           price_per_night: 5500,
-          property_type: "Lodge",
+          property_type: "Suite",
+          amenitites: ["Romantic Setup", "Private Balcony", "Bathtub", "Room Service",]
         },
         {
           name: "Mountain View Villa",
@@ -864,15 +645,8 @@ const Property = {
           description: "Private villa with panoramic mountain views.",
           capacity: 4,
           price_per_night: 8000,
-          property_type: "Lodge",
-        },
-        {
-          name: "Single Room",
-          room_image: roomImg.room9,
-          description: "Basic room for solo travelers.",
-          capacity: 1,
-          price_per_night: 1600,
-          property_type: "Lodge",
+          property_type: "Villa",
+          amenitites: ["Elevated Deck", "Lounge Chairs", "Private Kitchen", "Panoramic Views",]
         },
         {
           name: "Treehouse",
@@ -881,6 +655,7 @@ const Property = {
           capacity: 2,
           price_per_night: 3000,
           property_type: "Lodge",
+          amenitites: ["Elevated View", "Eco-Friendly Build", "Hammock or Swing", "Balcony",]
         },
       ],      
     },
@@ -907,6 +682,7 @@ const Property = {
           capacity: 2,
           price_per_night: 2200,
           property_type: "Inn",
+          amenitites: ["Queen Bed", "Flat-Screen TV", "Air Conditioning", "Free Wi-Fi",]
         },
         {
           name: "Deluxe Room",
@@ -915,30 +691,16 @@ const Property = {
           capacity: 2,
           price_per_night: 2800,
           property_type: "Inn",
+          amenitites: ["City View", "Sofa Chair", "Complimentary Toiletries", "Coffee Maker",]
         },
         {
-          name: "Premium Room",
+          name: "Premium Inn Room",
           room_image: roomImg.room3,
           description: "Room with luxury features and city view.",
           capacity: 2,
           price_per_night: 3500,
           property_type: "Inn",
-        },
-        {
-          name: "Suite",
-          room_image: roomImg.room4,
-          description: "Room with separate living space and work area.",
-          capacity: 2,
-          price_per_night: 4000,
-          property_type: "Inn",
-        },
-        {
-          name: "Executive Suite",
-          room_image: roomImg.room5,
-          description: "Top-tier suite with all amenities.",
-          capacity: 2,
-          price_per_night: 5000,
-          property_type: "Inn",
+          amenitites: ["Premium Linens", "Rain Shower", "Smart TV", "Air Conditioning",]
         },
         {
           name: "Penthouse Suite",
@@ -946,7 +708,8 @@ const Property = {
           description: "Top-floor suite with panoramic views and premium facilities.",
           capacity: 2,
           price_per_night: 7000,
-          property_type: "Inn",
+          property_type: "Suite",
+          amenitites: ["Floor-to-Ceiling Windows", "Private Lounge", "Cityscape View", "Bathtub",]
         },
         {
           name: "Family Suite",
@@ -955,30 +718,7 @@ const Property = {
           capacity: 4,
           price_per_night: 6000,
           property_type: "Inn",
-        },
-        {
-          name: "Business Suite",
-          room_image: roomImg.room8,
-          description: "Business-friendly room with desk and Wi-Fi.",
-          capacity: 2,
-          price_per_night: 4000,
-          property_type: "Inn",
-        },
-        {
-          name: "Accessible Room",
-          room_image: roomImg.room9,
-          description: "Room designed for accessibility needs.",
-          capacity: 2,
-          price_per_night: 2500,
-          property_type: "Inn",
-        },
-        {
-          name: "Junior Suite",
-          room_image: roomImg.room10,
-          description: "A compact suite for solo travelers or couples.",
-          capacity: 2,
-          price_per_night: 3200,
-          property_type: "Inn",
+          amenitites: ["Extra Beds", "Dining Space", "Two TVs", "Board Games",]
         },
       ],      
     },

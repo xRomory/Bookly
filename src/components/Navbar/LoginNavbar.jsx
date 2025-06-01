@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { useAuth } from "../../context/AuthContext";
 import "./Navbar.scss";
-
+import UserDropdown from "../UserDropdown/UserDropdown";
 import { Link } from "react-router-dom";
 
 const LoginNavbar = () => {
+  const { user } = useAuth();
   const [transparent, setTransparent] = useState("nav-container");
+  // const [showUserMenu, setUserMenu] = useState();
 
   const addBg = () => {
     if (window.scrollY >= 15) {
@@ -44,22 +47,12 @@ const LoginNavbar = () => {
                 Rooms
               </Link>
             </li>
-            <li className="nav-item">
-              <Link
-                to="/user-profile/"
-                className="text-main-color font-quicksand font-semibold"
-              >
-                <button className="dashboard">User Dashboard</button>
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                to="/owner-dashboard/"
-                className="text-main-color font-quicksand font-semibold"
-              >
-                <button className="dashboard">Owner's Dashboard</button>
-              </Link>
-            </li>
+
+            {user && (
+              <li className="nav-item">
+                <UserDropdown />
+              </li>
+            )}
           </ul>
         </div>
       </div>

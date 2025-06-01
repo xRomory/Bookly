@@ -1,0 +1,66 @@
+:root {
+  --PrimaryColorNavyBlue: hsl(224, 64%, 33%);
+  --HoverPrimaryColor: hsl(224, 53%, 40%);
+  --SecondaryColorTeal: #14b8a6;
+  --HoverSecondaryColorTeal: #36decb;
+  --AccentColorOrange: hsl(27, 96%, 61%);
+  --MainBackgroundColor: hsl(220, 14%, 96%);
+  --SecondaryWhiteColor: #e7e7e7;
+  --TextColor: hsl(221, 39%, 11%);
+  --PlaceholderText: hsl(219, 10%, 34%);
+  --AccentDarkNavy: #162c5f;
+}
+
+.user-dropdown {
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    z-index: 900;
+    transition: background-color 0.3s ease;
+    pointer-events: none;
+
+    &.active {
+      background-color: rgba(0, 0, 0, 0.5);
+      pointer-events: all;
+    }
+  }
+
+  .side-container {
+    position: fixed;
+    top: 0;
+    right: -30rem;
+    width: 30rem;
+    height: 100vh;
+    background: var(--SecondaryWhiteColor);
+    z-index: 999;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+
+    &.active-side {
+      transform: translateX(-30rem);
+    }
+
+    .menu-container {
+      ul {
+        .menu {
+          margin-top: 1em;
+          transition: all 0.2s ease;
+
+          a {
+            display: block;
+            padding: 0.5rem 0;
+          }
+
+          &:hover {
+            transform: translateX(10px);
+            color: var(--HoverPrimaryColor);
+          }
+        }
+      }
+    }
+  }
+}

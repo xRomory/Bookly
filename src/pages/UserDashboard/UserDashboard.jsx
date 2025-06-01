@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./UserDashboard.scss";
 import SideMenu from "./SideMenu.jsx";
 import { FaUserGroup } from "react-icons/fa6";
@@ -6,6 +6,27 @@ import { LuMapPinHouse } from "react-icons/lu";
 import { roomImg } from "../../assets/images/assets.js";
 
 const UserDashboard = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [contact, setContact] = useState("");
+
+  useEffect(() => {
+    const userData = localStorage.getItem("user");
+    if(userData) {
+      try {
+        const parsedUser = JSON.parse(userData);
+        const username = `${parsedUser.first_name} ${parsedUser.last_name}`;
+        const userEmail = `${parsedUser.email}`;
+        const contactNumber = `${parsedUser.contact_number}`;
+        setName(username);
+        setEmail(userEmail);
+        setContact(contactNumber);
+      } catch(error) {
+        console.error("Error parsing user data:", error);
+      }
+    }
+  }, []);
+
   return (
     <>
       <div className="user-profile-page-container flex h-[62.8rem]">
@@ -17,21 +38,27 @@ const UserDashboard = () => {
             </div>
             <div className="user-info-div m-[3rem_2rem]">
               <div className="user-name-text mb-4">
-                <h2 className="user-name-text font-bold text-3xl">
-                  Hello, User!
-                </h2>
+                {name && (
+                  <h2 className="user-name-text font-semibold text-3xl">
+                    Hello, {name}
+                  </h2>
+                )}
               </div>
               <div className="user-email-info flex">
                 <h3 className="user-email font-bold mr-1">Email:</h3>
-                <span className="user-email-address font-regular">
-                  user@email.com
-                </span>
+                {email &&(
+                  <span className="user-email-address font-regular">
+                    {email}
+                  </span>
+                )}
               </div>
               <div className="user-contact-info flex">
                 <h3 className="user-email font-bold mr-1">Contact Number:</h3>
-                <span className="user-email-address font-regular">
-                  09123456789
-                </span>
+                {contact && (
+                  <span className="user-email-address font-regular">
+                    {contact}
+                  </span>
+                )}
               </div>
             </div>
           </div>

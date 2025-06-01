@@ -1,9 +1,10 @@
 import { Routes, Route, useLocation } from "react-router-dom";
+import { useAuth } from "./context/AuthContext.jsx";
 import "./styles/App.css";
 
 import Navbar from "./components/Navbar/Navbar.jsx";
 import LoginNavbar from "./components/Navbar/LoginNavbar.jsx";
-import Footer from "./components/Footer/Footer.jsx";
+// import Footer from "./components/Footer/Footer.jsx";
 import HomePage from "./pages/LandingPage/HomePage.jsx";
 import MapPage from "./pages/MapPage/MapPage.jsx";
 import HotelsPage from "./pages/HotelsPage/HotelsPage.jsx";
@@ -16,8 +17,7 @@ import RenterDashboardPage from "./pages/RenterDashboard/RenterDashboardPage.jsx
 import RoomDetailsPage from "./pages/RoomDetails/RoomDetailsPage.jsx";
 
 function App() {
-  const isLoggedIn = "Please edit this for backend";
-
+  const { isAuthenticated } = useAuth();
   const location = useLocation();
 
   const hideNavBarAndFooter = [
@@ -26,9 +26,15 @@ function App() {
     "/user-profile/",
     "/owner-dashboard/",
     "/maps",
-  ].includes(location.pathname);
+  ].some(path => location.pathname.startsWith(path));
 
-  const NavbarToRender = isLoggedIn ? LoginNavbar : Navbar
+  const NavbarToRender = isAuthenticated ? LoginNavbar : Navbar;
+
+  // if (isLoading) {
+  //   return <div className="flex justify-center items-center h-screen">
+  //     <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+  //   </div>;
+  // }
 
   return (
     <div className="app">
@@ -45,7 +51,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/sign-up" element={<SignupPage />} />
       </Routes>
-      {!hideNavBarAndFooter && <Footer />}
+      {!hideNavBarAndFooter}
     </div>
   );
 }
