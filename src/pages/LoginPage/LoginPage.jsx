@@ -1,13 +1,11 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import "./LoginPage.scss";
-import api from "../../api/axios";
 import { useAuth } from "../../context/AuthContext";
-import { getCookie } from "../../api/cookies";
 import { Link, useNavigate } from "react-router-dom";
 
 export const LoginPage = () => {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
-  const { login, isAuthenticated } = useAuth();
+  const { login } = useAuth();
   const navigate = useNavigate();
   const [error, setError] = useState(null);
 

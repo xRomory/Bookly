@@ -165,21 +165,28 @@ const SearchFilter = ({ onFilterChange }) => {
                   {children}
                 </div>
               )}
-              renderThumb={({ props }) => (
-                <div
-                  {...props}
-                  style={{
-                    ...props.style,
-                    height: "20px",
-                    width: "20px",
-                    borderRadius: "50%",
-                    backgroundColor: "var(--SecondaryColorTeal)",
-                    border: "2px solid var(--SecondaryColorTeal)",
-                    boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.3)",
-                    outline: "none",
-                  }}
-                />
-              )}
+              
+              renderThumb={({ props, isDragged }) => {
+                const { key, ...otherProps } = props;
+                return (
+                  <div
+                    key={key}
+                    {...otherProps}
+                    style={{
+                      ...otherProps.style,
+                      height: "20px",
+                      width: "20px",
+                      borderRadius: "50%",
+                      backgroundColor: isDragged 
+                        ? "var(--PrimaryColor)" 
+                        : "var(--SecondaryColorTeal)",
+                      border: "2px solid var(--SecondaryColorTeal)",
+                      boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.3)",
+                      outline: "none",
+                    }}
+                  />
+                );
+              }}
             />
           </div>
         </div>

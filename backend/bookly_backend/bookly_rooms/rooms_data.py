@@ -336,17 +336,17 @@ metropolis_rooms = [
 sunset_bay_rooms = [
     {
         "room_name": "Beachfront Room",
-        "room_image": "room31.jpg",
+        "room_image": "room32.jpg",
         "room_description": "Room with ocean view and private terrace.",
         "capacity": 2,
         "price_per_night": 5500,
         "property_type": "resort",
-        "extra_images": [""],
+        "extra_images": [],
         "amenities": ["Oceanfront Balcony", "Sun Loungers", "Mini Bar", "Air Conditioning",]
     },
     {
         "room_name": "Oceanview Suite",
-        "room_image": "room32.jpg",
+        "room_image": "room33.jpg",
         "room_description": "Luxurious suite with panoramic sea view.",
         "capacity": 2,
         "price_per_night": 7500,
@@ -356,7 +356,7 @@ sunset_bay_rooms = [
     },
     {
         "room_name": "Garden View Room",
-        "room_image": "room33.jpg",
+        "room_image": "room34.jpg",
         "room_description": "Room overlooking the lush resort gardens.",
         "capacity": 2,
         "price_per_night": 4500,
@@ -366,17 +366,17 @@ sunset_bay_rooms = [
     },
     {
         "room_name": "Poolside Villa",
-        "room_image": "room34.jpg",
+        "room_image": "room35.jpg",
         "room_description": "Villa located next to the pool.",
         "capacity": 4,
         "price_per_night": 8000,
         "property_type": "resort",
-        "extra_images": [""],
+        "extra_images": [],
         "amenities": ["Private Patio", "Pool Access", "Lounge Furniture", "Kitchenette",]
     },
     {
         "room_name": "Luxury Villa",
-        "room_image": "room35.jpg",
+        "room_image": "room36.jpg",
         "room_description": "High-end villa with private pool.",
         "capacity": 6,
         "price_per_night": 12000,

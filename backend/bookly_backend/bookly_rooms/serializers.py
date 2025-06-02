@@ -1,18 +1,38 @@
 from rest_framework import serializers
 from .models import BooklyRooms, RoomImage
+from bookly_property.serializers import BooklyPropertySerializers, PropertyOwnerSerializers
 
 class RoomImageSerializers(serializers.ModelSerializer):
-    bookly_room = serializers.HyperlinkedRelatedField(
-        view_name = 'room-detail',
-        query_set = BooklyRooms.objects.all(),
-    )
-
     class Meta:
         model = RoomImage
-        fields = ['id', 'image', 'is_primary', 'uploaded_at',]
+        fields = ['id', 'image', 'is_primary', 'uploaded_at']
 
 class BooklyRoomSerializers(serializers.ModelSerializer):
     images = RoomImageSerializers(many=True, read_only=True)
+    main_image = serializers.SerializerMethodField()
+
+    owner = PropertyOwnerSerializers(source='property', read_only=True)
+    property_details = BooklyPropertySerializers(source='property', read_only=True)
+
+    def get_main_image(self, obj):
+        if obj.room_image:
+            return self.context['request'].build_absolute_uri(obj.room_image.url)
+        return None
+
     class Meta:
         model = BooklyRooms
-        fields = '__all__'
+        fields = [
+            'room_id',
+            'property',
+            'property_details',
+            'owner',
+            'room_name', 
+            'room_type',
+            'room_description',
+            'price_per_night',
+            'amenities',
+            'room_status',
+            'capacity',
+            'images',
+            'main_image',
+        ]

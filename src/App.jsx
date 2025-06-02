@@ -43,7 +43,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/property-brands" element={<HotelsPage />} />
         <Route path="/rooms/" element={<RoomsPage />} />
-        <Route path="/rooms/room-details/" element={<RoomDetailsPage />} />
+        <Route path="/rooms/:room_id" element={<RoomDetailsPage />} />
         <Route path="/bookings/" element={<BookingPage />} />
         <Route path="/maps" element={<MapPage />} />
         <Route path="/user-profile/" element={<UserDashboard />} />
