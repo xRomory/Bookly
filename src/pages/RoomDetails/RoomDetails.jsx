@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import "./RoomDetails.scss";
-
+import { useRoomDetails } from "../../hooks/useRoomDetails.js";
 import { Link } from "react-router-dom";
-import { roomImg } from "../../assets/images/assets.js";
 import { IoSparklesSharp } from "react-icons/io5";
 import DateModal from "../../components/DatePicker/DateModal.jsx";
 import RoomMaps from "./RoomMaps.jsx";
 
 const RoomDetails = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [contact, setContact] = useState("");
+
   const today = new Date();
   const [checkInDate, setCheckInDate] = useState(today);
   const [checkOutDate, setCheckOutDate] = useState(() => {
@@ -26,62 +29,56 @@ const RoomDetails = () => {
     }
   };
 
+  const { room, isLoading, error } = useRoomDetails()
+
+  if (isLoading) return <div className="font-quicksand font-bold text-5xl flex justify-center items-center w-screen h-screen">Loading...</div>;
+  if (error) return <div className="font-quicksand font-bold text-5xl flex justify-center items-center w-screen h-screen">Error: {error}</div>;
+  if (!room) return <div>Room not found</div>;
+
   return (
     <div className="room-details-container h-full w-full p-16">
       <div className="room-deets-page-container m-16 p-8">
         <div className="header-text-div">
           <h1 className="font-playfair-display font-bold text-5xl mb-8">
-            Property Room Name
+            {room.room_name}
           </h1>
           <h2 className="font-lora text-2xl mb-8">
-            123, Somewhere St., Somewhere
+            {room.property_details?.address}
           </h2>
         </div>
 
         <div className="room-image-div flex flex-col lg:flex-row mt-6 gap-6">
           <div className="lg:w-1/2 w-full">
             <img
-              src={roomImg.villas3}
+              src={room.main_image}
               alt="Room Image"
               className="w-full h-full object-cover rounded-xl"
             />
           </div>
           <div className="grid grid-cols-2 lg:w-1/2 gap-4 w-full">
-            <img
-              src={roomImg.amenities1}
-              alt="Room Image"
-              className="w-full object-cover rounded-xl"
-            />
-            <img
-              src={roomImg.pool1}
-              alt="Room Image"
-              className="w-full object-cover rounded-xl"
-            />
-            <img
-              src={roomImg.amenities12}
-              alt="Room Image"
-              className="w-full object-cover rounded-xl"
-            />
-            <img
-              src={roomImg.villas1}
-              alt="Room Image"
-              className="w-full object-cover rounded-xl"
-            />
+            {room.images?.slice(0, 4).map((image) => (
+              <img
+                key={image.id}
+                src={image.image}
+                alt={`Room view ${image.id}`}
+                className="w-full h-full object-cover rounded-xl"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = '/placeholder.jpg';
+                }}
+              />
+            ))}
           </div>
         </div>
 
         <div className="room-information flex flex-col md:flex-row md:justify-between mt-10">
           <div className="room-description w-3/4">
             <p className="font-quicksand text-xl md:text-2xl">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis et
-              vestibulum orci. Mauris consectetur euismod nisi vel volutpat.
-              Aliquam cursus malesuada mauris et sagittis. Vestibulum interdum
-              lobortis nisl, vel bibendum est efficitur eu. Quisque ornare nibh
-              dui, quis gravida lorem sollicitudin sit amet.
+              {room.room_description}
             </p>
           </div>
           <span className="flex items-center md:flex-col font-quicksand text-5xl font-semibold">
-            P20000 /day
+            P{room.price_per_night} /day
           </span>
         </div>
 
@@ -134,58 +131,43 @@ const RoomDetails = () => {
           </button>
         </form>
 
-        <div className="maps-div mt-24 space-y-4">
-          <h2 className="font-quicksand font-bold text-3xl">
-            Room Location Map
-          </h2>
-          <RoomMaps />
-          <div className="room-location flex justify-between">
-            <h3 className="font-quicksand font-semibold text-2xl">
-              Some Country, Country
-            </h3>
-            <Link to="/maps">
-              <button className="btn font-quicksand text-xl font-medium bg-blue-900 w-[400px] text-white rounded-lg hover:bg-blue-800">
-                See Location
-              </button>
-            </Link>
-          </div>
-        </div>
-
         <div className="room-info-container mt-20 flex gap-6">
           <div className="room-more-details w-3/5 h-[30vw] flex p-8 m-auto flex-col">
             <h1 className="font-bold font-quicksand text-[2.5rem] mb-6">Amenities</h1>
             <ul className="p-0 list-none">
-              <li className="font-quicksand font-semibold flex items-center gap-3 text-[1.5rem] mb-6">
-                <IoSparklesSharp className="text-blue-900"/> Rainfall Shower
+              {room.amenities?.map((amenity, index) => (
+                <li key={index} className="font-quicksand font-semibold flex items-center gap-3 text-[1.5rem] mb-6">
+                <IoSparklesSharp className="text-blue-900"/> {amenity}
               </li>
-              
-              <li className="font-quicksand font-semibold flex items-center gap-3 text-[1.5rem] mb-6">
-                <IoSparklesSharp className="text-blue-900"/> Rainfall Shower
-              </li>
-
-              <li className="font-quicksand font-semibold flex items-center gap-3 text-[1.5rem] mb-6">
-                <IoSparklesSharp className="text-blue-900"/> Rainfall Shower
-              </li>
-
-              <li className="font-quicksand font-semibold flex items-center gap-3 text-[1.5rem] mb-6">
-                <IoSparklesSharp className="text-blue-900"/> Rainfall Shower
-              </li>
+              ))}
             </ul>
           
           </div>
 
           <div className="owner-contact-booking w-2/5 relative">
             <div className="m-8 owner-info-div flex flex-col md:flex-row">
-              <div className="owner-icon rounded-full mr-4 w-36 h-36 bg-teal-500"></div>
+              <div className="owner-icon rounded-full mr-4 w-36 h-36 bg-teal-500 flex items-center justify-center">
+                {room.property_details?.property_logo_url ?  (
+                  <img 
+                    src={room.property_details?.property_logo_url} 
+                    className="w-4/5 h-4/5 rounded-full object-cover"
+                    alt="Owner"
+                  />
+                ) : (
+                  <div className="w-full h-full rounded-full bg-gray-300 flex items-center justify-center">
+                    <span className="text-2xl text-white">{room.property_details?.property_name?.charAt(0)}</span>
+                  </div>
+                )}
+              </div>
               <div className="owner-text-info flex flex-col">
                 <h3 className="text-2xl font-semibold font-quicksand text-main-color">
-                  Juan Dela Cruz
+                  {room.owner?.first_name || room.property_details?.property_name} {room.owner?.last_name}
                 </h3>
                 <span className="text-xl font-medium font-quicksand text-main-color">
-                  email@link.com
+                  {room.owner?.email}
                 </span>
                 <span className="text-xl font-medium font-quicksand text-main-color">
-                  09123456789
+                  {room.owner?.contact_number}
                 </span>
               </div>
             </div>
@@ -193,6 +175,23 @@ const RoomDetails = () => {
             <Link to="" className="flex justify-center absolute bottom-8 left-52">
               <button className="btn hover:bg-blue-800 text-white font-quicksand font-medium text-xl rounded-lg">
                 Book Now
+              </button>
+            </Link>
+          </div>
+        </div>
+
+        <div className="maps-div mt-24 space-y-4">
+          <h2 className="font-quicksand font-bold text-3xl">
+            Room Location Map
+          </h2>
+          <RoomMaps />
+          <div className="room-location flex justify-between">
+            <h3 className="font-quicksand font-semibold text-2xl">
+              {room.property_details?.address}
+            </h3>
+            <Link to="/maps">
+              <button className="btn font-quicksand text-xl font-medium bg-blue-900 w-[400px] text-white rounded-lg hover:bg-blue-800">
+                See Location
               </button>
             </Link>
           </div>

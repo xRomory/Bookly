@@ -10,6 +10,6 @@ from .serializers import BooklyPropertySerializers
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_property(request):
-    property = BooklyProperty.objects.all()
-    serializer = BooklyPropertySerializers(property, many=True)
+    properties = BooklyProperty.objects.all()
+    serializer = BooklyPropertySerializers(properties, many=True, context={'request': request})
     return Response(serializer.data)
