@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 const LoginNavbar = () => {
   const { user } = useAuth();
   const [transparent, setTransparent] = useState("nav-container");
-  // const [showUserMenu, setUserMenu] = useState();
 
   const addBg = () => {
     if (window.scrollY >= 15) {

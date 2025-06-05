@@ -40,6 +40,10 @@
   color: var(--MainBackgroundColor);
 }
 
+.bg-main-white {
+  background: var(--MainBackgroundColor);
+}
+
 .bg-secondary-white {
   background: var(--SecondaryWhiteColor);
 }

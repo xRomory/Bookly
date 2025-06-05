@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./SearchFilter.scss";
 import SearchMaps from "./SearchMaps.jsx";
-import Property from "../../data/Property.js";
 
+import { useRooms } from "../../context/RoomContext.jsx";
 import { Link } from "react-router-dom";
 import { Range } from "react-range";
 
@@ -11,55 +11,47 @@ const MAX = 21000;
 const STEP = 100;
 
 const SearchFilter = ({ onFilterChange }) => {
+  const { rooms = [] } = useRooms();
   const [searchTerm, setSearchTerm] = useState("");
   const [values, setValues] = useState([0, 21000]);
   const [propertyTypes, setPropertyTypes] = useState({
-    Hotel: false,
-    Apartments: false,
-    Motel: false,
-    Villas: false,
-    Lodge: false,
-    Inn: false,
-    Resort: false,
-    Suite: false,
+    hotel: false,
+    apartment: false,
+    motel: false,
+    villa: false,
+    lodge: false,
+    inn: false,
+    resort: false,
+    suite: false,
   });
 
   useEffect(() => {
-    const filteredRooms = [];
+    
+    if(!Array.isArray(rooms)) {
+    console.log("Rooms is not an array:", rooms);
+    onFilterChange([]);
+    return;
+  }
 
-    Property.property_brands.forEach((brand) => {
-      if (
-        searchTerm &&
-        !brand.name.toLowerCase().includes(searchTerm.toLowerCase())
-      ) {
-        return;
-      }
+    const filteredRooms = rooms.filter((room) => {
+      const matchesSearch = 
+        searchTerm === "" || 
+        room.room_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        room.property_details?.property_name.toLowerCase().includes(searchTerm.toLowerCase());
 
-      const anyPropertyTypeSelected = Object.values(propertyTypes).some(
-        (value) => value
-      );
+        
+      const anyTypeSelected = Object.values(propertyTypes).some(Boolean);
+      const matchesPropertyType = !anyTypeSelected || propertyTypes[room.room_type];
 
-      brand.room_types.forEach((room) => {
-        if (anyPropertyTypeSelected && !propertyTypes[room.property_type]) {
-          return;
-        }
+      const matchesPriceRange = 
+        room.price_per_night >= values[0] && 
+        room.price_per_night <= values[1];
 
-        if (
-          room.price_per_night < values[0] ||
-          room.price_per_night > values[1]
-        ) {
-          return;
-        }
-
-        filteredRooms.push({
-          brand: brand,
-          room: room,
-        });
-      });
+      return matchesSearch && matchesPropertyType && matchesPriceRange;
     });
 
     onFilterChange(filteredRooms);
-  }, [searchTerm, propertyTypes, values, onFilterChange]);
+  }, [searchTerm, propertyTypes, values, rooms, onFilterChange]);
 
   const handlePropertyTypeChange = (type) => {
     setPropertyTypes({
@@ -104,8 +96,10 @@ const SearchFilter = ({ onFilterChange }) => {
                   id={type}
                   checked={propertyTypes[type]}
                   onChange={() => handlePropertyTypeChange(type)}
-                />
-                {type}
+                  />
+                  <label htmlFor={type}>
+                    {type.charAt(0).toUpperCase() + type.slice(1)}
+                  </label>
               </div>
             ))}
           </div>

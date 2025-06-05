@@ -1,0 +1,61 @@
+:root {
+  --PrimaryColorNavyBlue: hsl(224, 64%, 33%);
+  --HoverPrimaryColor: hsl(224, 53%, 40%);
+  --SecondaryColorTeal: #14b8a6;
+  --HoverSecondaryColorTeal: #36decb;
+  --AccentColorOrange: hsl(27, 96%, 61%);
+  --MainBackgroundColor: hsl(220, 14%, 96%);
+  --SecondaryWhiteColor: #e7e7e7;
+  --TextColor: hsl(221, 39%, 11%);
+  --PlaceholderText: hsl(219, 10%, 34%);
+  --AccentDarkNavy: #162c5f;
+}
+
+.booking {
+  .booking-container {
+    .booking-info {
+      .user-form {
+        .user-info {
+          label {
+            input {
+              border: 3px solid var(--SecondaryColorTeal);
+              font-size: 1rem;
+              font-family: "Quicksand", sans-serif;
+            }
+
+            .react-datepicker-wrapper {
+              display: block;
+              width: 100%;
+
+              .react-datepicker__input-container {
+                input {
+                  font-family: "Quicksand", sans-serif;
+                  font-size: 1rem;
+                  padding: 15px 45px 15px 20px;
+                  width: 100%;
+                  height: 50%;
+                  border: 3px solid var(--SecondaryColorTeal);
+                  border-radius: 12px;
+                  transition: all 0.3s ease-in-out;
+                  margin-top: 6px;
+
+                  outline: none;
+                }
+              }
+            }
+          }
+        }
+
+        input {
+          border: 3px solid var(--SecondaryColorTeal);
+          font-size: 1rem;
+          font-family: "Quicksand", sans-serif;
+        }
+
+        .btn {
+          width: 40%;
+        }
+      }
+    }
+  }
+}

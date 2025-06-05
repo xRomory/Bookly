@@ -1,6 +1,8 @@
 from django.shortcuts import render
+from django.core.paginator import Paginator
 from rest_framework import generics, permissions
 from rest_framework.decorators import api_view, permission_classes
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
@@ -21,9 +23,16 @@ def get_rooms(request):
     serializer = BooklyRoomSerializers(rooms, many=True)
     return Response(serializer.data)
 
+class RoomPagination(PageNumberPagination):
+    page_size = 5
+    page_size_query_param = 'page_size'
+    max_page_size = 100
+    django_paginator_class = Paginator
+
 class BooklyRoomList(generics.ListCreateAPIView):
     queryset = BooklyRooms.objects.all()
     serializer_class = BooklyRoomSerializers
+    pagination_class = RoomPagination
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 class BooklyRoomDetailView(generics.RetrieveUpdateDestroyAPIView):
