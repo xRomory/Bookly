@@ -1,7 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
 import api from "../api/axios";
-import { getCookie } from '../api/cookies';
-// import { deleteCookie } from "../api/cookies";
 
 const AuthContext = createContext();
 

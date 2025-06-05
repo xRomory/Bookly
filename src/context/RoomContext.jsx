@@ -7,13 +7,18 @@ export const RoomProvider = ({ children }) => {
   const [rooms, setRooms] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [pageSize, setPageSize] = useState(5);
 
-  const fetchRooms = async () => {
+  const fetchRooms = async (page = 1) => {
     setIsLoading(true);
 
     try {
-      const response = await api.get("/rooms/room-list/");
-      setRooms(response.data);
+      const response = await api.get(`/rooms/room-list/?page=${page}&page_size=${pageSize}`);
+      setRooms(response.data.results)
+      setTotalPages(Math.ceil(response.data.count / pageSize));
+      setCurrentPage(page);
       setError(null);
     } catch(error) {
       console.error("Error fetching rooms:", error);
@@ -24,14 +29,17 @@ export const RoomProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    fetchRooms();
-  }, []);
-
+    fetchRooms(1);
+  }, [pageSize]);
 
   const value = {
     rooms,
     isLoading,
     error,
+    currentPage,
+    totalPages,
+    pageSize,
+    setPageSize,
     fetchRooms,
   }
 

@@ -23,6 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/users/', include('bookly_user.urls')),
     path('api/rooms/', include('bookly_rooms.urls')),
+    path('api/property/', include('bookly_property.urls')),
+    path('api/booking/', include('bookly_booking.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:

@@ -6,7 +6,16 @@ import { Link } from "react-router-dom";
 import { useRooms } from "../../context/RoomContext.jsx";
 
 const Rooms = () => {
-  const { rooms, isLoading } = useRooms();
+  const { 
+    rooms, 
+    isLoading, 
+    currentPage,
+    totalPages,
+    fetchRooms,
+    pageSize,
+    setPageSize
+  } = useRooms();
+
   const [filteredRooms, setFilteredRooms] = useState([]);
 
   useEffect(() => {
@@ -19,15 +28,21 @@ const Rooms = () => {
     setFilteredRooms(newFilteredRooms);
   }, []);
 
+  const handlePageChange = (newPage) => {
+    fetchRooms(newPage);
+  };
+
+  const handlePageSizeChange = (e) => {
+    setPageSize(Number(e.target.value));
+  };
+
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 z-50"></div>
       </div>
     );
   }
-
-  console.log(filteredRooms)
 
   return (
     <>
@@ -36,7 +51,7 @@ const Rooms = () => {
           <SearchFilter onFilterChange={handleFilterChange} />
         </div>
 
-        <div className="rooms-type-container w-full max-h-[59rem] flex pt-[8.5rem]">
+        <div className="rooms-type-container w-full max-h-[59rem] flex flex-col pt-[8.5rem]">
           <div className="rooms-container w-[90%] h-full bg-blue-950 rounded-2xl shadow-[0_3px_10px_rgb(0,0,0,0.4)] overflow-auto">
             {filteredRooms.length > 0 ? (
               filteredRooms.map((room) => {
@@ -86,7 +101,60 @@ const Rooms = () => {
                   {!rooms || rooms.length === 0 ? "No rooms available" : "No rooms match your search criteria"}
                 </p>
               </div>
-            )}
+            )}      
+          </div>
+          
+          <div className="pagination-controls flex justify-between items-center mt-4 px-10 py-2 bg-blue-950 w-[90%] rounded-xl shadow-[0_3px_10px_rgb(0,0,0,0.4)]">
+            <div className="page-size-selector">
+              <label htmlFor="pageSize" className="mr-2 text-white">Items per page:</label>
+              <select 
+                id="pageSize" 
+                value={pageSize}
+                onChange={handlePageSizeChange}
+                className="p-1 rounded"
+              >
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+              </select>
+            </div>
+
+            <div className="flex items-center space-x-2">
+              <button
+                onClick={() => handlePageChange(1)}
+                disabled={currentPage === 1}
+                className="px-3 py-1 rounded bg-teal-500 text-white disabled:opacity-50"
+              >
+                First
+              </button>
+              <button
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+                className="px-3 py-1 rounded  bg-teal-500 text-white disabled:opacity-50"
+              >
+                Previous
+              </button>
+
+              <span className="text-white">
+                Page {currentPage} of {totalPages}
+              </span>
+
+              <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className="px-3 py-1 rounded  bg-teal-500 text-white disabled:opacity-50"
+              >
+                Next
+              </button>
+              <button
+                onClick={() => handlePageChange(totalPages)}
+                disabled={currentPage === totalPages}
+                className="px-3 py-1 rounded  bg-teal-500 text-white disabled:opacity-50"
+              >
+                Last
+              </button>
+            </div>
           </div>
         </div>
       </div>

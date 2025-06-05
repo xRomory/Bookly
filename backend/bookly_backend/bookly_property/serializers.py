@@ -2,9 +2,13 @@ from rest_framework import serializers
 from .models import PropertyImage, BooklyProperty
 from bookly_user.serializers import BooklyUserSerializer
 
-# class PropertyImage(serializers.ModelSerializer):
+class PropertyImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PropertyImage
+        fields = ['id', 'image', 'is_primary', 'uploaded_at']
 
 class BooklyPropertySerializers(serializers.ModelSerializer):
+    images = PropertyImageSerializer(many=True, read_only=True)
     property_logo_url = serializers.SerializerMethodField()
 
     def get_property_logo_url(self, obj):
@@ -25,6 +29,7 @@ class BooklyPropertySerializers(serializers.ModelSerializer):
             'longitude',
             'contact_number',
             'category',
+            'images',
         ]
 
 class PropertyOwnerSerializers(serializers.ModelSerializer):
