@@ -43,9 +43,9 @@ function App() {
         <Route path="/property-brands" element={<HotelsPage />} />
         <Route path="/rooms/" element={<RoomsPage />} />
         <Route path="/rooms/:room_id" element={<RoomDetailsPage />} />
-        <Route path="/bookings" element={<BookingPage />} />
-        <Route path="/bookings/payment" element={<BookingPayment />} />
-        <Route path="/bookings/payment/receipts" element={<BookingReceipt />} />
+        <Route path="/bookings/:bookingId" element={<BookingPage />} />
+        <Route path="/bookings/payment/:bookingId" element={<BookingPayment />} />
+        <Route path="/bookings/payment/receipt" element={<BookingReceipt />} />
         <Route path="/maps" element={<MapPage />} />
         <Route path="/user-profile/" element={<UserDashboard />} />
         <Route path="/owner-dashboard/" element={<RenterDashboardPage />} />

@@ -19,12 +19,16 @@ class BooklyBooking(models.Model):
     booking_check_out = models.DateTimeField()
     booking_status = models.CharField(max_length=20, choices=BOOKING_STATUSES, default='pending')
     guest = models.PositiveIntegerField(default=1)
+    guest_first_name = models.CharField(max_length=100, blank=True, null=True)
+    guest_last_name = models.CharField(max_length=100, blank=True, null=True)
+    guest_email = models.EmailField(blank=True, null=True)
+    guest_contact_number = models.CharField(max_length=20, blank=True, null=True)
 
     class Meta:
         ordering = ['-booking_date']
         constraints = [
             models.UniqueConstraint(
-                fields=['room', 'check_in', 'check_out'],
+                fields=['room', 'booking_check_in', 'booking_check_out'],
                 name='unique_booking_per_room_dates'
             )
         ]
@@ -48,15 +52,21 @@ class BooklyBooking(models.Model):
         
         if self.guest > self.room.capacity:
             raise ValidationError(f"Room capacity exceeded (max {self.room.capacity})")
+        
+        overlapping = BooklyBooking.objects.filter(
+            room=self.room,
+            booking_check_out__gt=self.booking_check_in,
+            booking_check_in__lt=self.booking_check_out
+        ).exclude(booking_id=self.booking_id)
+        
+        if overlapping.exists():
+            raise ValidationError("Room is already booked for these dates")
     
     
 class BooklyTransaction(models.Model):
     PAYMENT_METHODS = (
-        ('credit_card', 'Credit Card'),
-        ('debit_card', 'Debit Card'),
+        ('card', 'Card Payment'),
         ('cash', 'Cash Payment'),
-        ('gcash', 'GCash'),
-        ('paymaya', 'Paymaya'),
     )
 
     transaction_id = models.AutoField(primary_key=True)

@@ -13,7 +13,7 @@ const NavigationButtons = ({ onBack, onProceed }) => {
         onClick={onProceed}
         className="flex-1 px-4 py-3 bg-navy-700 bg-blue-900 hover:bg-blue-800 font-quicksand text-white rounded-md transition-colors font-semibold"
       >
-        Proceed to Payment
+        Confirm
       </button>
     </div>
   );

@@ -6,24 +6,23 @@ import { Link } from "react-router-dom";
 import { useRooms } from "../../context/RoomContext.jsx";
 
 const Rooms = () => {
-  const { 
-    rooms, 
-    isLoading, 
+  const {
+    rooms,
+    isLoading,
     currentPage,
     totalPages,
     fetchRooms,
     pageSize,
-    setPageSize
+    setPageSize,
   } = useRooms();
 
-  const [filteredRooms, setFilteredRooms] = useState([]);
-
   useEffect(() => {
-    if(rooms && rooms.length > 0) {
+    if (rooms && rooms.length > 0) {
       setFilteredRooms(rooms);
     }
   }, [rooms]);
 
+  const [filteredRooms, setFilteredRooms] = useState([]);
   const handleFilterChange = useCallback((newFilteredRooms) => {
     setFilteredRooms(newFilteredRooms);
   }, []);
@@ -34,6 +33,10 @@ const Rooms = () => {
 
   const handlePageSizeChange = (e) => {
     setPageSize(Number(e.target.value));
+  };
+
+  const prefetchRoomData = (roomId) => {
+    api.get(`/rooms/${roomId}/`);
   };
 
   if (isLoading) {
@@ -67,7 +70,7 @@ const Rooms = () => {
                         className="images w-[23vw] h-[13.5vw] object-cover rounded-2xl"
                         onError={(e) => {
                           e.target.onerror = null;
-                          e.target.src = '/placeholder.jpg';
+                          e.target.src = "/placeholder.jpg";
                         }}
                       />
                     </div>
@@ -89,26 +92,36 @@ const Rooms = () => {
                       </p>
 
                       <button className="view-details-btn absolute bottom-3 right-3 bg-blue-900 text-white h-[4rem] w-[9rem] rounded-md hover:bg-blue-800 font-medium">
-                        <Link to={`/rooms/${room.room_id}`}>View Details</Link>
+                        <Link
+                          to={`/rooms/${room.room_id}`}
+                          onMouseEnter={() => prefetchRoomData(room.room_id)}
+                          onClick={() => prefetchRoomData(room.room_id)}
+                        >
+                          View Details
+                        </Link>
                       </button>
                     </div>
                   </div>
-                )
+                );
               })
             ) : (
               <div className="no-results-found flex justify-center items-center h-full">
                 <p className="text-2xl text-white font-bold font-quicksand">
-                  {!rooms || rooms.length === 0 ? "No rooms available" : "No rooms match your search criteria"}
+                  {!rooms || rooms.length === 0
+                    ? "No rooms available"
+                    : "No rooms match your search criteria"}
                 </p>
               </div>
-            )}      
+            )}
           </div>
-          
+
           <div className="pagination-controls flex justify-between items-center mt-4 px-10 py-2 bg-blue-950 w-[90%] rounded-xl shadow-[0_3px_10px_rgb(0,0,0,0.4)]">
             <div className="page-size-selector">
-              <label htmlFor="pageSize" className="mr-2 text-white">Items per page:</label>
-              <select 
-                id="pageSize" 
+              <label htmlFor="pageSize" className="mr-2 text-white">
+                Items per page:
+              </label>
+              <select
+                id="pageSize"
                 value={pageSize}
                 onChange={handlePageSizeChange}
                 className="p-1 rounded"

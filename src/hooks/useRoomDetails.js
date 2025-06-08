@@ -26,7 +26,7 @@ export const useRoomDetails = () => {
       } catch(error) {
         console.error("Error fetching rooms:", error);
         setError("Failed to load rooms");
-      } finally {     
+      } finally {
         setIsLoading(false);
       }
     };
