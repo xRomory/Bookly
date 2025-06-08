@@ -5,7 +5,7 @@ Database Systems final project COM232 <br>
 - Make sure you have Node.js on your device
 - Once installed, git clone this branch to your terminal: <br> git clone -b bookly-frontend https://github.com/xRomory/Bookly-CTFDBMSL.git
 - Then, navigate to bookly directory. You can now install React packages: <br> npm install
-- After installing you successfully installed this React project. <br> *NOTE: YOU STILL NEED TO INSTALL THE DEPENDENCIES* <br>
+- After installing you successfully installed this React project. <br> *NOTE: YOU STILL NEED TO INSTALL THE DEPENDENCIES, AND MAKE SURE YOU CLONE THE RIGHT BRANCH* <br>
 
 # Dependencies used in this Project:
 ***Please take the time to read the documentations*** <br><br> **For tailwind, this is not required. I personally use it because it makes my styling faster. I provided two versions because I'm not sure which version worked for me.**

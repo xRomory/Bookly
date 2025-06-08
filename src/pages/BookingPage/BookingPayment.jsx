@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FaCreditCard, FaMoneyBillWave } from "react-icons/fa";
 import { useNavigate, useParams } from "react-router-dom";
 import { useBookings } from "../../context/BookingContext";
+import { useTransactions } from "../../context/TransactionContext";
 import TransactionDetails from "../../components/BookingPage/TransactionDetails";
 import ProgressIndicator from "../../components/BookingPage/ProgressIndicator";
 import NavigationButtons from "../../components/BookingPage/NavigationButtons";
@@ -11,11 +12,14 @@ function BookingPayment() {
   const navigate = useNavigate();
   const { bookingId } = useParams();
   const { currentBooking, fetchBookingDetails } = useBookings();
+  const { createTransaction } = useTransactions();
+
   const [paymentMethod, setPaymentMethod] = useState("");
   const [cardId, setCardId] = useState("");
   const [errors, setErrors] = useState({});
   const [confirmMember, setConfirmMember] = useState(false);
   const [agreeTerms, setAgreeTerms] = useState(false);
+  const [loadingTransaction, setLoadingTransaction] = useState(false);
 
   useEffect(() => {
     if (!currentBooking || currentBooking.booking_id !== parseInt(bookingId)) {
@@ -61,7 +65,7 @@ function BookingPayment() {
   };
 
 
-  const handleBookNow = () => {
+  const handleBookNow = async () => {
     const newErrors = {};
 
     if (!paymentMethod) {
@@ -78,8 +82,24 @@ function BookingPayment() {
 
     setErrors(newErrors);
 
-    if (Object.keys(newErrors).length === 0)
-      navigate("/booking-receipt", { state: { paymentMethod, cardId } });
+    if (Object.keys(newErrors).length > 0) return;
+
+    const payload = {
+      booking_id: currentBooking.booking_id,
+      payment_method: paymentMethod,
+      ...(paymentMethod === "card" && { card_number: cardId.trim() }),
+    }
+
+    setLoadingTransaction(true);
+    try {
+      const transaction = await createTransaction(payload);
+      navigate(`/bookings/payment/receipt/${currentBooking.booking_id}`, { state: { transaction } });
+    } catch (error) {
+      setErrors({ api: "Transaction creation failed. Please try again." })
+      console.error("Transaction creation failed:", error);
+    } finally {
+      setLoadingTransaction(false);
+    }
   };
 
   return (

@@ -19,7 +19,6 @@ export const BookingProvider = ({ children }) => {
   });
 
   const [currentBooking, setCurrentBooking] = useState(null);
-  const [currentTransaction, setCurrentTransaction] = useState(null);
 
   const updateBookingData = (data) => {
     setBookingData((prev) => ({ ...prev, ...data }));
@@ -56,27 +55,6 @@ export const BookingProvider = ({ children }) => {
     }
   };
 
-  const createTransaction = async (paymentData) => {
-    try {
-      if (!currentBooking) {
-        throw new Error("No booking found to create transaction");
-      }
-
-      const response = await api.post("/transactions/", {
-        ...paymentData,
-        booking_id: currentBooking.booking_id,
-        user_id: user?.user_id,
-        room_id: currentBooking.room.room_id,
-      });
-
-      setCurrentTransaction(response.data);
-      return response.data;
-    } catch (error) {
-      console.error("Transaction creation failed:", error);
-      throw error;
-    }
-  };
-
   const fetchBookingDetails = useCallback(async (bookingId) => {
     try {
       const response = await api.get(`/booking/room-booking/${bookingId}`);
@@ -91,10 +69,8 @@ export const BookingProvider = ({ children }) => {
   const value = {
     bookingData,
     currentBooking,
-    currentTransaction,
     updateBookingData,
     submitBooking: (data) => submitBooking(data),
-    createTransaction,
     fetchBookingDetails,
   };
 

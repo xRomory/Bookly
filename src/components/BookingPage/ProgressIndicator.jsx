@@ -10,7 +10,7 @@ const ProgressIndicator = ({ currentStep, totalSteps }) => {
               {i + 1}
             </div>
             <p className={`text-xs mt-1 ${i + 1 <= currentStep ? 'text-gray-800' : 'text-gray-400'}`}>
-              {i === 0 ? 'Transaction Information' : i === 1 ? 'Payment Information' : 'Confirmation'}
+              {i === 0 ? 'Transaction Information' : i === 1 ? 'Payment Information' : 'Booking Successful'}
             </p>
           </div>
         ))}

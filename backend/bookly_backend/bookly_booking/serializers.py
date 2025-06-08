@@ -21,6 +21,23 @@ class BooklyBookingSerializer(serializers.ModelSerializer):
             'guest_email',
             'guest_contact_number',
         ]
+
+    def validate(self, data):
+        check_in = data.get('booking_check_in')
+        check_out = data.get('booking_check_out')
+        room = data.get('room')
+
+        if check_in and check_out and check_in >= check_out:
+            raise serializers.ValidationError(
+                "Check-out date must be after check-in date"
+            )
+        
+        if room and 'guest' in data and data['guest'] > room.capacity:
+            raise serializers.ValidationError(
+                 f"Room capacity exceeded (max {room.capacity})"
+            )
+
+        return data
     
 class BooklyBookingDetailsSerializer(serializers.ModelSerializer):
     user = BooklyUserSerializer(read_only=True)
@@ -72,4 +89,41 @@ class BooklyTransactionSerializer(serializers.ModelSerializer):
             'total_amount',
             'transaction_date',
             'is_successful',
+            'reference_number',
         ]
+
+class BooklyTransactionDetailsSerializer(serializers.ModelSerializer):
+    user = BooklyUserSerializer(read_only=True)
+    room = BooklyRoomSerializers(read_only=True)
+    property_details = BooklyPropertySerializers(source='room.property_details', read_only=True)
+
+    booking_details = BooklyBookingSerializer(source='booking', read_only=True)
+
+    booking_check_in = serializers.SerializerMethodField()
+    booking_check_out = serializers.SerializerMethodField()
+
+    class Meta:
+        model = BooklyTransaction
+        fields = [
+            'transaction_id',
+            'user',
+            'room',
+            'booking_details',
+            'booking_check_in',
+            'booking_check_out',
+            'property_details',
+            'payment_method',
+            'payment_token',
+            'last_four_digits',
+            'cash_amount',
+            'total_amount',
+            'transaction_date',
+            'is_successful',
+            'reference_number',
+        ]
+
+    def get_booking_check_in(self, obj):
+        return obj.booking.booking_check_in.strftime('%Y-%m-%d')
+    
+    def get_booking_check_out(self, obj):
+        return obj.booking.booking_check_out.strftime('%Y-%m-%d')

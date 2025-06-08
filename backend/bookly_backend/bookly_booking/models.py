@@ -1,6 +1,7 @@
 from django.db import models
 from bookly_rooms.models import BooklyRooms
 from bookly_user.models import BooklyUser
+from .utils import generate_reference_number
 
 # Create your models here.
 class BooklyBooking(models.Model):
@@ -29,7 +30,8 @@ class BooklyBooking(models.Model):
         constraints = [
             models.UniqueConstraint(
                 fields=['room', 'booking_check_in', 'booking_check_out'],
-                name='unique_booking_per_room_dates'
+                name='unique_booking_per_room_dates',
+                condition=models.Q(booking_status__in=['confirmed', 'pending', 'reserved']),
             )
         ]
 
@@ -56,11 +58,16 @@ class BooklyBooking(models.Model):
         overlapping = BooklyBooking.objects.filter(
             room=self.room,
             booking_check_out__gt=self.booking_check_in,
-            booking_check_in__lt=self.booking_check_out
-        ).exclude(booking_id=self.booking_id)
+            booking_check_in__lt=self.booking_check_out,
+            booking_status__in=['confirmed', 'pending', 'reserved'],
+        ).exclude(booking_id=self.pk)
         
         if overlapping.exists():
             raise ValidationError("Room is already booked for these dates")
+        
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super().save(*args, **kwargs)
     
     
 class BooklyTransaction(models.Model):
@@ -83,5 +90,12 @@ class BooklyTransaction(models.Model):
     transaction_date = models.DateTimeField(auto_now_add=True)
     is_successful = models.BooleanField(default=False)
 
+    reference_number = models.CharField(max_length=20, unique=True, blank=True)
+
     def __str__(self):
         return f"Transaction #{self.transaction_id} - {self.get_payment_method_display()}"
+    
+    def save(self, *args, **kwargs):
+        if not self.reference_number:
+            self.reference_number = generate_reference_number()
+        super().save(*args, **kwargs)

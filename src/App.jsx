@@ -25,7 +25,7 @@ function App() {
   const hideNavBarAndFooter = [
     "/login",
     "/sign-up",
-    "/user-profile",
+    "/user-dashboard",
     "/owner-dashboard",
     "/maps",
     "/bookings",
@@ -45,9 +45,9 @@ function App() {
         <Route path="/rooms/:room_id" element={<RoomDetailsPage />} />
         <Route path="/bookings/:bookingId" element={<BookingPage />} />
         <Route path="/bookings/payment/:bookingId" element={<BookingPayment />} />
-        <Route path="/bookings/payment/receipt" element={<BookingReceipt />} />
+        <Route path="/bookings/payment/receipt/:transactionId" element={<BookingReceipt />} />
         <Route path="/maps" element={<MapPage />} />
-        <Route path="/user-profile/" element={<UserDashboard />} />
+        <Route path="/user-dashboard/" element={<UserDashboard />} />
         <Route path="/owner-dashboard/" element={<RenterDashboardPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/sign-up" element={<SignupPage />} />
