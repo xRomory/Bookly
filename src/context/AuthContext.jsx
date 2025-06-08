@@ -35,7 +35,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       await api.get('/users/csrf/')
-      const response = await api.post("users/auth/login/", { email, password });;
+      const response = await api.post("/users/auth/login/", { email, password });;
 
       if(response.data.token) {
         localStorage.setItem('authToken', response.data.token);
@@ -61,6 +61,7 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
     setIsAuthenticated(false);
     api.post("/users/auth/logout/")
+    
   }
 
   const value = {

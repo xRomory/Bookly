@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
 import "./UserDropdown.scss";
-
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 import { IoPersonCircleOutline } from "react-icons/io5";
 import { IoClose } from "react-icons/io5";
 
@@ -10,10 +9,16 @@ const UserDropdown = () => {
   const { logout } = useAuth();
   const [showDropdown, setShowDropdown] = useState(false);
   const [name, setName] = useState("");
+  const navigate = useNavigate();
 
   const toggleDropdown = () => {
     setShowDropdown(!showDropdown);
   };
+
+  const handleSignOut = () => {
+    logout();
+    navigate("/");
+  }
 
   useEffect(() => {
     const userData = localStorage.getItem("user");
@@ -78,7 +83,7 @@ const UserDropdown = () => {
 
                 <li className="menu absolute text-red-500">
                   <button
-                    onClick={() => logout()}
+                    onClick={handleSignOut}
                     className="font-quicksand text-xl font-semibold"
                   >
                     Logout

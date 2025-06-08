@@ -14,11 +14,14 @@ const TransactionDetails = ({ customer, pricing }) => {
         <div>
           <p className="font-quicksand font-medium text-main-color">Phone Number: {customer.phone}</p>
         </div>
-        <div>
-          <p className="font-quicksand font-medium text-main-color">Check-in: {customer.phone}</p>
+
+        <div className="flex justify-between items-center mt-3">
+          <p className="font-quicksand font-medium text-main-color">Check-in:</p>
+          <p className="font-quicksand font-medium text-main-color">{customer.checkIn}</p>
         </div>
-        <div>
-          <p className="font-quicksand font-medium text-main-color">Check-out: {customer.phone}</p>
+        <div className="flex justify-between items-center mt-3">
+          <p className="font-quicksand font-medium text-main-color">Check-out:</p>
+          <p className="font-quicksand font-medium text-main-color">{customer.checkOut}</p>
         </div>
         
         <div className="flex justify-between items-center mt-3">

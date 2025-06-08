@@ -41,7 +41,8 @@ const RoomDetails = () => {
     amenities: room?.amenities,
     propertyDetails: room?.property_details,
     description: room?.room_description,
-    owner: room?.owner
+    capacity: room?.capacity,
+    owner: room?.owner,
   }), [room]);
 
   if (isLoading) return <LoadingSpinner />
@@ -64,6 +65,7 @@ const RoomDetails = () => {
         <RoomDescription
           description={roomData.description}
           price={roomData.price}
+          capacity={roomData.capacity}
         />
 
         <form className="availability-form flex flex-col md:flex-row items-start md:items-center justify-between shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded-xl p-6 mx-auto mt-16 max-w-full">
@@ -133,7 +135,10 @@ const RoomDetails = () => {
 
             <div className="flex justify-center absolute bottom-8 left-52">
               <Suspense fallback={<div>Loading modal...</div>}>
-                <BookingModal />
+                <BookingModal 
+                  roomId={room.room_id} 
+                  roomCapacity={room.capacity}
+                />
               </Suspense>
             </div>
           </div>
