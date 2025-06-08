@@ -29,6 +29,28 @@ const BookingModal = ({ roomId, roomCapacity }) => {
     }
   };
 
+  const [errorModal, setErrorModal] = useState({
+    show: false,
+    title: "",
+    message: "",
+  });
+
+  const showError = (title, message) => {
+    setErrorModal({
+      show: true,
+      title,
+      message,
+    });
+  };
+
+  const closeErrorModal = () => {
+    setErrorModal({
+      show: false,
+      title: "",
+      message: "",
+    });
+  };
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -80,6 +102,27 @@ const BookingModal = ({ roomId, roomCapacity }) => {
       setShowModal(false);
     } catch (error) {
       console.error("Booking failed:", error);
+      console.error("Booking failed:", error);
+      if (error.response) {
+        if (error.response.status === 409) {
+          showError(
+            "Room Not Available",
+            error.response.data.message ||
+              "Room is already booked for these dates. Please choose different dates."
+          );
+        } else {
+          showError(
+            "Booking Failed",
+            error.response.data.message ||
+              "An error occurred while processing your booking."
+          );
+        }
+      } else {
+        showError(
+          "Network Error",
+          "Could not connect to the server. Please check your internet connection."
+        );
+      }
     }
   };
 
@@ -246,6 +289,24 @@ const BookingModal = ({ roomId, roomCapacity }) => {
             </div>
           </div>
         </>
+      )}
+
+      {errorModal.show && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[1100]">
+          <div className="bg-white p-8 rounded-lg max-w-md w-full">
+            <h3 className="text-2xl items-start font-quicksand font-bold text-red-600 mb-4">
+              {errorModal.title}
+            </h3>
+            {/* <p className="mb-6 font-quicksand">{errorModal.message}</p> */}
+            <p className="mb-6 font-quicksand font-medium">Room has been occupied</p>
+            <button
+              onClick={closeErrorModal}
+              className="bg-blue-900 hover:bg-blue-800 font-quicksand font-semibold text-white py-2 px-4 rounded"
+            >
+              OK
+            </button>
+          </div>
+        </div>
       )}
     </div>
   );
