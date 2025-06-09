@@ -24,7 +24,7 @@ export const TransactionProvider = ({ children }) => {
 
   const fetchTransactionDetails = useCallback(async (transactionId) => {
     try {
-      const response = await api.get(`/booking/transaction/${transactionId}`);
+      const response = await api.get(`/booking/transaction/${transactionId}/`);
       setCurrentTransaction(response.data);
       return response.data;
     } catch (err) {
@@ -34,10 +34,22 @@ export const TransactionProvider = ({ children }) => {
     }
   }, []);
 
+  const fetchTransactionByBookingId = useCallback(async (bookingId) => {
+    try {
+      const response = await api.get(`/booking/transaction/by-booking/${bookingId}/`);
+      return response.data
+    } catch (err) {
+      console.error("Fetching transaction by booking failed:", err);
+      setError(err);
+      throw err;
+    }
+  }, []);
+
   const value = {
     currentTransaction,
     createTransaction,
     fetchTransactionDetails,
+    fetchTransactionByBookingId,
     error,
   };
 

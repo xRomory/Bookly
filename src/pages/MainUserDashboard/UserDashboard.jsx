@@ -2,17 +2,20 @@ import React, { useState, useEffect } from "react";
 import "./UserDashboard.scss";
 import SideMenu from "./SideMenu.jsx";
 
+import { useNavigate } from "react-router-dom";
 import { FaUserGroup } from "react-icons/fa6";
 import { LuMapPinHouse } from "react-icons/lu";
 import { useBookings } from "../../context/BookingContext.jsx";
-import { roomImg } from "../../assets/images/assets.js";
+import { useTransactions } from "../../context/TransactionContext.jsx";
 
 const UserDashboard = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [contact, setContact] = useState("");
   const [bookings, setBookings] = useState([]);
-  const { fetchUserBookings } = useBookings();
+  const { fetchUserBookings, cancelBooking } = useBookings();
+  const { fetchTransactionByBookingId } = useTransactions();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const userData = localStorage.getItem("user");
@@ -33,18 +36,82 @@ const UserDashboard = () => {
   }, []);
 
   useEffect(() => {
-    fetchUserBookings()
-      .then(setBookings)
-      .catch((err) => console.error(err));
+    const loadBookings = async () => {
+      try {
+        const userBookings = await fetchUserBookings();
+        setBookings(userBookings);
+      } catch (err) {
+        console.error("Failed to load bookings:", err);
+        setError(err.message || "Failed to load bookings");
+      }
+    };
+
+    loadBookings();
   }, [fetchUserBookings]);
+
+  const formatDate = (dateString) => {
+    return new Date(dateString).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  };
+
+  const handlePayNow = (bookingId) => {
+    console.log(`Processing payment for booking: ${bookingId}`);
+    navigate(`/bookings/${bookingId}/`);
+  };
+
+  const handleCancel = async (bookingId) => {
+    try {
+      await cancelBooking(bookingId);
+      const updatedBookings = await fetchUserBookings();
+      setBookings(updatedBookings);
+    } catch (err) {
+      console.error("Cancellation failed:", err);
+      setError(err.message || "Cancellation failed");
+    }
+  };
+
+  const handleViewReceipt = async (bookingId) => {
+    try {
+      const transaction = await fetchTransactionByBookingId(bookingId);
+      if (transaction && transaction.transaction_id) {
+        navigate(`/bookings/payment/receipt/${transaction.transaction_id}`);
+      } else {
+        alert("No receipt found for this booking.");
+      }
+    } catch (err) {
+      alert("Failed to fetch receipt.");
+    }
+  };
+
+  const getTotalPrice = (booking) => {
+    if (booking.transaction) {
+      return booking.transaction.total_amount;
+    }
+
+    const checkIn = new Date(booking.booking_check_in);
+    const checkOut = new Date(booking.booking_check_out);
+    const days = Math.ceil((checkOut - checkIn) / (1000 * 60 * 60 * 24));
+    return days * (booking.room?.price_per_night || 0);
+  };
+
+  const getRoomImage = (room) => {
+    if (room && room?.main_image) {
+      return room.main_image;
+    }
+    return "https://via.placeholder.com/265x192?text=No+Image";
+  };
 
   return (
     <>
-      <div className="user-profile-page-container flex flex-col md:flex-row h-full min-h-screen">
+      <div className="user-profile-page-container flex flex-col md:flex-row ">
         <SideMenu />
-        <div className="user-content-container flex flex-col flex-1 p-4 md:p-6 lg:p-4">
-          <div className="user-profile-container w-full p-4 md:p-6 mb-6">
-            <div className="flex flex-col md:flex-grow items-center">
+        <div className="user-content-container flex flex-col justify-center items-center flex-1 p-4 md:p-6 lg:p-8">
+          {/* User Profile Section */}
+          <div className="user-profile-container w-[90%] bg-white rounded-lg shadow-md p-4 md:p-6 mb-6">
+            <div className="flex flex-col md:flex-row items-center">
               <div className="user-profile-icon-div flex items-center justify-center mb-4 md:mb-0">
                 <div className="icon-circle-bg relative rounded-full w-[100px] h-[100px] md:w-[150px] md:h-[150px] lg:w-[175px] lg:h-[175px] bg-teal-400"></div>
               </div>
@@ -76,7 +143,8 @@ const UserDashboard = () => {
             </div>
           </div>
 
-          <div className="user-booking-container w-full p-4 md:p-6">
+          {/* Bookings Section */}
+          <div className="user-booking-container w-[90%] max-h-[675px] bg-white rounded-lg shadow-md p-4 md:p-6">
             <div className="text-header-info mb-6">
               <h2 className="bookings-header-text font-bold text-2xl md:text-3xl">
                 My Bookings
@@ -84,22 +152,25 @@ const UserDashboard = () => {
             </div>
 
             {bookings.length === 0 ? (
-              <p className="text-center py-8 text-gray-500">
+              <p className="text-center py-8 text-2xl md:text-3xl font-quicksand font-bold text-main-color">
                 No bookings found.
               </p>
             ) : (
-              bookings.map((booking) => {
-                <div className="flex flex-col space-y-4">
-                  <div className="bookings-details-container-div w-full p-3 flex flex-col md:flex-row gap-4 shadow-[0_3px_10px_rgb(0,0,0,0.25)]">
+              <div className="flex flex-col space-y-4">
+                {bookings.map((booking) => (
+                  <div
+                    key={booking.booking_id}
+                    className="bookings-details-container-div w-full p-3 flex flex-col md:flex-row gap-4 shadow-md rounded-lg"
+                  >
                     <img
-                      src={roomImg.room1}
+                      src={getRoomImage(booking.room)}
                       alt="Room image"
                       className="h-48 md:h-full w-full md:w-[265px] rounded-lg object-cover"
                     />
 
                     <div className="room-details flex flex-col flex-grow">
                       <h3 className="room-name font-bold text-xl md:text-2xl mb-2">
-                        Room Type
+                        {booking.room?.room_name || "Room Type"}
                       </h3>
 
                       <div className="flex flex-col md:flex-row md:justify-between w-full">
@@ -107,7 +178,7 @@ const UserDashboard = () => {
                           <div className="address-div flex items-center mb-2">
                             <LuMapPinHouse className="icon text-lg mr-2" />
                             <p className="text-gray-600">
-                              {booking.address ||
+                              {booking.room?.property_details?.address ||
                                 "123 Somewhere St, Some City, Manila"}
                             </p>
                           </div>
@@ -115,23 +186,23 @@ const UserDashboard = () => {
                           <div className="guest-div flex items-center mb-2">
                             <FaUserGroup className="icon text-lg mr-2" />
                             <p className="text-gray-600">
-                              Guests: {booking.guests || 2}
+                              Guests: {booking.guest || 2}
                             </p>
                           </div>
 
                           <h3 className="room-price font-bold text-lg md:text-xl mb-4">
-                            Total: ₱{booking.total_price || 20000}
+                            Total: ₱ {getTotalPrice(booking)}
                           </h3>
                         </div>
 
                         <div className="details-right w-full md:w-1/2">
-                          <div className="flex flex-row md:justify-end space-x-6 mb-4">
+                          <div className="flex flex-row space-x-6 mb-4">
                             <div className="check-in-div">
                               <h3 className="font-semibold text-base md:text-lg">
                                 Check-In
                               </h3>
                               <p className="text-gray-600">
-                                {booking.check_in_date || "May 4, 2000"}
+                                {formatDate(booking.booking_check_in)}
                               </p>
                             </div>
 
@@ -140,14 +211,14 @@ const UserDashboard = () => {
                                 Check-out
                               </h3>
                               <p className="text-gray-600">
-                                {booking.check_out_date || "September 15, 2000"}
+                                {formatDate(booking.booking_check_out)}
                               </p>
                             </div>
                           </div>
 
                           <div className="status-and-actions flex flex-col items-start md:items-end space-y-3">
                             <div className="status-div">
-                              {booking.status === "Paid" ? (
+                              {booking.booking_status === "confirmed" ? (
                                 <p className="flex items-center text-green-500 font-semibold text-lg">
                                   <span className="relative flex h-3 w-3 mr-2">
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
@@ -155,52 +226,66 @@ const UserDashboard = () => {
                                   </span>
                                   Paid
                                 </p>
-                              ) : booking.status === "Pending" ? (
+                              ) : booking.booking_status === "cancelled" ? (
                                 <p className="flex items-center text-red-500 font-semibold text-lg">
                                   <span className="relative flex h-3 w-3 mr-2">
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                                     <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
                                   </span>
-                                  Unpaid
+                                  Cancelled
                                 </p>
-                              ) : (
+                              ) : booking.booking_status === "pending" ? (
                                 <p className="flex items-center text-yellow-500 font-semibold text-lg">
                                   <span className="relative flex h-3 w-3 mr-2">
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
                                     <span className="relative inline-flex rounded-full h-3 w-3 bg-yellow-500"></span>
                                   </span>
-                                  {booking.status || "Reserved"}
+                                  Pending
+                                </p>
+                              ) : (
+                                <p className="flex items-center text-red-500 font-semibold text-lg">
+                                  <span className="relative flex h-3 w-3 mr-2">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-3 w-3 bg-yellow-500"></span>
+                                  </span>
+                                  {booking.booking_status || "Unknown"}
                                 </p>
                               )}
                             </div>
 
                             <div className="button-group flex space-x-2">
-                              {booking.status === "Pending" ? (
+                              {booking.booking_status === "pending" ? (
                                 <>
                                   <button
-                                    onClick={() => handlePayNow(booking.id)}
+                                    onClick={() =>
+                                      handlePayNow(booking.booking_id)
+                                    }
                                     className="btn bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-800 transition-colors"
                                   >
                                     Pay Now
                                   </button>
                                   <button
-                                    onClick={() => handleCancel(booking.id)}
-                                    className="btn bg-gray-200 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-300 transition-colors"
+                                    onClick={() =>
+                                      handleCancel(booking.booking_id)
+                                    }
+                                    className="btn bg-gray-200 text-main-white py-2 px-4 rounded-md hover:bg-gray-300 transition-colors"
                                   >
                                     Cancel
                                   </button>
                                 </>
-                              ) : booking.status === "Paid" ? (
+                              ) : booking.booking_status === "confirmed" ? (
                                 <button
-                                  onClick={() => handleViewReceipt(booking.id)}
+                                  onClick={() =>
+                                    handleViewReceipt(
+                                      booking.booking_id
+                                    )
+                                  }
                                   className="btn bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-800 transition-colors"
                                 >
                                   View Receipt
                                 </button>
                               ) : (
-                                <button className="btn bg-yellow-600 text-white py-2 px-4 rounded-md hover:bg-yellow-800 transition-colors">
-                                  View Details
-                                </button>
+                                <></>
                               )}
                             </div>
                           </div>
@@ -208,8 +293,8 @@ const UserDashboard = () => {
                       </div>
                     </div>
                   </div>
-                </div>;
-              })
+                ))}
+              </div>
             )}
           </div>
         </div>

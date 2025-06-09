@@ -14,7 +14,7 @@ import RoomsPage from "./pages/RoomsPage/RoomsPage.jsx";
 import BookingPage from "./pages/BookingPage/BookingPage.jsx";
 import BookingPayment from "./pages/BookingPage/BookingPayment.jsx";
 import BookingReceipt from "./pages/BookingPage/BookingReceipt.jsx";
-import UserDashboard from "./pages/UserDashboard/UserDashboard.jsx";
+import UserDashboard from "./pages/MainUserDashboard/UserDashboard.jsx";
 import RenterDashboardPage from "./pages/RenterDashboard/RenterDashboardPage.jsx";
 import RoomDetailsPage from "./pages/RoomDetails/RoomDetailsPage.jsx";
 

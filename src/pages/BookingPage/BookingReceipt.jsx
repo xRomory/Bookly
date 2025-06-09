@@ -106,11 +106,12 @@ function BookingReceipt() {
           <hr className="my-4 border-gray-600" />
 
           <RoomDetails
+            booking={formattedBooking}
             room={room}
             guests={{ guest: booking.guest }}
           />
 
-          <hr className="my-4 border-gray-600" />
+          
 
           <header className="font-bold text-center font-quicksand px-9 py-1.5 text-2xl text-black border border-solid max-md:px-5 max-md:max-w-full">
             Payment Receipt

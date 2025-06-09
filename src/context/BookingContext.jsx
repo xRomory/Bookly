@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useContext, useState } from "react";
+import React, { createContext, use, useCallback, useContext, useState } from "react";
 import api from "../api/axios";
 import { useAuth } from "./AuthContext";
 
@@ -66,12 +66,34 @@ export const BookingProvider = ({ children }) => {
     }
   }, []);
 
+  const fetchUserBookings = useCallback(async () => {
+    try {
+      const response = await api.get("/booking/room-booking/");
+      return response.data;
+    } catch (error) {
+      console.error("Failed to fetch user bookings", error);
+      throw error;
+    }
+  }, []);
+
+  const cancelBooking = useCallback(async (bookingId) => {
+    try {
+      const response = await api.post(`/booking/room-booking/${bookingId}/cancel/`)
+      return response.data;
+    } catch (error) {
+      console.error("Failed to cancel booking", error);
+      throw error;
+    }
+  })
+
   const value = {
     bookingData,
     currentBooking,
     updateBookingData,
     submitBooking: (data) => submitBooking(data),
     fetchBookingDetails,
+    fetchUserBookings,
+    cancelBooking,
   };
 
   return (

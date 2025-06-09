@@ -88,12 +88,12 @@ const BookingPage = () => {
 
   const handleBack = () => {
     console.log("Going back to previous page");
-    navigate(`/rooms/${currentBooking.room?.room_id}`)
+    navigate(`/rooms/${currentBooking.room?.room_id}/`)
   };
 
   const handleProceed = () => {
     console.log("Proceeding to payment");
-    navigate(`/bookings/payment/${currentBooking.booking_id}`)
+    navigate(`/bookings/payment/${currentBooking.booking_id}/`)
   };
 
   return (
