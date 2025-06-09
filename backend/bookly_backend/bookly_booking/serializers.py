@@ -5,6 +5,8 @@ from bookly_property.serializers import BooklyPropertySerializers
 from bookly_user.serializers import BooklyUserSerializer
 
 class BooklyBookingSerializer(serializers.ModelSerializer):
+    can_cancel = serializers.SerializerMethodField()
+
     class Meta:
         model = BooklyBooking
         fields = [
@@ -20,7 +22,11 @@ class BooklyBookingSerializer(serializers.ModelSerializer):
             'guest_last_name',
             'guest_email',
             'guest_contact_number',
+            'can_cancel',
         ]
+
+    def get_can_cancel(self, obj):
+        return obj.booking_status == 'pending'
 
     def validate(self, data):
         check_in = data.get('booking_check_in')
@@ -38,7 +44,7 @@ class BooklyBookingSerializer(serializers.ModelSerializer):
             )
 
         return data
-    
+
 class BooklyBookingDetailsSerializer(serializers.ModelSerializer):
     user = BooklyUserSerializer(read_only=True)
     room = BooklyRoomSerializers(read_only=True)
@@ -69,7 +75,7 @@ class BooklyBookingDetailsSerializer(serializers.ModelSerializer):
         return obj.booking_check_in.strftime('%Y-%m-%d')
     
     def get_booking_check_out(self, obj):
-        return obj.booking_check_out.strftime('%Y-%m-%d')
+        return obj.booking_check_out.strftime('%Y-%m-%d')  
 
 class BooklyTransactionSerializer(serializers.ModelSerializer):
     booking_details = BooklyBookingSerializer(source='booking', read_only=True)
@@ -127,3 +133,4 @@ class BooklyTransactionDetailsSerializer(serializers.ModelSerializer):
     
     def get_booking_check_out(self, obj):
         return obj.booking.booking_check_out.strftime('%Y-%m-%d')
+    

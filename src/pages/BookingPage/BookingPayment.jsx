@@ -93,7 +93,7 @@ function BookingPayment() {
     setLoadingTransaction(true);
     try {
       const transaction = await createTransaction(payload);
-      navigate(`/bookings/payment/receipt/${currentBooking.booking_id}`, { state: { transaction } });
+      navigate(`/bookings/payment/receipt/${transaction.transaction_id}/`);
     } catch (error) {
       setErrors({ api: "Transaction creation failed. Please try again." })
       console.error("Transaction creation failed:", error);

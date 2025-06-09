@@ -67,7 +67,7 @@ const UserDropdown = () => {
 
               <ul className="mt-8">
                 <li className="menu">
-                  <Link to="/user-profile/" className="font-quicksand text-xl font-semibold">
+                  <Link to="/user-dashboard/" className="font-quicksand text-xl font-semibold">
                     User Dashboard
                   </Link>
                 </li>

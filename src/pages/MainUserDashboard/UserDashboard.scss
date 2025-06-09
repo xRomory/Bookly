@@ -5,7 +5,7 @@
   --HoverSecondaryColorTeal: #36decb;
   --AccentColorOrange: hsl(27, 96%, 61%);
   --MainBackgroundColor: hsl(220, 14%, 96%);
-  --SecondaryWhiteColor: #E7E7E7;
+  --SecondaryWhiteColor: #e7e7e7;
   --TextColor: hsl(221, 39%, 11%);
   --PlaceholderText: hsl(219, 10%, 34%);
   --AccentDarkNavy: #162c5f;
@@ -16,8 +16,7 @@
     .menu-icons-div {
       .icon {
         color: var(--MainBackgroundColor);
-        margin-top: 3rem;
-        font-size: 2.5rem;
+
         cursor: pointer;
 
         &:hover {
@@ -29,25 +28,26 @@
 }
 
 .user-profile-page-container {
-  .user-profile-container, .user-booking-container {
+  .user-profile-container,
+  .user-booking-container {
     background: var(--SecondaryWhiteColor);
-    margin: 2rem 10rem 0rem;
     border-radius: 12px;
-    box-shadow: 4px 4px 12px rgba(0, 0, 0, .25);
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.25);
   }
 
   .user-profile-container {
+
     .user-info-div {
       font-family: "Quicksand", sans-serif;
 
-      .user-email-info, .user-contact-info {
+      .user-email-info,
+      .user-contact-info {
         font-size: 1.2rem;
       }
     }
   }
 
   .user-booking-container {
-    padding: 2rem 3rem;
     font-family: "Quicksand", sans-serif;
     overflow: auto;
     scrollbar-width: none;
@@ -56,7 +56,6 @@
       background: var(--MainBackgroundColor);
       border-radius: 12px;
       border: 2px solid var(--SecondaryColorTeal);
-      margin-bottom: 1.3rem;
 
       .room-details {
         font-family: "Quicksand";
@@ -66,5 +65,69 @@
         }
       }
     }
+  }
+}
+
+.icon-circle-bg {
+  background-size: cover;
+  background-position: center;
+}
+
+/* Button styles */
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+  min-width: 150px;
+}
+
+/* Status indicator animation */
+.animate-ping {
+  animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes ping {
+  75%,
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .user-profile-container,
+  .user-booking-container {
+    width: 100%;
+    height: auto;
+  }
+
+  .bookings-details-container-div {
+    flex-direction: column;
+  }
+
+  .room-details,
+  .date-details,
+  .payment-details {
+    position: static;
+    margin: 0.5rem 0;
+  }
+}
+
+/* Side menu styling */
+.side-menu {
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.menu-item {
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  &.active {
+    background-color: rgba(255, 255, 255, 0.2);
   }
 }

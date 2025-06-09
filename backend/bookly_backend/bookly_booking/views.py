@@ -4,6 +4,7 @@ from rest_framework import generics, status, serializers
 from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.views import APIView
 from .models import BooklyBooking, BooklyTransaction
 from .serializers import BooklyBookingSerializer, BooklyTransactionSerializer, BooklyBookingDetailsSerializer, BooklyTransactionDetailsSerializer
 from .utils import generate_temp_payment_token
@@ -12,6 +13,11 @@ class BookingCreateListView(generics.ListCreateAPIView):
     queryset = BooklyBooking.objects.all()
     serializer_class = BooklyBookingSerializer
     permission_classes = [IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.request.method == "GET":
+            return BooklyBookingDetailsSerializer
+        return BooklyBookingSerializer
 
     def get_queryset(self):
         user = self.request.user
@@ -32,10 +38,10 @@ class BookingCreateListView(generics.ListCreateAPIView):
             room_id=room_id,
             booking_check_out__gt=check_in,
             booking_check_in__lt=check_out,
-            booking_status__in=['confirmed', 'pending', 'reserved']
+            booking_status__in=['confirmed', 'reserved']
         )
 
-        if overlapping:
+        if overlapping.exists():
             raise serializers.ValidationError("Room is already booked for these dates")
         
         booking = serializer.save(user=self.request.user)
@@ -54,30 +60,66 @@ class BookingCreateListView(generics.ListCreateAPIView):
             return Response(serializer.errors, status=400)
 
         
-class BookingDetailsView(generics.RetrieveAPIView):
+class BookingDetailsView(generics.RetrieveUpdateDestroyAPIView):
     queryset = BooklyBooking.objects.all()
     serializer_class = BooklyBookingDetailsSerializer
     lookup_field = 'pk'
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        return self.queryset.filter(user=self.request.user)
+        user = self.request.user
+
+        if user.is_superuser or user.is_staff:
+            return super().get_queryset()
+        return BooklyBooking.objects.filter(user=user)
+    
+    def perform_update(self, serializer):
+        instance = self.get_object()
+
+        if (serializer.validated_data.get('booking_status') == 'cancelled' and
+            instance.booking_status == 'pending'):
+            serializer.save()
+        else:
+            raise serializers.ValidationError("You can only cancel pending bookings")
+        
+    def perform_destroy(self, instance):
+        if instance.booking_status != 'pending':
+            raise serializers.ValidationError("You can only delete pending bookings")
+        
+        instance.delete()
+    
+class BookingCancelView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, pk):
+        try:
+            booking = BooklyBooking.objects.get(pk=pk, user=request.user)
+            if booking.booking_status != 'pending':
+                return Response({'error': 'Only pending bookings can be cancelled.'}, status=status.HTTP_400_BAD_REQUEST)
+            booking.booking_status = 'cancelled'
+            booking.save()
+            return Response({'success': 'Booking Cancelled.'})
+        except BooklyBooking.DoesNotExist:
+            return Response({'error': 'Booking not found.'}, status=status.HTTP_400_BAD_REQUEST)
     
 class CreateTransactionView(generics.CreateAPIView):
     queryset = BooklyTransaction.objects.all()
     serializer_class = BooklyTransactionSerializer
     permission_classes = [IsAuthenticated]
 
+    @transaction.atomic
     def create(self, request, *args, **kwargs):
         try:
             booking_id = request.data.get('booking_id')
 
             try:
                 booking = BooklyBooking.objects.get(pk=booking_id, user=request.user)
+
                 overlapping = BooklyBooking.objects.filter(
                     room=booking.room,
                     booking_check_out__gt=booking.booking_check_in,
                     booking_check_in__lt=booking.booking_check_out,
-                    booking_status__in=['confirmed', 'pending', 'reserved']
+                    booking_status='confirmed'
                 ).exclude(pk=booking_id)
 
                 if overlapping.exists():
@@ -85,6 +127,14 @@ class CreateTransactionView(generics.CreateAPIView):
                         {"error": "Room is already booked for these dates"},
                         status=status.HTTP_400_BAD_REQUEST
                     )
+                
+                BooklyBooking.objects.filter(
+                    user=request.user,
+                    room=booking.room,
+                    booking_check_out__gt=booking.booking_check_in,
+                    booking_check_in__lt=booking.booking_check_out,
+                    booking_status='pending'
+                ).exclude(pk=booking.pk).delete()
 
             except BooklyBooking.DoesNotExist:
                 return Response(
@@ -129,6 +179,13 @@ class CreateTransactionView(generics.CreateAPIView):
             booking.booking_status = 'confirmed'
             booking.save()
 
+            BooklyBooking.objects.filter(
+                room=booking.room,
+                booking_check_out__gt=booking.booking_check_in,
+                booking_check_in__lt=booking.booking_check_out,
+                    booking_status='pending'
+            ).exclude(pk=booking.pk).delete()
+
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
         except Exception as e:
@@ -140,7 +197,19 @@ class CreateTransactionView(generics.CreateAPIView):
 class TransactionDetailsView(generics.RetrieveAPIView):
     queryset = BooklyTransaction.objects.all()
     serializer_class = BooklyTransactionDetailsSerializer
+    permission_classes = [IsAuthenticated]
     lookup_field = 'pk'
 
     def get_queryset(self):
         return self.queryset.filter(user=self.request.user)
+    
+class TransactionByBookingView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, booking_id):
+        try:
+            transaction = BooklyTransaction.objects.get(booking_id=booking_id, user=request.user)
+            serializer = BooklyTransactionDetailsSerializer(transaction, context={'request': request})
+            return Response(serializer.data)
+        except BooklyTransaction.DoesNotExist:
+            return Response({"error": "Transaction not found."}, status=status.HTTP_400_BAD_REQUEST)
