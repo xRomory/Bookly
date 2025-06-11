@@ -26,3 +26,8 @@ class BooklyUserSerializer(serializers.ModelSerializer):
         )
 
         return user
+
+class BooklyUserUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BooklyUser
+        fields = ['first_name', 'last_name', 'contact_number']
