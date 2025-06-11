@@ -12,9 +12,9 @@ from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
 from .models import BooklyUser
-from .serializers import BooklyUserSerializer
+from .serializers import BooklyUserSerializer, BooklyUserUpdateSerializer
 
-# Create your views here.
+# CSRF token generator
 @ensure_csrf_cookie
 def get_csrf(request):
     return JsonResponse({'message': get_token(request)})
@@ -24,6 +24,7 @@ def get_csrf(request):
 def csrf_token_view(request):
     return Response({'detail': get_token(request)})
 
+# Get current logged-in user's profile
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def get_me(request):
@@ -33,6 +34,7 @@ def get_me(request):
     data['is_superuser'] = request.user.is_superuser
     return Response(data)
 
+# Register user via function-based view
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def register_user(request):
@@ -46,11 +48,13 @@ def register_user(request):
         }, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+# Register user via class-based view
 class RegisterView(generics.CreateAPIView):
     queryset = BooklyUser.objects.all()
     serializer_class = BooklyUserSerializer
     permission_classes = [AllowAny]
 
+# Login
 class Login(APIView):
     permission_classes = [AllowAny]
 
@@ -65,7 +69,6 @@ class Login(APIView):
             )
 
         user = authenticate(email=email, password=password)
-        print(user)
 
         if user is not None:
             login(request, user)
@@ -85,17 +88,18 @@ class Login(APIView):
                 },
             })
 
-        if user is None:
-            print("Authentication Failed")
-            raise AuthenticationFailed('Invalid email or Password')
-        
-        
-        return Response(
-            {'error': 'Invalid credentials'},
-            status=status.HTTP_401_UNAUTHORIZED
-        )
-    
+        raise AuthenticationFailed('Invalid email or password')
+
+# Logout
 class Logout(APIView):
     def post(self, request):
         logout(request)
         return Response({'message': 'Logged out Successfully'}, status=status.HTTP_200_OK)
+
+# Update profile (first name, last name, contact number only — not email)
+class UpdateProfileView(generics.UpdateAPIView):
+    serializer_class = BooklyUserUpdateSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self):
+        return self.request.user
