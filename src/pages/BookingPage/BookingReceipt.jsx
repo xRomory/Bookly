@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTransactions } from "../../context/TransactionContext";
+import { useAuth } from "../../context/AuthContext";
 
 import LoadingSpinner from "../../components/Utilities/LoadingSpinner";
 import RoomDetails from "../../components/BookingPage/RoomDetails";
@@ -11,10 +12,14 @@ function BookingReceipt() {
   const navigate = useNavigate();
   const { transactionId } = useParams();
 
+  const { user } = useAuth();
   const { fetchTransactionDetails } = useTransactions();
   const [transaction, setTransaction] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const isAdmin = user?.is_staff || user?.is_superuser;
+  const isRegularUser = !isAdmin;
 
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString("en-US", {
@@ -59,7 +64,7 @@ function BookingReceipt() {
     property_details: property,
     reference_number,
     total_amount,
-    transaction_date
+    transaction_date,
   } = transaction;
 
   const checkIn = new Date(booking.booking_check_in);
@@ -111,8 +116,6 @@ function BookingReceipt() {
             guests={{ guest: booking.guest }}
           />
 
-          
-
           <header className="font-bold text-center font-quicksand px-9 py-1.5 text-2xl text-black border border-solid max-md:px-5 max-md:max-w-full">
             Payment Receipt
           </header>
@@ -139,13 +142,23 @@ function BookingReceipt() {
           >
             Home
           </button>
+          {isRegularUser && (
+            <button
+              onClick={handleViewBooking}
+              className="flex-1 px-4 py-3 bg-blue-900 hover:bg-blue-800 font-quicksand text-white rounded-md transition-colors font-semibold"
+            >
+              View Booking
+            </button>
+          )}
 
-          <button
-            onClick={handleViewBooking}
-            className="flex-1 px-4 py-3 bg-blue-900 hover:bg-blue-800 font-quicksand text-white rounded-md transition-colors font-semibold"
-          >
-            View Booking
-          </button>
+          {isAdmin && (
+            <button
+              onClick={() => navigate("/admin-dashboard/")}
+              className="flex-1 px-4 py-2 bg-blue-900 text-white rounded-md hover:bg-blue-800 transition-colors font-semibold font-quicksand"
+            >
+              Back to Admin Dashboard
+            </button>
+          )}
         </div>
 
         <ProgressIndicator currentStep={3} totalSteps={3} />
