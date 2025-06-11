@@ -12,7 +12,7 @@ from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
 from .models import BooklyUser
-from .serializers import BooklyUserSerializer
+from .serializers import BooklyUserSerializer, BooklyUserUpdateSerializer
 
 # Create your views here.
 @ensure_csrf_cookie
@@ -99,3 +99,10 @@ class Logout(APIView):
     def post(self, request):
         logout(request)
         return Response({'message': 'Logged out Successfully'}, status=status.HTTP_200_OK)
+    
+class UpdateProfileView(generics.UpdateAPIView):
+    serializer_class = BooklyUserUpdateSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self):
+        return self.request.user

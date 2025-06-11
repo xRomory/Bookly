@@ -42,6 +42,8 @@ const HomeContent = () => {
                     src={matchedBrand.image}
                     alt={category}
                     className="category-img"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="overlay-info absolute flex items-start flex-col bottom-0 w-full h-0 bg-white overflow-hidden">
                     <h3>{category}</h3>
@@ -90,7 +92,9 @@ const HomeContent = () => {
                   <img
                     src={matchedBrand.logo}
                     alt="Sample Image"
-                    className="w-[100%] object-cover object-center"
+                    className="w-full object-cover object-center"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="overlay-info absolute flex items-start flex-col bottom-0 w-full h-0 bg-white overflow-hidden">
                     <h3>{name}</h3>

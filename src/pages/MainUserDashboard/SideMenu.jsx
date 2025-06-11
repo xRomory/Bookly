@@ -80,7 +80,7 @@ const SideMenu = () => {
           </NavLink>
 
           <NavLink
-            to="/user-settings"
+            to="/user-settings/"
             className={({ isActive }) =>
               `menu-item flex flex-col items-center justify-center p-4 w-full hover:bg-blue-800 transition-colors ${
                 isActive ? "bg-blue-800" : ""

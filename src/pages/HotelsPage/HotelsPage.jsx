@@ -38,7 +38,13 @@ const HotelsPage = () => {
                   className="single-property-brand overflow-hidden h-[15vw] rounded-2xl shadow-[0_5px_16px_rgba(20,_184,_166,_1)]"
                 >
                   <div className="brand-image w-full h-[15vw] relative overflow-hidden">
-                    <img src={name.logo} alt={name.name} className="bg-white" />
+                    <img 
+                      src={name.logo} 
+                      alt={name.name} 
+                      className="bg-white"
+                      loading="lazy"
+                      decoding="async"
+                    />
                     <div className="brand-info absolute flex items-start flex-col bottom-0 w-full h-0 overflow-hidden justify-center p-0">
                       <h3 className="font-bold text-white">{name.name}</h3>
                       <BsArrowRightShort className="icon absolute right-5 bottom-5 p-2 rounded-[50%] cursor-pointer" />

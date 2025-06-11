@@ -65,7 +65,7 @@ const LoginSearchLocationNav = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/user-profile/" className="nav-link">
+                <Link to="/user-dashboard/" className="nav-link">
                   User Dashboard
                 </Link>
               </li>
