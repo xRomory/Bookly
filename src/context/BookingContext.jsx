@@ -1,4 +1,10 @@
-import React, { createContext, use, useCallback, useContext, useState } from "react";
+import React, {
+  createContext,
+  use,
+  useCallback,
+  useContext,
+  useState,
+} from "react";
 import api from "../api/axios";
 import { useAuth } from "./AuthContext";
 
@@ -76,15 +82,58 @@ export const BookingProvider = ({ children }) => {
     }
   }, []);
 
+  const roomAvailability = useCallback(
+    async ({ roomId, checkInDate, checkOutDate, guests }) => {
+      try {
+        const response = await api.post("/booking/room-availability/", {
+          room_id: roomId,
+          booking_check_in: checkInDate,
+          booking_check_out: checkOutDate,
+          guest: guests,
+        });
+
+        return response.data;
+      } catch (error) {
+        console.error("Failed to check room availability", error);
+        throw error;
+      }
+    }
+  );
+
   const cancelBooking = useCallback(async (bookingId) => {
     try {
-      const response = await api.post(`/booking/room-booking/${bookingId}/cancel/`)
+      const response = await api.post(
+        `/booking/room-booking/${bookingId}/cancel/`
+      );
       return response.data;
     } catch (error) {
       console.error("Failed to cancel booking", error);
       throw error;
     }
-  })
+  });
+
+  const fetchAdminBookings = useCallback(async () => {
+    try {
+      const response = await api.get("/booking/admin/bookings/");
+      return response.data;
+    } catch (error) {
+      console.error("Failed to fetch admin bookings", error);
+      throw error;
+    }
+  }, []);
+
+  const adminBookingAction = useCallback(async (bookingId, action) => {
+    try {
+      const response = await api.post(
+        `/booking/admin/bookings/${bookingId}/action/`,
+        { action }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Admin booking action failed", error);
+      throw error;
+    }
+  }, []);
 
   const value = {
     bookingData,
@@ -94,6 +143,9 @@ export const BookingProvider = ({ children }) => {
     fetchBookingDetails,
     fetchUserBookings,
     cancelBooking,
+    roomAvailability,
+    fetchAdminBookings,
+    adminBookingAction,
   };
 
   return (

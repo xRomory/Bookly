@@ -27,7 +27,10 @@ def csrf_token_view(request):
 @permission_classes([IsAuthenticated])
 def get_me(request):
     serializer = BooklyUserSerializer(request.user)
-    return Response(serializer.data)
+    data = serializer.data
+    data['is_staff'] = request.user.is_staff
+    data['is_superuser'] = request.user.is_superuser
+    return Response(data)
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
@@ -76,6 +79,8 @@ class Login(APIView):
                     'email': user.email,
                     'contact_number': user.contact_number,
                     'if_property_owner': user.if_property_owner,
+                    'is_staff': user.is_staff,
+                    'is_superuser': user.is_superuser,
                 },
             })
 

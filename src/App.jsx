@@ -15,6 +15,7 @@ import BookingPage from "./pages/BookingPage/BookingPage.jsx";
 import BookingPayment from "./pages/BookingPage/BookingPayment.jsx";
 import BookingReceipt from "./pages/BookingPage/BookingReceipt.jsx";
 import UserDashboard from "./pages/MainUserDashboard/UserDashboard.jsx";
+import AdminDashboard from "./pages/AdminDashboard/AdminDashboard.jsx";
 import RenterDashboardPage from "./pages/RenterDashboard/RenterDashboardPage.jsx";
 import RoomDetailsPage from "./pages/RoomDetails/RoomDetailsPage.jsx";
 
@@ -27,6 +28,7 @@ function App() {
     "/sign-up",
     "/user-dashboard",
     "/owner-dashboard",
+    "/admin-dashboard",
     "/maps",
     "/bookings",
     "/bookings/payment",
@@ -49,6 +51,7 @@ function App() {
         <Route path="/maps" element={<MapPage />} />
         <Route path="/user-dashboard/" element={<UserDashboard />} />
         <Route path="/owner-dashboard/" element={<RenterDashboardPage />} />
+        <Route path="/admin-dashboard/" element={<AdminDashboard />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/sign-up" element={<SignupPage />} />
       </Routes>

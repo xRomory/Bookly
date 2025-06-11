@@ -4,6 +4,52 @@ from bookly_rooms.serializers import BooklyRoomSerializers
 from bookly_property.serializers import BooklyPropertySerializers
 from bookly_user.serializers import BooklyUserSerializer
 
+class AdminBookingListSerializer(serializers.ModelSerializer):
+    user_name = serializers.SerializerMethodField()
+    reference_number = serializers.SerializerMethodField()
+    booking_date = serializers.SerializerMethodField()
+    transaction_date = serializers.SerializerMethodField()
+    payment_status = serializers.SerializerMethodField()
+    room_name = serializers.CharField(source='room.room_name', read_only=True)
+
+    class Meta:
+        model = BooklyBooking
+        fields = [
+            'booking_id',
+            'user_name',
+            'reference_number',
+            'room_name',
+            'booking_date',
+            'transaction_date',
+            'payment_status',
+            'booking_status',
+        ]
+
+    def get_user_name(self, obj):
+        return f"{obj.user.first_name} {obj.user.last_name}"
+    
+    def get_reference_number(self, obj):
+        transaction = obj.transactions.filter(is_successful=True).order_by('-transaction_date').first()
+        return transaction.reference_number if transaction else None
+    
+    def get_booking_date(self, obj):
+        return obj.booking_date.strftime('%Y-%m-%d')
+
+    def get_transaction_date(self, obj):
+        transaction = obj.transactions.filter(is_successful=True).order_by('-transaction_date').first()
+        return transaction.transaction_date if transaction else None
+    
+    def get_payment_status(self, obj):
+        transaction = obj.transactions.filter(is_successful=True).order_by('-transaction_date').first()
+        if transaction:
+            return "Paid"
+        if obj.booking_status == "pending":
+            return "Pending"
+        if obj.booking_status == "cancelled":
+            return "Cancelled"
+        return obj.booking_status.capitalize()
+    
+
 class BooklyBookingSerializer(serializers.ModelSerializer):
     can_cancel = serializers.SerializerMethodField()
 
@@ -75,7 +121,7 @@ class BooklyBookingDetailsSerializer(serializers.ModelSerializer):
         return obj.booking_check_in.strftime('%Y-%m-%d')
     
     def get_booking_check_out(self, obj):
-        return obj.booking_check_out.strftime('%Y-%m-%d')  
+        return obj.booking_check_out.strftime('%Y-%m-%d')
 
 class BooklyTransactionSerializer(serializers.ModelSerializer):
     booking_details = BooklyBookingSerializer(source='booking', read_only=True)
@@ -133,4 +179,3 @@ class BooklyTransactionDetailsSerializer(serializers.ModelSerializer):
     
     def get_booking_check_out(self, obj):
         return obj.booking.booking_check_out.strftime('%Y-%m-%d')
-    

@@ -297,8 +297,7 @@ const BookingModal = ({ roomId, roomCapacity }) => {
             <h3 className="text-2xl items-start font-quicksand font-bold text-red-600 mb-4">
               {errorModal.title}
             </h3>
-            {/* <p className="mb-6 font-quicksand">{errorModal.message}</p> */}
-            <p className="mb-6 font-quicksand font-medium">Room has been occupied</p>
+            <p className="mb-6 font-quicksand">{errorModal.message}</p>
             <button
               onClick={closeErrorModal}
               className="bg-blue-900 hover:bg-blue-800 font-quicksand font-semibold text-white py-2 px-4 rounded"

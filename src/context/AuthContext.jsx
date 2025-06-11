@@ -38,9 +38,13 @@ export const AuthProvider = ({ children }) => {
       const response = await api.post("/users/auth/login/", { email, password });;
 
       if(response.data.token) {
+        const userData = {
+          ...response.data.user,
+          is_admin: response.data.user.is_staff || response.data.user.is_superuser
+        }
         localStorage.setItem('authToken', response.data.token);
         localStorage.setItem('user', JSON.stringify(response.data.user));
-        setUser(response.data.user);
+        setUser(userData);
         setIsAuthenticated(true);
       }
       
