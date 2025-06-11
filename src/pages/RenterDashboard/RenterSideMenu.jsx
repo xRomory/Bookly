@@ -27,7 +27,7 @@ const RenterSideMenu = () => {
             </li>
 
             <li>
-              <Link to="/renter-dashboard/">
+              <Link to="/owner-dashboard/">
                 <MdOutlinePerson className="icon" />
                 Dashboard
               </Link>

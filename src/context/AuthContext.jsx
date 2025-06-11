@@ -68,12 +68,44 @@ export const AuthProvider = ({ children }) => {
     
   }
 
+  const updateUserSettings = async (firstName, lastName, contactNumber) => {
+    try {
+      const response = await api.put("/users/me/update/", {
+        first_name: firstName,
+        last_name: lastName,
+        contact_number: contactNumber,
+      });
+
+      setUser((prev) => ({
+        ...prev,
+        first_name: response.data.first_name,
+        last_name: response.data.last_name,
+        contact_number: response.data.contact_number,
+      }));
+
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          ...user,
+          first_name: response.data.first_name,
+          last_name: response.data.last_name,
+          contact_number: response.data.contact_number,
+        })
+      );
+      return { success: true }
+    } catch (error) {
+      console.error("Failed to update user:", error);
+      return { success: false, error: error.response?.data };
+    }
+  }
+
   const value = {
     user,
     isAuthenticated,
     isLoading,
     login,
     logout,
+    updateUserSettings,
   }
 
   return (
