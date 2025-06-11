@@ -1,9 +1,12 @@
-import React, { use, useState } from "react";
+import React, { useState } from "react";
 import "./SignupPage.scss";
 import api from "../../api/axios.js";
+
+import { useAuth } from "../../context/AuthContext.jsx";
 import { Link } from "react-router-dom";
 
 const SignupPage = () => {
+  const { login } = useAuth();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -28,7 +31,7 @@ const SignupPage = () => {
       alert("Password do not match");
       setIsLoading(false);
       return;
-    };
+    }
 
     try {
       await api.get("/users/csrf/token/");
@@ -41,7 +44,7 @@ const SignupPage = () => {
         password: formData.password,
       });
 
-      if(response.data.token) {
+      if (response.data.token) {
         localStorage.setItem("authToken", response.data.token);
       }
 
@@ -55,17 +58,24 @@ const SignupPage = () => {
         confirmPassword: "",
       });
 
-      if(response.status === 201) {
-        console.log("Sign up successfully", formData);
+      if (response.status === 201) {
+        // Automatically log in the user
+        const loginResult = await login(formData.email, formData.password);
+        if (loginResult.success) {
+          setMessage("Registration and login successful!");
+          window.location.href = "/"; // or wherever you want to redirect
+        } else {
+          setMessage(
+            "Registration successful, but login failed. Please log in manually."
+          );
+          window.location.href = "/login";
+        }
       }
-
-      window.location.href = "/"
-
-    } catch(error) {
-      if(error.response) {
+    } catch (error) {
+      if (error.response) {
         console.error("Error data:", error.response.data);
         setMessage(`Error: ${JSON.stringify(error.response.data)}`);
-      } else if(error.request) {
+      } else if (error.request) {
         console.error("No response received:", error.request);
         setMessage("Network error - please try again");
       } else {

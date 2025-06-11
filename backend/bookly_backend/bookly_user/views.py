@@ -20,6 +20,7 @@ def get_csrf(request):
     return JsonResponse({'message': get_token(request)})
 
 @api_view(['GET'])
+@permission_classes([AllowAny])
 def csrf_token_view(request):
     return Response({'detail': get_token(request)})
 
