@@ -14,6 +14,12 @@ class BooklyPropertyCreateView(generics.CreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+@api_view(['GET'])
+@permission_classes([permissions.IsAuthenticated])
+def user_has_properties(request):
+    has_props = BooklyProperty.objects.filter(user=request.user).exists()
+    return Response({'has_property': has_props})
         
 @api_view(['GET'])
 @permission_classes([AllowAny])
