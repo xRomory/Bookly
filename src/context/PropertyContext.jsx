@@ -1,5 +1,12 @@
-import React, { createContext, useContext, useState, useEffect, Children } from 'react'
-import api from '../api/axios'
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useMemo,
+  useEffect,
+  useCallback,
+} from "react";
+import api from "../api/axios";
 
 const PropertyContext = createContext();
 
@@ -8,41 +15,94 @@ export const PropertyProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const fetchProperties = async () => {
+  const fetchProperties = useCallback(async () => {
     setIsLoading(true);
 
     try {
       const response = await api.get("/property/property-list/");
       setProperties(response.data);
       setError(null);
-    } catch(error) {
+    } catch (error) {
       console.error("Error fetching properties:", error);
       setError(error.response?.data?.message || "Failed to load maps");
     } finally {
       setIsLoading(false);
     }
-  };
+  }, []);
+
+  const createProperty = useCallback(async ({
+    property_name,
+    property_logo,
+    address,
+    property_description,
+    latitude,
+    longitude,
+    contact_number,
+    category,
+    images,
+  }) => {
+    try {
+      const formData = new FormData();
+      formData.append("property_name", property_name);
+      formData.append("property_logo", property_logo);
+      formData.append("address", address);
+      formData.append("property_description", property_description);
+      formData.append("latitude", latitude);
+      formData.append("longitude", longitude);
+      formData.append("contact_number", contact_number);
+      formData.append("category", category);
+
+      if (images && images.length > 0)
+        images.forEach((img) => formData.append("images", img));
+
+      const response = await api.post("/property/property-create/", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+
+      await fetchProperties();
+      return response.data;
+    } catch (error) {
+      setError(error.response?.data?.message || "Failed to create property");
+      throw error;
+    }
+  }, [fetchProperties]);
+
+  const fetchMyProperties = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const response = await api.get("/property/my-properties/");
+      setProperties(response.data);
+      setError(null);
+    } catch (error) {
+      setError(error.response?.data?.message || "Failed to load properties");
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
 
   useEffect(() => {
     fetchProperties();
   }, []);
 
-  const value = {
+  const value = useMemo(() => ({
     properties,
     isLoading,
     error,
-  }
+    fetchProperties,
+    fetchMyProperties,
+    createProperty,
+  }), [properties, isLoading, error, fetchProperties, fetchMyProperties, createProperty]);
 
   return (
     <PropertyContext.Provider value={value}>
       {children}
     </PropertyContext.Provider>
-  )
-}
+  );
+};
 
 export const useProperties = () => {
   const context = useContext(PropertyContext);
-  if(!context) {
+  if (!context) {
     throw new Error("useProperties must be used within a PropertyProvider");
   }
 

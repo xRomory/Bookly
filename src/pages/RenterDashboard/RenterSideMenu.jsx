@@ -4,7 +4,6 @@ import { Link } from "react-router";
 import { IoHomeOutline } from "react-icons/io5";
 import { MdOutlinePerson } from "react-icons/md";
 import { MdOutlineAddBox } from "react-icons/md";
-import { MdOutlineFormatListBulleted } from "react-icons/md";
 
 const RenterSideMenu = () => {
   return (
@@ -34,16 +33,9 @@ const RenterSideMenu = () => {
             </li>
 
             <li>
-              <Link to="/">
+              <Link to="/property/">
                 <MdOutlineAddBox className="icon" />
-                Add Room
-              </Link>
-            </li>
-
-            <li>
-              <Link to="/renter-dashboard/">
-                <MdOutlineFormatListBulleted className="icon" />
-                List Room
+                Property Dashboard
               </Link>
             </li>
           </ul>
