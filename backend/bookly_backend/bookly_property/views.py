@@ -4,10 +4,17 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 
+
 from .models import BooklyProperty, PropertyImage
 from .serializers import BooklyPropertySerializers
 
-# Create your views here.
+class BooklyPropertyCreateView(generics.CreateAPIView):
+    serializer_class = BooklyPropertySerializers
+    permission_classes = [permissions.IsAuthenticated]
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+        
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def get_property(request):
