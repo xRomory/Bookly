@@ -10,6 +10,7 @@ class PropertyImageSerializer(serializers.ModelSerializer):
 class BooklyPropertySerializers(serializers.ModelSerializer):
     images = PropertyImageSerializer(many=True, read_only=True)
     property_logo_url = serializers.SerializerMethodField()
+    rooms = BooklyRoomSerializers(source='booklyrooms_set', many=True, read_only=True)
 
     def get_property_logo_url(self, obj):
         if obj.property_logo:
@@ -30,6 +31,7 @@ class BooklyPropertySerializers(serializers.ModelSerializer):
             'contact_number',
             'category',
             'images',
+            'rooms',
         ]
 
 class PropertyOwnerSerializers(serializers.ModelSerializer):
