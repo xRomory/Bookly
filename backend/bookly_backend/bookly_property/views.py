@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 
 from .models import BooklyProperty, PropertyImage
-from .serializers import BooklyPropertySerializers
+from .serializers import BooklyPropertySerializers, BooklyPropertyCreateSerializer
 
 # Create your views here.
 @api_view(['GET'])
@@ -23,6 +24,32 @@ class BooklyPropertyList(generics.ListAPIView):
     ).select_related('user').prefetch_related('images')
     serializer_class = BooklyPropertySerializers
 
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context['request'] = self.request
+        return context
+    
+class BooklyPropertyCreateView(generics.CreateAPIView):
+    queryset = BooklyProperty.objects.all()
+    serializer_class = BooklyPropertyCreateSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context['request'] = self.request
+        return context
+    
+class MyPropertyList(generics.ListAPIView):
+    serializer_class = BooklyPropertySerializers
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+
+        if user.is_staff or user.is_superuser:
+            return BooklyProperty.objects.all().select_related('user').prefetch_related('images')
+        return BooklyProperty.objects.filter(user=user).select_related('user').prefetch_related('images')
+    
     def get_serializer_context(self):
         context = super().get_serializer_context()
         context['request'] = self.request

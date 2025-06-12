@@ -7,6 +7,37 @@ class PropertyImageSerializer(serializers.ModelSerializer):
         model = PropertyImage
         fields = ['id', 'image', 'is_primary', 'uploaded_at']
 
+class BooklyPropertyCreateSerializer(serializers.ModelSerializer):
+    images = serializers.ListField(
+        child=serializers.ImageField(), write_only=True, required=False
+    )
+
+    property_logo = serializers.ImageField(required=False)
+
+    class Meta:
+        model = BooklyProperty
+        fields = [
+            'property_name',
+            'property_logo',
+            'address',
+            'property_description',
+            'latitude',
+            'longitude',
+            'contact_number',
+            'category',
+            'images',
+        ]
+    
+    def create(self, validated_data):
+        images_data = validated_data.pop('images', [])
+        user = self.context['request'].user
+        property_instance = BooklyProperty.objects.create(user=user, **validated_data)
+
+        for img in images_data:
+            PropertyImage.objects.create(property=property_instance, image=img)
+
+        return property_instance
+
 class BooklyPropertySerializers(serializers.ModelSerializer):
     images = PropertyImageSerializer(many=True, read_only=True)
     property_logo_url = serializers.SerializerMethodField()
