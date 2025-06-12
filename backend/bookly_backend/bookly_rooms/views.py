@@ -9,7 +9,17 @@ from rest_framework.reverse import reverse
 from .models import BooklyRooms
 from .serializers import BooklyRoomSerializers
 
-# Create your views here.
+
+class BooklyRoomCreateView(generics.CreateAPIView):
+    serializer_class = BooklyRoomSerializers
+    permission_classes = [permissions.IsAuthenticated]
+
+    def perform_create(self, serializer):
+        property = serializer.validated_data.get('property')
+        if property.user != self.request.user:
+            raise serializers.ValidationError("You can only add rooms to your own properties.")
+        serializer.save()
+
 @api_view(['GET'])
 def api_root(request, format=None):
     return Response({
