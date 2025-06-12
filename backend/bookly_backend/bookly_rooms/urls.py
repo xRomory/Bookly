@@ -7,7 +7,6 @@ urlpatterns = [
     path('room-list/', BooklyRoomList.as_view(), name='room_list'),
     path('room-detail/', get_rooms, name="room_details"),
     path('room-detail/<int:room_id>/', BooklyRoomDetailView.as_view(), name="room_details"),
-    path('has-property/', user_has_properties, name="has_property"),
     path('room-create/', BooklyRoomCreateView.as_view(), name="room_create"),
     
 ]
