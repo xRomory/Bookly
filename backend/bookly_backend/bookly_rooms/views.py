@@ -7,9 +7,22 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
 from .models import BooklyRooms
+
 from .serializers import BooklyRoomSerializers
+from .models import RoomImage, BooklyRooms
+from .serializers import RoomImageSerializers
+from rest_framework.exceptions import ValidationError
 
+class RoomImageUploadView(generics.CreateAPIView):
+    serializer_class = RoomImageSerializers
+    permission_classes = [permissions.IsAuthenticated]
 
+    def perform_create(self, serializer):
+        room = serializer.validated_data.get('room')
+        if room.property.user != self.request.user:
+            raise ValidationError("You can only upload images for your own room.")
+        serializer.save()
+        
 class BooklyRoomCreateView(generics.CreateAPIView):
     serializer_class = BooklyRoomSerializers
     permission_classes = [permissions.IsAuthenticated]
