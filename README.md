@@ -1,6 +1,14 @@
 # Bookly
 Database Systems final project COM232 <br>
 
+# Main Features
+- Users can list their properties
+- Users can book a room
+- Real-time Maps Location
+- Admin Dashboard can see every transaction, cancel bookings, or simply delete them.
+- They also have access to property listing. Admins can delete a property
+- Search Filter Function
+
 # How to install:
 - Make sure you have Node.js on your device
 - Once installed, git clone this branch to your terminal: <br> git clone -b bookly-frontend https://github.com/xRomory/Bookly-CTFDBMSL.git
