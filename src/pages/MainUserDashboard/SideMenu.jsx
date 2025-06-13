@@ -9,8 +9,8 @@ import { FaBed } from "react-icons/fa";
 import { FaMap } from "react-icons/fa";
 import { FaBars } from "react-icons/fa";
 import { FaTimes } from "react-icons/fa";
+import { FaBuilding } from "react-icons/fa";
 import { FaGear } from "react-icons/fa6";
-
 
 const SideMenu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -29,7 +29,7 @@ const SideMenu = () => {
       </button>
 
       <div
-        className={`side-menu bg-blue-950 text-white w-16 md:w-20 lg:w-24 fixed md:static h-full min-h-screen z-40 transition-all duration-300 ${
+        className={`side-menu bg-blue-950 text-white w-16 md:w-28 lg:w-28 fixed md:static h-full min-h-screen z-40 transition-all duration-300 ${
           isMenuOpen ? "left-0" : "-left-20"
         } md:left-0`}
       >
@@ -65,7 +65,18 @@ const SideMenu = () => {
             }
           >
             <FaBed size={24} />
-            <span className="text-xs mt-1">Bookings</span>
+            <span className="text-xs mt-1">Rooms</span>
+          </NavLink>
+          <NavLink
+            to="/property/"
+            className={({ isActive }) =>
+              `menu-item flex flex-col items-center justify-center p-4 w-full hover:bg-blue-800 transition-colors ${
+                isActive ? "bg-blue-800" : ""
+              }`
+            }
+          >
+            <FaBuilding size={24} />
+            <span className="text-xs mt-1">My Property</span>
           </NavLink>
           <NavLink
             to="/maps"

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import BooklyBooking, BooklyTransaction
-from bookly_rooms.serializers import BooklyRoomSerializers
+from bookly_rooms.serializers import BooklyRoomSerializer
 from bookly_property.serializers import BooklyPropertySerializers
 from bookly_user.serializers import BooklyUserSerializer
 
@@ -93,7 +93,7 @@ class BooklyBookingSerializer(serializers.ModelSerializer):
 
 class BooklyBookingDetailsSerializer(serializers.ModelSerializer):
     user = BooklyUserSerializer(read_only=True)
-    room = BooklyRoomSerializers(read_only=True)
+    room = BooklyRoomSerializer(read_only=True)
     property_details = BooklyPropertySerializers(source='room.property_details', read_only=True)
 
     booking_check_in = serializers.SerializerMethodField()
@@ -146,7 +146,7 @@ class BooklyTransactionSerializer(serializers.ModelSerializer):
 
 class BooklyTransactionDetailsSerializer(serializers.ModelSerializer):
     user = BooklyUserSerializer(read_only=True)
-    room = BooklyRoomSerializers(read_only=True)
+    room = BooklyRoomSerializer(read_only=True)
     property_details = BooklyPropertySerializers(source='room.property_details', read_only=True)
 
     booking_details = BooklyBookingSerializer(source='booking', read_only=True)

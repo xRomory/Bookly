@@ -9,15 +9,15 @@ const Header = () => {
         <nav>
           <ul className="flex space-x-6">
             <li>
-              <Link to="/" className="font-quicksand font-semibold hover:text-blue-200 transition-colors">
-                Home
+              <Link to="/user-dashboard/" className="font-quicksand font-semibold hover:text-blue-200 transition-colors">
+                User Dashboard
               </Link>
             </li>
-            <li>
-              <Link to="/add-property" className="font-quicksand font-semibold hover:text-blue-200 transition-colors">
+            {/* <li>
+              <Link to="/property/" className="font-quicksand font-semibold hover:text-blue-200 transition-colors">
                 Add Property
               </Link>
-            </li>
+            </li> */}
           </ul>
         </nav>
       </div>

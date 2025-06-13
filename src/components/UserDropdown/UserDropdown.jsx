@@ -91,14 +91,14 @@ const UserDropdown = () => {
                         User Dashboard
                       </Link>
                     </li>
-                    <li className="menu">
+                    {/* <li className="menu">
                       <Link
                         to="/owner-dashboard/"
                         className="font-quicksand text-xl font-semibold"
                       >
                         Owner's Dashboard
                       </Link>
-                    </li>
+                    </li> */}
                   </>
                 )}
 
