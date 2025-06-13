@@ -16,7 +16,9 @@ import BookingPayment from "./pages/BookingPage/BookingPayment.jsx";
 import BookingReceipt from "./pages/BookingPage/BookingReceipt.jsx";
 import UserDashboard from "./pages/MainUserDashboard/UserDashboard.jsx";
 import PropertyPage from "./pages/PropertyListing/PropertyPage.jsx";
+import PropertyDetails from "./pages/PropertyListing/PropertyDetails.jsx";
 import AddProperty from "./pages/PropertyListing/AddProperty.jsx";
+import AddRoom from "./pages/PropertyListing/AddRoom.jsx";
 import UserProfileSettings from "./pages/UserProfileSettings/UserProfileSettings.jsx";
 import AdminDashboard from "./pages/AdminDashboard/AdminDashboard.jsx";
 import RenterDashboardPage from "./pages/RenterDashboard/RenterDashboardPage.jsx";
@@ -57,6 +59,8 @@ function App() {
         <Route path="/maps" element={<MapPage />} />
         <Route path="/user-dashboard/" element={<UserDashboard />} />
         <Route path="/property/" element={<PropertyPage />} />
+        <Route path="/property/:propertyId" element={<PropertyDetails />} />
+        <Route path="/property/:propertyId/add-room" element={<AddRoom />} />
         <Route path="/property/add-property/" element={<AddProperty />} />
         <Route path="/user-settings/" element={<UserProfileSettings />} />
         <Route path="/owner-dashboard/" element={<RenterDashboardPage />} />

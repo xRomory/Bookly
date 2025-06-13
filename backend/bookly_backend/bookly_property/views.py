@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework import generics
+from rest_framework import generics, permissions
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
@@ -16,12 +16,37 @@ def get_property(request):
     serializer = BooklyPropertySerializers(properties, many=True, context={'request': request})
     return Response(serializer.data)
 
+class IsOwnerOrAdmin(permissions.BasePermission):
+    def has_object_permission(self, request, view, obj):
+        if request.method in permissions.SAFE_METHODS:
+            return True
+        
+        if request.user.is_staff or request.user.is_superuser:
+            return True
+        
+        return obj.user == request.user
+    
+class BooklyPropertyDeleteView(generics.DestroyAPIView):
+    queryset = BooklyProperty.objects.all()
+    serializer_class = BooklyPropertySerializers
+    permission_classes = [permissions.IsAuthenticated, IsOwnerOrAdmin]
+    lookup_field = 'property_id'
+
 class BooklyPropertyList(generics.ListAPIView):
     queryset = BooklyProperty.objects.filter(
         is_approved=True,
         latitude__isnull = False,
         longitude__isnull = False
     ).select_related('user').prefetch_related('images')
+    serializer_class = BooklyPropertySerializers
+
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context['request'] = self.request
+        return context
+    
+class BooklyPropertyDetail(generics.RetrieveAPIView):
+    queryset = BooklyProperty.objects.all().select_related('user').prefetch_related('images')
     serializer_class = BooklyPropertySerializers
 
     def get_serializer_context(self):
