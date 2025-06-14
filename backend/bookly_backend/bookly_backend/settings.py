@@ -117,7 +117,7 @@ WSGI_APPLICATION = 'bookly_backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-#bookly_admin@email.com booklyadmin123
+#bookly_admin@email.com adminbookly123
 
 DATABASES = {
     'default': {

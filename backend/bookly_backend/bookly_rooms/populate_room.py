@@ -11,70 +11,70 @@ from bookly_property.models import BooklyProperty
 
 def populate_room():
     try:
-        property = BooklyProperty.objects.get(property_name="Metropolis Heights")
+        property = BooklyProperty.objects.get(property_name="Hotel Sagot")
 
-        # room_data = [
-        #     {
-        #         "room_name": "Standard Room",
-        #         "room_image": "room1.jpg",
-        #         "room_description": "Cozy room with a queen bed and free Wi-Fi",
-        #         "capacity": 2,
-        #         "price_per_night": 1800, 
-        #         "property_type": "hotel",
-        #         "extra_images": ["amenities1.jpg", "bath1.jpg", "bath2.jpg", "things1.jpg"],
-        #         "amenities": ["Free Wi-Fi", "Smart TV", "Air Conditioning", "Ensuite bathroom with hot shower"],
-        #     },
-        #     {
-        #         "room_name": "Deluxe Room",
-        #         "room_image": "room2.jpg",
-        #         "room_description": "Spacious room with a king bed and city view.",
-        #         "capacity": 2,
-        #         "price_per_night": 2800, 
-        #         "property_type": "hotel",
-        #         "extra_images": ["amenities2.jpg", "bath3.jpg", "bath4.jpg", "things2.jpg"],
-        #         "amenities": ["Free Wi-Fi", "Smart TV", "Air Conditioning", "Ensuite bathroom with hot shower"],
-        #     },
-        #     {
-        #         "room_name": "Twin Room",
-        #         "room_image": "room3.jpg",
-        #         "room_description": "Room with two single beds for companions.",
-        #         "capacity": 2,
-        #         "price_per_night": 2200,
-        #         "property_type": "hotel",
-        #         "extra_images": ["amenities3.jpg", "amenities4.jpg", "bath5.jpg", "bath6.jpg"],
-        #         "amenities": ["Two Single Beds", "Work Desk", "Complimentary Bottled Water", "Air Conditioning",]
-        #     },
-        #     {
-        #         "room_name": "Family Suite",
-        #         "room_image": "room4.jpg",
-        #         "room_description": "Two-bedroom suite perfect for families.",
-        #         "capacity": 4,
-        #         "price_per_night": 3200,
-        #         "property_type": "suite",
-        #         "extra_images": ["dining1.jpg", "dining2.jpg", "amenities5.jpg", "amenities6.jpg"],
-        #         "amenities": ["Two separate bedrooms", "Dining area", "Mini refrigerator", "Smart TV",]
-        #     },
-        #     {
-        #         "room_name": "Executive Suite",
-        #         "room_image": "room5.jpg",
-        #         "room_description": "Suite with living area and workspace.",
-        #         "capacity": 2,
-        #         "price_per_night": 3500,
-        #         "property_type": "suite",
-        #         "extra_images": ["desk1.jpg", "desk2.jpg", "bath7.jpg", "bath8.jpg"],
-        #         "amenities": ["Separate Living Area", "Ergonomic work desk", "Nespresso Machine", "Bathrobe and slippers",]
-        #     },
-        #     {
-        #         "room_name": "Presidential Suite",
-        #         "room_image": "room6.jpg",
-        #         "room_description": "Premium suite with luxury features.",
-        #         "capacity": 2,
-        #         "price_per_night": 4500,
-        #         "property_type": "suite",
-        #         "extra_images": ["amenities7.jpg", "amenities8.jpg", "bath9.jpg", "butler1.jpg"],
-        #         "amenities": ["Private balcony", "Jacuzzi tub", "Walk-in close", "Butler service (on request)",]
-        #     },
-        # ]
+        room_data = [
+            {
+                "room_name": "Standard Room",
+                "room_image": "room1.jpg",
+                "room_description": "Cozy room with a queen bed and free Wi-Fi",
+                "capacity": 2,
+                "price_per_night": 1800, 
+                "property_type": "hotel",
+                "extra_images": ["amenities1.jpg", "bath1.jpg", "bath2.jpg", "things1.jpg"],
+                "amenities": ["Free Wi-Fi", "Smart TV", "Air Conditioning", "Ensuite bathroom with hot shower"],
+            },
+            {
+                "room_name": "Deluxe Room",
+                "room_image": "room2.jpg",
+                "room_description": "Spacious room with a king bed and city view.",
+                "capacity": 2,
+                "price_per_night": 2800, 
+                "property_type": "hotel",
+                "extra_images": ["amenities2.jpg", "bath3.jpg", "bath4.jpg", "things2.jpg"],
+                "amenities": ["Free Wi-Fi", "Smart TV", "Air Conditioning", "Ensuite bathroom with hot shower"],
+            },
+            {
+                "room_name": "Twin Room",
+                "room_image": "room3.jpg",
+                "room_description": "Room with two single beds for companions.",
+                "capacity": 2,
+                "price_per_night": 2200,
+                "property_type": "hotel",
+                "extra_images": ["amenities3.jpg", "amenities4.jpg", "bath5.jpg", "bath6.jpg"],
+                "amenities": ["Two Single Beds", "Work Desk", "Complimentary Bottled Water", "Air Conditioning",]
+            },
+            {
+                "room_name": "Family Suite",
+                "room_image": "room4.jpg",
+                "room_description": "Two-bedroom suite perfect for families.",
+                "capacity": 4,
+                "price_per_night": 3200,
+                "property_type": "suite",
+                "extra_images": ["dining1.jpg", "dining2.jpg", "amenities5.jpg", "amenities6.jpg"],
+                "amenities": ["Two separate bedrooms", "Dining area", "Mini refrigerator", "Smart TV",]
+            },
+            {
+                "room_name": "Executive Suite",
+                "room_image": "room5.jpg",
+                "room_description": "Suite with living area and workspace.",
+                "capacity": 2,
+                "price_per_night": 3500,
+                "property_type": "suite",
+                "extra_images": ["desk1.jpg", "desk2.jpg", "bath7.jpg", "bath8.jpg"],
+                "amenities": ["Separate Living Area", "Ergonomic work desk", "Nespresso Machine", "Bathrobe and slippers",]
+            },
+            {
+                "room_name": "Presidential Suite",
+                "room_image": "room6.jpg",
+                "room_description": "Premium suite with luxury features.",
+                "capacity": 2,
+                "price_per_night": 4500,
+                "property_type": "suite",
+                "extra_images": ["amenities7.jpg", "amenities8.jpg", "bath9.jpg", "butler1.jpg"],
+                "amenities": ["Private balcony", "Jacuzzi tub", "Walk-in close", "Butler service (on request)",]
+            },
+        ]
 
         # room_data = [
         #     {
@@ -288,48 +288,48 @@ def populate_room():
         #     },
         # ]
 
-        room_data = [
-            {
-                "room_name": "Superior Room",
-                "room_image": "room27.jpg",
-                "room_description": "Room with a queen bed and city view.",
-                "capacity": 2,
-                "price_per_night": 2500,
-                "property_type": "hotel",
-                "extra_images": ["amenities45.jpg", "amenities46.jpg", "amenities47.jpg", "amenities48.jpg",],
-                "amenities": ["City View Window", "Mini Fridge", "Queen Bed", "Air Conditioning",]
-            },
-            {
-                "room_name": "Executive Room",
-                "room_image": "room28.jpg",
-                "room_description": "Room with additional work and relaxation space.",
-                "capacity": 2,
-                "price_per_night": 3200,
-                "property_type": "hotel",
-                "extra_images": ["amenities49.jpg", "amenities50.jpg", "amenities51.jpg", "amenities52.jpg",],
-                "amenities": ["Workstation", "Executive Chair", "Coffee Maker", "Free Wi-Fi",]
-            },
-            {
-                "room_name": "Grand Suite",
-                "room_image": "room29.jpg",
-                "room_description": "Luxury suite with a living room.",
-                "capacity": 2,
-                "price_per_night": 4500,
-                "property_type": "suite",
-                "extra_images": ["amenities53.jpg", "amenities54.jpg", "amenities55.jpg", "amenities56.jpg",],
-                "amenities": ["Living Area", "King-size Bed", "Bathtub", "Smart TV",]
-            },
-            {
-                "room_name": "Junior Suite",
-                "room_image": "room31.jpg",
-                "room_description": "Suite for a small group or couple.",
-                "capacity": 2,
-                "price_per_night": 3200,
-                "property_type": "suite",
-                "extra_images": ["amenities57.jpg", "amenities58.jpg", "amenities59.jpg", "amenities60.jpg",],
-                "amenities": ["Lounge Area", "Queen Bed", "Workspace", "Air Conditioning",]
-            },
-        ]
+        # room_data = [
+        #     {
+        #         "room_name": "Superior Room",
+        #         "room_image": "room27.jpg",
+        #         "room_description": "Room with a queen bed and city view.",
+        #         "capacity": 2,
+        #         "price_per_night": 2500,
+        #         "property_type": "hotel",
+        #         "extra_images": ["amenities45.jpg", "amenities46.jpg", "amenities47.jpg", "amenities48.jpg",],
+        #         "amenities": ["City View Window", "Mini Fridge", "Queen Bed", "Air Conditioning",]
+        #     },
+        #     {
+        #         "room_name": "Executive Room",
+        #         "room_image": "room28.jpg",
+        #         "room_description": "Room with additional work and relaxation space.",
+        #         "capacity": 2,
+        #         "price_per_night": 3200,
+        #         "property_type": "hotel",
+        #         "extra_images": ["amenities49.jpg", "amenities50.jpg", "amenities51.jpg", "amenities52.jpg",],
+        #         "amenities": ["Workstation", "Executive Chair", "Coffee Maker", "Free Wi-Fi",]
+        #     },
+        #     {
+        #         "room_name": "Grand Suite",
+        #         "room_image": "room29.jpg",
+        #         "room_description": "Luxury suite with a living room.",
+        #         "capacity": 2,
+        #         "price_per_night": 4500,
+        #         "property_type": "suite",
+        #         "extra_images": ["amenities53.jpg", "amenities54.jpg", "amenities55.jpg", "amenities56.jpg",],
+        #         "amenities": ["Living Area", "King-size Bed", "Bathtub", "Smart TV",]
+        #     },
+        #     {
+        #         "room_name": "Junior Suite",
+        #         "room_image": "room31.jpg",
+        #         "room_description": "Suite for a small group or couple.",
+        #         "capacity": 2,
+        #         "price_per_night": 3200,
+        #         "property_type": "suite",
+        #         "extra_images": ["amenities57.jpg", "amenities58.jpg", "amenities59.jpg", "amenities60.jpg",],
+        #         "amenities": ["Lounge Area", "Queen Bed", "Workspace", "Air Conditioning",]
+        #     },
+        # ]
 
         # room_data = [
         #     {
