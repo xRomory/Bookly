@@ -43,7 +43,7 @@ class AdminBookingActionView(APIView):
             else:
                 return Response({'error': 'Only pending bookings can be cancelled.'}, status=status.HTTP_400_BAD_REQUEST)
         elif action == 'delete':
-            if booking.booking_status in ['pending', 'cancelled']:
+            if booking.booking_status in ['confirmed', 'pending', 'cancelled']:
                 booking.delete()
                 return Response({'success': 'Booking deleted.'})
             else:

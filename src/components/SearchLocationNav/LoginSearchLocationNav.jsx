@@ -69,11 +69,11 @@ const LoginSearchLocationNav = () => {
                   User Dashboard
                 </Link>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <Link to="/owner-dashboard/" className="nav-link">
                   Owner's Dashboard
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
           <div
