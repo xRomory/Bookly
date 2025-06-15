@@ -6,7 +6,11 @@ import LoadingSpinner from "../../components/Utilities/LoadingSpinner";
 
 const PropertyDetails = () => {
   const { propertyId } = useParams();
-  const { fetchPropertyDetail, isLoading: propertyLoading, deleteProperty } = useProperties();
+  const {
+    fetchPropertyDetail,
+    isLoading: propertyLoading,
+    deleteProperty,
+  } = useProperties();
   const {
     rooms,
     isLoading: roomsLoading,
@@ -30,7 +34,6 @@ const PropertyDetails = () => {
     loadData();
   }, [propertyId, fetchPropertyDetail, fetchRooms]);
 
-
   const propertyRooms = rooms.filter(
     (room) =>
       String(room.property?.property_id || room.property) === String(propertyId)
@@ -47,11 +50,15 @@ const PropertyDetails = () => {
   const handleDeleteProperty = async () => {
     try {
       await deleteProperty(propertyId);
-      navigate("/property/")
+      navigate("/property/");
     } catch (error) {
       console.error("Failed to delete property:", error);
     }
-  }
+  };
+
+  const handleRoomEdit = async () => {
+    navigate(`/property/${propertyId}/edit-room/`);
+  };
 
   if (propertyLoading || roomsLoading || !property) return <LoadingSpinner />;
 
@@ -213,7 +220,21 @@ const PropertyDetails = () => {
                         </div>
                       )}
 
-                      <div className="mt-4 flex justify-end">
+                      <div className="mt-8 flex justify-between">
+              
+                          <div key={room.room_id}>
+                        
+                            <button
+                              onClick={() =>
+                                navigate(
+                                  `/property/${propertyId}/edit-room/${room.room_id}`
+                                )
+                              }
+                            >
+                              Edit
+                            </button>
+                          </div>
+              
                         <button
                           onClick={() => setRoomToDelete(room.room_id)}
                           className="font-quicksand font-bold text-red-500 hover:text-red-700 text-sm"
@@ -226,7 +247,7 @@ const PropertyDetails = () => {
                 ))}
               </div>
             )}
-            {roomError && <div className="text-red-500 mt-2">{roomError}</div>}
+            {/* {roomError && <div className="text-red-500 mt-2">{roomError}</div>} */}
           </div>
 
           {/* Delete Confirmation Modal */}
@@ -276,7 +297,11 @@ const PropertyDetails = () => {
                     Cancel
                   </button>
                   <button
-                    onClick={() => handleDeleteRoom(roomToDelete)}
+                    onClick={() =>
+                      navigate(
+                        `/property/${propertyId}/edit-room/${room.room_id}`
+                      )
+                    }
                     className="px-4 py-2 font-quicksand font-semibold bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
                   >
                     Delete

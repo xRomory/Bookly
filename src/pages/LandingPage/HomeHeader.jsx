@@ -34,7 +34,7 @@ const HomeHeader = () => {
         </div>
       </div>
 
-      <div className="book-card w-[80%] bg-white h-[17vw] absolute bottom-[-8rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded-lg p-4">
+      {/* <div className="book-card w-[80%] bg-white h-[17vw] absolute bottom-[-8rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded-lg p-4">
         <h3 className="font-bold text-3xl p-[2rem_3rem]">
           Want to book a reservation?
         </h3>
@@ -76,7 +76,7 @@ const HomeHeader = () => {
             <FaArrowRight className="icon text-2xl"/>
           </button>
         </div>
-      </div>
+      </div> */}
     </section>
   );
 };

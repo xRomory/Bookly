@@ -19,6 +19,7 @@ import PropertyPage from "./pages/PropertyListing/PropertyPage.jsx";
 import PropertyDetails from "./pages/PropertyListing/PropertyDetails.jsx";
 import AddProperty from "./pages/PropertyListing/AddProperty.jsx";
 import AddRoom from "./pages/PropertyListing/AddRoom.jsx";
+import RoomEdit from "./components/PropertyListing/RoomEdit.jsx";
 import UserProfileSettings from "./pages/UserProfileSettings/UserProfileSettings.jsx";
 import AdminDashboard from "./pages/AdminDashboard/AdminDashboard.jsx";
 import RenterDashboardPage from "./pages/RenterDashboard/RenterDashboardPage.jsx";
@@ -61,6 +62,7 @@ function App() {
         <Route path="/property/" element={<PropertyPage />} />
         <Route path="/property/:propertyId" element={<PropertyDetails />} />
         <Route path="/property/:propertyId/add-room" element={<AddRoom />} />
+        <Route path="/property/:propertyId/edit-room/:roomId" element={<RoomEdit />} />
         <Route path="/property/add-property/" element={<AddProperty />} />
         <Route path="/user-settings/" element={<UserProfileSettings />} />
         <Route path="/owner-dashboard/" element={<RenterDashboardPage />} />
