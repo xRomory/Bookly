@@ -85,6 +85,78 @@ export const RoomProvider = ({ children }) => {
     [fetchRooms, currentPage]
   );
 
+  const getRoomById = useCallback(async (roomId) => {
+    setIsLoading(true);
+    try {
+      const response = await api.get(`/rooms/room-detail/${roomId}/`);
+      setCurrentRoom(response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching room:", error);
+      setError(error.response?.data?.message || "Failed to load room");
+      throw error;
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  const updateRoom = useCallback(
+    async (roomId, roomData) => {
+      setIsLoading(true);
+
+      try {
+        const formData = new FormData();
+
+        // Append all simple fields
+        formData.append("property", roomData.property);
+        formData.append("room_name", roomData.room_name);
+        formData.append("room_type", roomData.room_type);
+        formData.append("room_description", roomData.room_description);
+        formData.append("price_per_night", roomData.price_per_night);
+        formData.append("room_status", roomData.room_status);
+        formData.append("capacity", roomData.capacity);
+
+        if (
+          roomData.room_image &&
+          typeof roomData.room_image !== "string" &&
+          !roomData.room_image.id
+        ) {
+          formData.append("room_image", roomData.room_image);
+        }
+
+        formData.append("amenities", JSON.stringify(roomData.amenities));
+
+        if (roomData.images && roomData.images.length > 0) {
+          roomData.images.forEach((img) => {
+            if (img && typeof img !== "string" && !img.id) {
+              formData.append("images", img);
+            }
+          });
+        }
+
+        const response = await api.patch(
+          `/rooms/room-detail/${roomId}/`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+
+        await fetchRooms(currentPage);
+        return response.data;
+      } catch (error) {
+        console.error("Error updating room:", error.response?.data);
+        setError(error.response?.data || "Failed to update room");
+        throw error;
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [fetchRooms, currentPage]
+  );
+
   const deleteRoom = useCallback(async (roomId) => {
     setIsLoading(true);
     try {
@@ -113,7 +185,9 @@ export const RoomProvider = ({ children }) => {
     setPageSize,
     fetchRooms,
     createRoom,
+    updateRoom,
     deleteRoom,
+    getRoomById,
   };
 
   return <RoomContext.Provider value={value}>{children}</RoomContext.Provider>;

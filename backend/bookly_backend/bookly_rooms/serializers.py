@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import BooklyRooms, RoomImage
 from bookly_property.serializers import BooklyPropertySerializers, PropertyOwnerSerializers
+from bookly_property.models import BooklyProperty
 
 class RoomImageSerializers(serializers.ModelSerializer):
     class Meta:
@@ -89,3 +90,46 @@ class BooklyRoomSerializer(serializers.ModelSerializer):
             'images',
             'main_image',
         ]
+
+class RoomUpdateSerializer(serializers.ModelSerializer):
+    property = serializers.PrimaryKeyRelatedField(
+        queryset=BooklyProperty.objects.all()
+    )
+    images = serializers.ListField(
+        child=serializers.ImageField(allow_empty_file=False, use_url=False),
+        write_only=True,
+        required=False
+    )
+
+    class Meta:
+        model = BooklyRooms
+        fields = [
+            'property',
+            'room_name',
+            'room_type',
+            'room_description',
+            'price_per_night',
+            'room_image',
+            'amenities',
+            'room_status',
+            'capacity',
+            'images',
+        ]
+
+        extra_kwargs = {
+            'property': {'required': True},
+            'room_image': {'required': True},
+        }
+
+    def update(self, instance, validated_data):
+        images_data = validated_data.pop('images', [])
+        # Update simple fields
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+        instance.save()
+
+        # Add new images if provided
+        for image in images_data:
+            RoomImage.objects.create(room=instance, image=image)
+
+        return instance

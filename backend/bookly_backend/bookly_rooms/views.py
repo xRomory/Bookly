@@ -9,7 +9,7 @@ from rest_framework.response import Response
 from rest_framework.reverse import reverse
 from bookly_property.models import BooklyProperty
 from .models import BooklyRooms
-from .serializers import BooklyRoomSerializer, BooklyRoomCreateSerializer
+from .serializers import BooklyRoomSerializer, BooklyRoomCreateSerializer, RoomUpdateSerializer
 
 # Create your views here.
 @api_view(['GET'])
@@ -63,6 +63,7 @@ class IsPropertyOwnerOrReadOnly(permissions.BasePermission):
         return obj.property.user == request.user
 
 class BooklyRoomDetailView(generics.RetrieveUpdateDestroyAPIView):
+
     queryset = BooklyRooms.objects.select_related('property__user').all()
     serializer_class = BooklyRoomSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsPropertyOwnerOrReadOnly]
@@ -72,3 +73,8 @@ class BooklyRoomDetailView(generics.RetrieveUpdateDestroyAPIView):
         context = super().get_serializer_context()
         context['request'] = self.request
         return context
+    
+    def get_serializer_class(self):
+        if self.request.method in ['PUT', 'PATCH']:
+            return RoomUpdateSerializer
+        return BooklyRoomSerializer

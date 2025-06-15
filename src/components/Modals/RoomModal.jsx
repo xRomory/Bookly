@@ -33,9 +33,9 @@ const RoomModal = ({ isOpen, onClose, property }) => {
           <button onClick={onClose} className="cancel">
             Cancel
           </button>
-          <button className="confirm">
+          {/* <button className="confirm">
             Book
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

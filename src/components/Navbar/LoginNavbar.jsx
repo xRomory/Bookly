@@ -31,11 +31,11 @@ const LoginNavbar = () => {
 
         <div className="navbar-link-cont items-center justify-center content-center">
           <ul className="nav-lists flex items-center">
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Link to="/property-brands" className="nav-link">
                 Hotels
               </Link>
-            </li>
+            </li> */}
             <li className="nav-item">
               <Link to="/maps" className="nav-link">
                 Maps

@@ -113,7 +113,7 @@ const UserDashboard = () => {
           <div className="user-profile-container w-[90%] bg-white rounded-lg shadow-md p-4 md:p-6 mb-6">
             <div className="flex flex-col md:flex-row items-center">
               <div className="user-profile-icon-div flex items-center justify-center mb-4 md:mb-0">
-                <div className="icon-circle-bg relative rounded-full w-[100px] h-[100px] md:w-[150px] md:h-[150px] lg:w-[175px] lg:h-[175px] bg-teal-400"></div>
+                {/* <div className="icon-circle-bg relative rounded-full w-[100px] h-[100px] md:w-[150px] md:h-[150px] lg:w-[175px] lg:h-[175px] bg-teal-400"></div> */}
               </div>
               <div className="user-info-div md:ml-6 text-center md:text-left">
                 <div className="user-name-text mb-4">
