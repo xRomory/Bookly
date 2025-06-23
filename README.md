@@ -1,6 +1,6 @@
 # Bookly
 Database Systems final project COM232 <br>
-***Disclaimer: This is only a personal project for my growth as a programmer and developer*** <br>
+***Disclaimer: This project is a personal project for learning purposes and my growth as a programmer and developer*** <br>
 
 # Main Features
 - Users can list their properties
