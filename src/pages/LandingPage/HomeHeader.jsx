@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import "./HomePage.scss";
-
-import DateModal from "../../components/DatePicker/DateModal";
-
-import { FaArrowRight } from "react-icons/fa";
+import BookingForm from "./BookingForm";
+import mainBg from "/resort6.webp"
 
 const HomeHeader = () => {
   const today = new Date();
@@ -24,59 +22,30 @@ const HomeHeader = () => {
   };
 
   return (
-    <section className="home-header items-center justify-center flex relative h-[38vw] mb-64 p-32">
-      <div className="header-container absolute left-[15%] top-[35%]">
-        <div className="header-text flex">
-          <h1 className="tagline-header w-[55%] ">
-            Where Your Journey Begins—
-            <strong>Book Your Perfect Stay Today!</strong>
-          </h1>
+    <section className="relative h-[700px]">
+      <img 
+        src={mainBg}
+        alt="Mountain background with forest" 
+        loading="lazy"
+        className="absolute w-full h-full object-cover"
+      />
+
+      <div className="inset-0 absolute bg-gradient-to-t from-black/60 to-transparent"></div>
+
+      <div className="absolute inset-0 flex flex-col justify-center px-4 md:px-8">
+        <div className="container mx-auto">
+          <div className="max-w-3xl">
+            <h1 className="font-lora text-zinc-800 text-4xl md:text-5xl mb-4 leading-tight">
+              Where Your Journey Begins— <br />
+              <strong>Book Your Perfect Stay Today!</strong>
+            </h1>
+          </div>
+
+          <div className="mt-8 mb-56 md:mb-0 flex items-center justify-center relative">
+            <BookingForm />
+          </div>
         </div>
       </div>
-
-      {/* <div className="book-card w-[80%] bg-white h-[17vw] absolute bottom-[-8rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded-lg p-4">
-        <h3 className="font-bold text-3xl p-[2rem_3rem]">
-          Want to book a reservation?
-        </h3>
-        <div className="card-div grid p-[0rem_2rem] grid-cols-[1fr_2fr]">
-          <div className="location-div w-[100%] ml-4">
-            <label
-              htmlFor="schedule"
-              className="location-label flex flex-col font-semibold text-2xl"
-            >
-              Location
-              <input
-                type="text"
-                className="location-input text-[1rem] w-[85%] p-[0.8rem_1rem] mt-6"
-                placeholder="Where do you want to book?"
-              />
-            </label>
-          </div>
-
-          <div className="date-div w-[100%] flex justify-evenly gap-1">
-            <label
-              htmlFor="schedule"
-              className="sched-in-label font-semibold text-2xl"
-            >
-              Check-in
-              <DateModal selectedDate={checkInDate} onChange={handleCheckInChange}/>
-            </label>
-
-            <label
-              htmlFor="schedule"
-              className="sched-out-label font-semibold text-2xl"
-            >
-              Check-out
-              <DateModal selectedDate={checkOutDate} onChange={setCheckOutDate}/>
-            </label>
-          </div>
-
-          <button className="book-btn flex items-center justify-center gap-4 absolute w-[15%] h-[20%] rounded-lg font-semibold right-24 bottom-0 translate-y-8">
-            Book Now!
-            <FaArrowRight className="icon text-2xl"/>
-          </button>
-        </div>
-      </div> */}
     </section>
   );
 };

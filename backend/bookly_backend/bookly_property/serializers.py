@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import PropertyImage, BooklyProperty
+from .models import PropertyImage, BooklyProperty, CityProvince, Region
 from bookly_user.serializers import BooklyUserSerializer
 
 class PropertyImageSerializer(serializers.ModelSerializer):
@@ -81,3 +81,23 @@ class PropertyOwnerSerializers(serializers.ModelSerializer):
         if obj.property_logo:
             return self.context['request'].build_absolute_uri(obj.property_logo.url)
         return None
+    
+class RegionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Region
+        fields = [
+            'id',
+            'name'
+        ]
+    
+class CityProvinceSerializer(serializers.ModelSerializer):
+    region_name = serializers.CharField(source='region.name', read_only=True)
+
+    class Meta:
+        model = CityProvince
+        fields = [
+            'id',
+            'name',
+            'region',
+            'region_name',
+        ]

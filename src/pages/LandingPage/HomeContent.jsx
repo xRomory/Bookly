@@ -1,121 +1,55 @@
 import React from "react";
 import "./HomePage.scss";
 
-import { BsArrowRightShort } from "react-icons/bs";
-import Property from "../../data/Property.js";
-
 const HomeContent = () => {
-  const categories = [
-    ...new Set(Property.property_brands.map((brand) => brand.category)),
-  ].slice(0, 4);
 
-  const hotelName = [
-    ...new Set(Property.property_brands.map((name) => name.name)),
-  ].slice(0, 4);
+  const accommodations = [
+    {
+      id: 1,
+      title: 'Hotels',
+      image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+    },
+    {
+      id: 2,
+      title: 'Apartments',
+      image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+    },
+    {
+      id: 3,
+      title: 'Motels',
+      image: 'https://images.unsplash.com/photo-1561501878-aabd62634533?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+    },
+    {
+      id: 4,
+      title: 'Villas',
+      image: 'https://images.unsplash.com/photo-1582610116397-edb318620f90?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+    }
+  ];
 
   return (
-    <section className="content-container w-full h-full p-[1rem_0]">
-      <div className="accommodation-type-container m-[3rem_5rem] p-[0_5rem]">
-        <div className="header-div">
-          <h2 className="header-text font-bold text-5xl mb-8">
-            Explore Accommodation Type
-          </h2>
-          <p className="subtext text-lg">
-            Discover Bookly's range of property types for every user's
-            preferences
-          </p>
-        </div>
+    <section className="my-20">
+      <h2 className="text-3xl md:text-4xl font-bold font-lora mb-2">Explore Accommodation Type</h2>
+      <p className="text-main-color mb-6 font-quicksand md:text-xl text-lg">Discover Bookly's range of property types for every user's preferences</p>
 
-        <div className="main-content grid grid-cols-4 mt-8 p-8 gap-4">
-          {categories.map((category, index) => {
-            const matchedBrand = Property.property_brands.find(
-              (brand) => brand.category === category
-            );
-
-            return (
-              <div
-                key={index}
-                className="single-property-type overflow-hidden rounded-2xl shadow-[0_2px_8px_2px_rgba(178,178,178,0.4)]"
-              >
-                <div className="property-image w-full h-60 relative overflow-hidden">
-                  <img
-                    src={matchedBrand.image}
-                    alt={category}
-                    className="category-img"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <div className="overlay-info absolute flex items-start flex-col bottom-0 w-full h-0 bg-white overflow-hidden">
-                    <h3>{category}</h3>
-                    <BsArrowRightShort className="icon absolute right-5 bottom-5 p-2 rounded-[50%] cursor-pointer" />
-                  </div>
-                </div>
-
-                <div className="property-footer p-4 h-[5rem] relative">
-                  <div className="footer-text flex justify-center">
-                    <h3 className="text-xl font-semibold">{category}</h3>
-                    <span className="flex items-start">
-                      <span className="logo absolute bottom-4 right-4">
-                        Bookly
-                      </span>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-      <div className="accommodation-type-container m-[3rem_5rem] p-[0_5rem]">
-        <div className="header-div">
-          <h2 className="header-text font-bold text-5xl mb-8">
-            Explore Property Brands
-          </h2>
-          <p className="subtext text-lg">
-            Discover famous property brands that can be found in Metro Manila
-          </p>
-        </div>
-
-        <div className="main-content grid grid-cols-4 mt-8 p-8 gap-4">
-          {hotelName.map((name, index) => {
-            const matchedBrand = Property.property_brands.find(
-              (brand) => brand.name === name
-            );
-
-            return (
-              <div
-                key={index}
-                className="single-property-type overflow-hidden rounded-2xl shadow-[0_2px_8px_2px_rgba(178,178,178,0.4)]"
-              >
-                <div className="property-image w-full h-60 relative overflow-hidden">
-                  <img
-                    src={matchedBrand.logo}
-                    alt="Sample Image"
-                    className="w-full object-cover object-center"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <div className="overlay-info absolute flex items-start flex-col bottom-0 w-full h-0 bg-white overflow-hidden">
-                    <h3>{name}</h3>
-                    <BsArrowRightShort className="icon absolute right-5 bottom-5 p-2 rounded-[50%] cursor-pointer" />
-                  </div>
-                </div>
-
-                <div className="property-footer p-4 h-[5rem] relative">
-                  <div className="footer-text flex justify-center">
-                    <h3 className="text-xl font-semibold">{name}</h3>
-                    <span className="flex items-start">
-                      <span className="logo absolute bottom-4 right-4">
-                        Bookly
-                      </span>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+        {accommodations.map((accommodation) => (
+          <div key={accommodation.id} className="bg-secondary-white rounded-lg shadow-md overflow-hidden">
+            <div className="h-48 overflow-hidden">
+              <img 
+                src={accommodation.image} 
+                alt={accommodation.title} 
+                className="w-full h-full object-cover transition-transform hover:scale-105"
+              />
+            </div>
+            <h2 className="px-4 py-3 text-lg font-playfair-display text-blue-900 italic font-bold">Bookly</h2>
+            <div className="p-4 flex justify-between items-center">
+              <h3 className="text-lg font-quicksand font-medium">{accommodation.title}</h3>
+              <button className="text-blue-900 hover:text-blue-800 font-quicksand font-semibold">
+                Book
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );
