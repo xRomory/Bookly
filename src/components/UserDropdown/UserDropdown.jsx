@@ -5,7 +5,7 @@ import { useAuth } from "../../context/AuthContext";
 import { IoPersonCircleOutline } from "react-icons/io5";
 import { IoClose } from "react-icons/io5";
 
-const UserDropdown = () => {
+const UserDropdown = ({ isMobile, navLinks }) => {
   const { logout, user } = useAuth();
   const [showDropdown, setShowDropdown] = useState(false);
   const [name, setName] = useState("");
@@ -17,27 +17,12 @@ const UserDropdown = () => {
 
   const handleSignOut = () => {
     logout();
-    navigate("/");
+    navigate("/login");
   };
 
   useEffect(() => {
     if (user) setName(user.first_name);
   }, [user]);
-
-  // useEffect(() => {
-  //   const userData = localStorage.getItem("user");
-  //   if(userData) {
-  //     try {
-  //       const parsedUser = JSON.parse(userData);
-  //       const username = `${parsedUser.first_name}`;
-  //       setName(username);
-
-  //       setIsAdmin(parsedUser.is_admin || parsedUser.is_superuser);
-  //     } catch(error) {
-  //       console.error("Error parsing user data:", error);
-  //     }
-  //   }
-  // }, []);
 
   useEffect(() => {
     if (showDropdown) {
@@ -58,7 +43,7 @@ const UserDropdown = () => {
     <div className="user-dropdown relative">
       <IoPersonCircleOutline
         onClick={toggleDropdown}
-        className="cursor-pointer text-4xl nav-link transition-colors"
+        className="cursor-pointer text-4xl nav-link transition-colors hover:text-orange-500"
       />
 
       {showDropdown && (
@@ -80,7 +65,23 @@ const UserDropdown = () => {
                 className="absolute top-8 z-[1000] right-8 text-2xl hover:text-blue-900 cursor-pointer"
               />
 
-              <ul className="mt-8">
+              {isMobile && (
+                <ul className="mt-4 mb-8 border-b border-gray-200 pb-6">
+                  {navLinks.map((link) => (
+                    <li key={link.to} className="menu mb-4">
+                      <Link
+                        to={link.to}
+                        className="font-quicksand text-xl font-semibold"
+                        onClick={() => setShowDropdown(false)}
+                      >
+                        {link.text}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              <ul className="md:mt-8">
                 {isRegularUser && (
                   <>
                     <li className="menu">
@@ -91,14 +92,14 @@ const UserDropdown = () => {
                         User Dashboard
                       </Link>
                     </li>
-                    {/* <li className="menu">
+                    <li className="menu">
                       <Link
                         to="/owner-dashboard/"
                         className="font-quicksand text-xl font-semibold"
                       >
                         Owner's Dashboard
                       </Link>
-                    </li> */}
+                    </li>
                   </>
                 )}
 
@@ -113,7 +114,7 @@ const UserDropdown = () => {
                   </li>
                 )}
 
-                <li className="menu absolute text-red-500">
+                <li className="menu mt-[1em] absolute text-red-500">
                   <button
                     onClick={handleSignOut}
                     className="font-quicksand text-xl font-semibold"

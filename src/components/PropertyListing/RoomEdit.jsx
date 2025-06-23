@@ -178,7 +178,7 @@ const RoomEdit = () => {
   if (isLoading) return <LoadingSpinner />;
 
   return (
-    <div className="container  mx-auto px-3 py-8">
+    <div className="container mx-auto px-3 py-8">
       <div className="mb-6">
         <button
           onClick={() => navigate(-1)}

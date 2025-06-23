@@ -5,8 +5,8 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 
-from .models import BooklyProperty, PropertyImage
-from .serializers import BooklyPropertySerializers, BooklyPropertyCreateSerializer
+from .models import BooklyProperty, CityProvince, Region, PropertyImage
+from .serializers import BooklyPropertySerializers, BooklyPropertyCreateSerializer, CityProvinceSerializer, RegionSerializer
 
 # Create your views here.
 @api_view(['GET'])
@@ -14,6 +14,34 @@ from .serializers import BooklyPropertySerializers, BooklyPropertyCreateSerializ
 def get_property(request):
     properties = BooklyProperty.objects.all()
     serializer = BooklyPropertySerializers(properties, many=True, context={'request': request})
+    return Response(serializer.data)
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def city_autocomplete(request):
+    query = request.GET.get('q', '').strip()
+    if not query:
+        return Response([])
+    
+    cities = CityProvince.objects.filter(name__icontains=query).select_related('region')[:10]
+    serializer = CityProvinceSerializer(cities, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def region_autocomplete(request):
+    query = request.GET.get('q', '').strip()
+    if not query:
+        return Response([])
+    regions = Region.objects.filter(name__icontains=query)[:10]
+    serializer = RegionSerializer(regions, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def cities_by_region(request, region_id):
+    cities = CityProvince.objects.filter(region_id=region_id)
+    serializer = CityProvinceSerializer(cities, many=True)
     return Response(serializer.data)
 
 class IsOwnerOrAdmin(permissions.BasePermission):

@@ -121,6 +121,17 @@ export const PropertyProvider = ({ children }) => {
     fetchProperties();
   }, []);
 
+  const fetchCitySuggestions = useCallback(async (query) => {
+    if(!query) return [];
+    try {
+      const response = await api.get(`/property/cities/autocomplete/?q=${encodeURIComponent(query)}`);
+      return response.data
+    } catch (error) {
+      console.error("Error fetching city suggestions:", error);
+      return []
+    }
+  }, []);
+
   const value = useMemo(
     () => ({
       properties,
@@ -129,17 +140,10 @@ export const PropertyProvider = ({ children }) => {
       fetchProperties,
       fetchPropertyDetail,
       fetchMyProperties,
+      fetchCitySuggestions,
       createProperty,
       deleteProperty,
     }),
-    // [
-    //   properties,
-    //   isLoading,
-    //   error,
-    //   fetchProperties,
-    //   fetchMyProperties,
-    //   createProperty,
-    // ]
   );
 
   return (

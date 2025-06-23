@@ -43,6 +43,11 @@ const SearchLocationNav = () => {
 
           <div className="navbar-link-cont items-center justify-center h-max">
             <ul className="nav-lists flex items-center flex-col justify-center w-full">
+              <li className="nav-item">
+                <Link to="/" className="nav-link">
+                  Home
+                </Link>
+              </li>
               {/* <li className="nav-item">
                 <Link to="/property-brands" className="nav-link">
                   Hotels

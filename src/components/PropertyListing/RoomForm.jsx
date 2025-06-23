@@ -127,10 +127,10 @@ const RoomForm = ({ propertyId }) => {
   if(isLoading) return <LoadingSpinner/>;
 
   return (
+    
     <form onSubmit={handleSubmit} className="space-y-8">
       <div className="space-y-6">
         <h2 className="font-quicksand text-2xl font-bold text-gray-800">Add New Room</h2>
-
         <div>
           <label
             htmlFor="name"
