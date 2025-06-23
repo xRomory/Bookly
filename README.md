@@ -35,7 +35,14 @@ Database Systems final project COM232 <br>
 - Rest Framework: <br> pip install djangorestframework
 - Cors Headers: <br> pip install django-cors-headers
 - Pillow (to handle images): <br> pip install pillow
-<br><br>
-***Read Django Documentation:***<br>
-https://docs.djangoproject.com/en/5.2/intro/tutorial01/<br>
-https://docs.djangoproject.com/en/5.2/
+
+## References:
+- Images:
+  - Brand Logos:
+    - <a href="https://www.vecteezy.com/free-png/dark">Dark PNGs by Vecteezy</a>
+    - <a href="https://www.vecteezy.com/free-png/mascot">Mascot PNGs by Vecteezy</a>
+    - <a href="https://www.vecteezy.com/free-png/logo">Logo PNGs by Vecteezy</a>
+    - <a href="https://www.vecteezy.com/free-png/car">Car PNGs by Vecteezy</a>
+    - <a href="https://www.flaticon.com/free-icons/bedroom" title="bedroom icons">Bedroom icons created by Freepik - Flaticon</a>
+    - <a href="https://www.flaticon.com/free-icons/building" title="building icons">Building icons created by Freepik - Flaticon</a>
+    - <a href="https://www.flaticon.com/free-icons/map" title="map icons">Map icons created by Pixel perfect - Flaticon</a>
