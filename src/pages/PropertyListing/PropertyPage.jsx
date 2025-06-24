@@ -1,5 +1,6 @@
 import React from 'react'
 import Header from '../../components/PropertyListing/Header'
+import LoginNavbar from '../../components/Navbar/LoginNavbar'
 import PropertyList from './PropertyList'
 
 const PropertyPage = () => {

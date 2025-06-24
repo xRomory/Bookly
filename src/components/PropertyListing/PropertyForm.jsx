@@ -1,22 +1,35 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useProperties } from "../../context/PropertyContext";
+import geocodeAddress from "../../utils/geocodeAddress";
 import ImageUpload from "./ImageUpload";
 import MapPicker from "./MapPicker";
-import { useProperties } from "../../context/PropertyContext";
+
+const debounce = (func, delay) => {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => func(...args), delay);
+  };
+};
 
 const PropertyForm = () => {
-  const { fetchCitySuggestions, createProperty } = useProperties();
-  const [citySuggestions, setCitySuggestions] = useState([]);
+  const { fetchRegionSuggestions, fetchCitiesByRegion, createProperty } =
+    useProperties();
   const [regionSuggestions, setRegionSuggestions] = useState([]);
-  const [showDropdown, setShowDropdown] = useState(false);
-  const dropdownRef = useRef();
+  const [cityOptions, setCityOptions] = useState([]);
+  const [geocodeTrigger, setGeocodeTrigger] = useState(0);
+  const [showRegionDropdown, setShowRegionDropdown] = useState(false);
+  const [showCityDropdown, setShowCityDropdown] = useState(false);
   const navigate = useNavigate();
 
   const [property, setProperty] = useState({
     name: "",
     address: "",
     region: "",
+    regionId: null,
     city: "",
+    cityId: null,
     description: "",
     contact_number: "",
     logo: null,
@@ -44,19 +57,74 @@ const PropertyForm = () => {
     setProperty((prev) => ({ ...prev, [name]: value }));
   };
 
+  // Region Autocomplete
   const handleRegionChange = async (e) => {
     const value = e.target.value;
-    setRegionSuggestions(value);
-
-    if(value > 1) {
-      const suggestions = await fetchCitySuggestions(value);
+    setProperty((prev) => ({
+      ...prev,
+      region: value,
+      regionId: null,
+      city_province: "",
+      cityId: null,
+    }));
+    if (value.length > 1) {
+      const suggestions = await fetchRegionSuggestions(value);
       setRegionSuggestions(suggestions);
-      setShowDropdown(true);
+      setShowRegionDropdown(true);
     } else {
       setRegionSuggestions([]);
-      setShowDropdown(false);
+      setShowRegionDropdown(false);
     }
-  }
+  };
+
+  const handleRegionSelect = async (region) => {
+    setProperty((prev) => ({
+      ...prev,
+      region: region.name,
+      regionId: region.id,
+      city: "",
+      cityId: null,
+    }));
+    setShowRegionDropdown(false);
+
+    const cities = await fetchCitiesByRegion(region.id);
+    setCityOptions(cities);
+    setShowCityDropdown(true);
+  };
+
+  // City Dropdown
+  const handleCitySelect = (city) => {
+    setProperty((prev) => ({
+      ...prev,
+      city: city.name,
+      cityId: city.id,
+    }));
+
+    setShowCityDropdown(false);
+  };
+
+  useEffect(() => {
+    const geocode = debounce(async () => {
+      if (property.address && property.city && property.region) {
+        const coords = await geocodeAddress({
+          address: property.address,
+          city: property.city,
+          region: property.region,
+        });
+
+        if (coords) {
+          setProperty((prev) => ({
+            ...prev,
+            location: coords,
+          }));
+        }
+      }
+    }, 1000);
+
+    geocode();
+
+    return () => geocode.cancel?.();
+  }, [property.address, property.city, property.region]);
 
   const handleLogoUpload = (file) => {
     setProperty((prev) => ({ ...prev, logo: file }));
@@ -73,11 +141,15 @@ const PropertyForm = () => {
   const validateForm = () => {
     const newErrors = {};
     if (!property.name.trim()) newErrors.name = "Property name is required";
+    if (!property.region.trim()) newErrors.region = "Region is required";
+    if (!property.city.trim()) newErrors.region = "City is required";
     if (!property.address.trim()) newErrors.address = "Address is required";
     if (!property.logo) newErrors.logo = "Property logo is required";
     if (!property.image) newErrors.image = "Property image is required";
-    if (!property.contact_number.trim()) newErrors.contact_number = "Contact number is required";
-    if (!property.description.trim()) newErrors.description = "Description is required";
+    if (!property.contact_number.trim())
+      newErrors.contact_number = "Contact number is required";
+    if (!property.description.trim())
+      newErrors.description = "Description is required";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -93,6 +165,8 @@ const PropertyForm = () => {
       await createProperty({
         property_name: property.name,
         property_logo: property.logo,
+        region: property.regionId,
+        city_province: property.cityId,
         address: property.address,
         property_description: property.description,
         latitude: parseFloat(Number(property.location.lat).toFixed(5)),
@@ -111,7 +185,7 @@ const PropertyForm = () => {
   };
 
   return (
-    <div>
+    <div className="p-4">
       <div className="mb-6">
         <button
           onClick={() => navigate(-1)}
@@ -132,6 +206,7 @@ const PropertyForm = () => {
           Back to Property Dashboard
         </button>
       </div>
+
       <form onSubmit={handleSubmit} className="space-y-8">
         <div className="space-y-6">
           <h2 className="text-2xl font-bold text-main-color font-quicksand">
@@ -161,6 +236,83 @@ const PropertyForm = () => {
             )}
           </div>
 
+          <div className="relative">
+            <label
+              htmlFor="region"
+              className="block text-main-color font-quicksand font-medium text-gray-700 mb-1"
+            >
+              Region
+            </label>
+            <input
+              type="text"
+              id="region"
+              name="region"
+              value={property.region}
+              onChange={handleRegionChange}
+              className={`text-main-color font-quicksand w-full px-3 py-2 border rounded-md ${
+                errors.address ? "border-red-500" : "border-gray-300"
+              }`}
+              placeholder="National Capital Region (NCR)"
+              required
+            />
+
+            {showRegionDropdown && regionSuggestions.length > 0 && (
+              <ul className="absolute z-10 bg-secondary-white border border-teal-500 w-full mt-1 rounded shadow max-h-48 overflow-y-auto">
+                {regionSuggestions.map((region) => (
+                  <li
+                    key={region.id}
+                    className="px-4 py-2 hover:bg-teal-100 cursor-pointer font-quicksand font-medium"
+                    onClick={() => handleRegionSelect(region)}
+                  >
+                    {region.name}
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            {errors.region && (
+              <p className="mt-1 text-sm text-red-500">{errors.region}</p>
+            )}
+          </div>
+
+          <div className="relative">
+            <label
+              htmlFor="city"
+              className="block text-main-color font-quicksand font-medium text-gray-700 mb-1"
+            >
+              City/Province
+            </label>
+            <input
+              type="text"
+              id="city"
+              name="city"
+              value={property.city}
+              onFocus={() => setShowCityDropdown(true)}
+              className={`text-main-color font-quicksand w-full px-3 py-2 border rounded-md ${
+                errors.address ? "border-red-500" : "border-gray-300"
+              }`}
+              placeholder="Enter City Location"
+            />
+
+            {showCityDropdown && cityOptions.length > 0 && (
+              <ul className="absolute z-10 bg-secondary-white border border-teal-500 w-full mt-1 rounded shadow max-h-48 overflow-y-auto">
+                {cityOptions.map((city) => (
+                  <li
+                    key={city.id}
+                    className="px-4 py-2 hover:bg-teal-100 cursor-pointer font-quicksand font-medium"
+                    onClick={() => handleCitySelect(city)}
+                  >
+                    {city.name}
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            {errors.region && (
+              <p className="mt-1 text-sm text-red-500">{errors.region}</p>
+            )}
+          </div>
+
           <div>
             <label
               htmlFor="address"
@@ -173,6 +325,18 @@ const PropertyForm = () => {
               id="address"
               name="address"
               value={property.address}
+              onBlur={async () => {
+                if (property.address && property.city && property.region) {
+                  const coords = await geocodeAddress({
+                    address: property.address,
+                    city: property.city,
+                    region: property.region,
+                  });
+                  if (coords) {
+                    setProperty((prev) => ({ ...prev, location: coords }));
+                  }
+                }
+              }}
               onChange={handleInputChange}
               className={`text-main-color font-quicksand w-full px-3 py-2 border rounded-md ${
                 errors.address ? "border-red-500" : "border-gray-300"
@@ -185,27 +349,22 @@ const PropertyForm = () => {
           </div>
 
           <div>
-            <label
-              htmlFor="region"
-              className="block text-main-color font-quicksand font-medium text-gray-700 mb-1"
-            >
-              Region
+            <label className="block text-main-color font-quicksand font-semibold text-gray-700 mb-1">
+              Property Location
             </label>
-            <input
-              type="text"
-              id="region"
-              name="region"
-              value={property.region}
-              onChange={handleInputChange}
-              className={`text-main-color font-quicksand w-full px-3 py-2 border rounded-md ${
-                errors.address ? "border-red-500" : "border-gray-300"
-              }`}
-              placeholder="National Capital Region (NCR)"
-            />
+            <p className="text-sm text-main-color font-quicksand text-gray-500 mb-2">
+              Pin the location of your property on the map below
+            </p>
 
-            {errors.address && (
-              <p className="mt-1 text-sm text-red-500">{errors.address}</p>
-            )}
+            <p className="text-xs font-bold italic text-main-color font-quicksand text-gray-500 mb-2">
+              Please patiently wait for the map location to load your location*
+            </p>
+            <div className="h-96 border border-gray-300 rounded-md overflow-hidden">
+              <MapPicker
+                selectedLocation={property.location}
+                onLocationSelect={handleLocationSelect}
+              />
+            </div>
           </div>
 
           <div>
@@ -298,21 +457,6 @@ const PropertyForm = () => {
               error={errors.image}
               label="Upload Property Image"
             />
-          </div>
-
-          <div>
-            <label className="block text-main-color font-quicksand font-semibold text-gray-700 mb-1">
-              Property Location
-            </label>
-            <p className="text-sm text-main-color font-quicksand text-gray-500 mb-2">
-              Pin the location of your property on the map below
-            </p>
-            <div className="h-96 border border-gray-300 rounded-md overflow-hidden">
-              <MapPicker
-                selectedLocation={property.location}
-                onLocationSelect={handleLocationSelect}
-              />
-            </div>
           </div>
         </div>
 
