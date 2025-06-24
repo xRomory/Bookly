@@ -50,6 +50,8 @@ export const PropertyProvider = ({ children }) => {
     async ({
       property_name,
       property_logo,
+      region,
+      city_province,
       address,
       property_description,
       latitude,
@@ -62,6 +64,8 @@ export const PropertyProvider = ({ children }) => {
         const formData = new FormData();
         formData.append("property_name", property_name);
         formData.append("property_logo", property_logo);
+        formData.append("region", region);
+        formData.append("city_province", city_province);
         formData.append("address", address);
         formData.append("property_description", property_description);
         formData.append("latitude", latitude);
@@ -132,6 +136,30 @@ export const PropertyProvider = ({ children }) => {
     }
   }, []);
 
+  const fetchRegionSuggestions = useCallback(async (query) => {
+    if(!query) return [];
+
+    try {
+      const response = await api.get(`/property/regions/autocomplete/?q=${encodeURIComponent(query)}`);
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching regions suggestions:", error);
+      return [];
+    }
+  }, []);
+
+  const fetchCitiesByRegion = useCallback(async (regionId) => {
+    if(!regionId) return [];
+
+    try {
+      const response = await api.get(`/property/cities/by-region/${regionId}/`);
+      return response.data
+    } catch (error) {
+      console.error("Error fetching cities by region:", error);
+      return [];
+    }
+  }, []);
+
   const value = useMemo(
     () => ({
       properties,
@@ -141,6 +169,8 @@ export const PropertyProvider = ({ children }) => {
       fetchPropertyDetail,
       fetchMyProperties,
       fetchCitySuggestions,
+      fetchRegionSuggestions,
+      fetchCitiesByRegion,
       createProperty,
       deleteProperty,
     }),

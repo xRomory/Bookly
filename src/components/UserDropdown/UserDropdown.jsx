@@ -43,7 +43,7 @@ const UserDropdown = ({ isMobile, navLinks }) => {
     <div className="user-dropdown relative">
       <IoPersonCircleOutline
         onClick={toggleDropdown}
-        className="cursor-pointer text-4xl nav-link transition-colors hover:text-orange-500"
+        className="cursor-pointer text-4xl nav-link transition-colors text-white hover:text-orange-500"
       />
 
       {showDropdown && (

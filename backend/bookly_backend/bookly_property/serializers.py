@@ -19,6 +19,8 @@ class BooklyPropertyCreateSerializer(serializers.ModelSerializer):
         fields = [
             'property_name',
             'property_logo',
+            'region',
+            'city_province',
             'address',
             'property_description',
             'latitude',

@@ -8,7 +8,7 @@ const getToday = () => {
   const mm = String(today.getMonth() + 1).padStart(2, "0");
   const dd = String(today.getDate()).padStart(2, "0");
   return `${yyyy}-${mm}-${dd}`;
-}
+};
 
 const BookingForm = () => {
   const [location, setLocation] = useState("");
@@ -24,7 +24,7 @@ const BookingForm = () => {
     const value = e.target.value;
     setLocation(value);
 
-    if(value.length > 1) {
+    if (value.length > 1) {
       const suggestions = await fetchCitySuggestions(value);
       setCitySuggestions(suggestions);
       setShowDropdown(true);
@@ -41,7 +41,7 @@ const BookingForm = () => {
 
   React.useEffect(() => {
     const handleClickOutside = (event) => {
-      if(dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setShowDropdown(false);
       }
     };
@@ -105,26 +105,12 @@ const BookingForm = () => {
                 min={today}
                 value={checkIn}
                 onChange={(e) => {
-                  setCheckIn(e.target.value)
-                  if(checkOut && e.target.value > checkOut) setCheckOut("");
+                  setCheckIn(e.target.value);
+                  if (checkOut && e.target.value > checkOut) setCheckOut("");
                 }}
                 required
-                className="w-full p-2 border-2 font-quicksand border-blue-950 rounded-md focus:ring-blue-500 focus:border-blue-900 pr-10"
+                className="w-full p-2 border-2 font-quicksand border-blue-950 rounded-md focus:ring-blue-500 focus:border-blue-900 pr-3"
               />
-              <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                <svg
-                  className="h-5 w-5 text-blue-900"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </div>
             </div>
           </div>
 
@@ -144,22 +130,8 @@ const BookingForm = () => {
                 value={checkOut}
                 onChange={(e) => setCheckOut(e.target.value)}
                 required
-                className="w-full p-2 border-2 font-quicksand border-blue-950 rounded-md focus:ring-blue-500 focus:border-blue-900 pr-10"
+                className="w-full p-2 border-2 font-quicksand border-blue-950 rounded-md focus:ring-blue-500 focus:border-blue-900 pr-3"
               />
-              <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                <svg
-                  className="h-5 w-5 text-blue-900"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </div>
             </div>
           </div>
         </div>
